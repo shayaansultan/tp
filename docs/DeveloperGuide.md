@@ -199,6 +199,33 @@ Step 2. `ShowAllCommand` executes and invokes `Model#updateFilteredEmployeeList(
 - **Alternatives considered:** An alternative could have been to maintain a separate list for the unfiltered state and toggle between filtered and unfiltered lists. However, this was deemed unnecessary and potentially confusing, as the single list approach with dynamic predicates is simpler and more consistent with the rest of the application's design.
 
 
+### Add Command Implementation
+
+The `AddCommand` implements the abstract class `Command` to add a new `Employee` to the `Model`.
+
+Given below is how the `AddCommand` operates:
+
+Step 1. After the user inputs all the `prefixes` necessary, which are `Name`, `Phone`, `Address`, `Email`, `Team`, `Role`, and optionally `Tag`, the `AddCommandParser` parses the input and creates a new `Employee` for the `AddCommand`.
+
+Step 2. The `AddCommand` will then store the added `Employee` and feed it to the `execute` method.
+
+Step 3. The `execute` method then gives the `Employee` parameter to the `addEmployee` method under the `Model` interface.
+
+Step 4. The `addEmployee` adds the `Employee` to the `Model`.
+
+The following class diagram shows the structure of an `Employee`:
+
+<puml src="diagrams/UpdatedEmployeeClassDiagram.puml" width="450" />
+
+And this is the sequence diagram that describes the steps:
+
+<puml src="diagrams/DeleteSequenceDiagram.puml" width="550" />
+
+#### Design considerations:
+
+- **Alternative:** `Team` and `Role` could have been further abstracted into a Class called `Header` as they appear above the names of the `Employee` in the GUI. This was considered so that we could filter the contact list to employees who are in the same team or role. However, it is rejected as filter will be able to be implemented in a simpler manner when avoiding this over-abstraction.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
