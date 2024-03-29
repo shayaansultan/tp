@@ -160,6 +160,25 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Unique Identifier (UID) Implementation
+
+The introduction of Unique Identifiers (UID) marks a significant enhancement in managing employee records, ensuring the uniqueness of each entry and preventing duplicates. This section elaborates on the UID system's integration into the application, focusing on the deletion process and the assignment of teams and roles.
+
+- UID Assignment: Every employee added to the contact book is automatically assigned a unique identifier (UID). This UID serves as a definitive reference to each employee, distinguishing between individuals even if other attributes (such as name, email, and contact number) are identical.
+  The UID is generated sequentially, starting from `100` for the first employee and incrementing by one for each subsequent addition. This systematic approach ensures that each employee is uniquely identified within the system. To work with exisiting data, UID is set to the last UID in the data, which is also the maximum UID. Furthmore, the UID is displayed alongside the employee's details in the contact list, providing users with a clear and unambiguous reference point for each entry.
+
+- Enhanced Duplicate Detection: The system leverages UIDs to identify and prevent duplicate entries. Upon adding a new employee, the application checks for duplicates based on a combination of name, email, and contact number. If a potential duplicate is detected, the system relies on the UID to ascertain uniqueness, thereby maintaining the integrity of the employee database.
+
+#### Implications
+
+One of the major ways the UID system enhances the application is by streamlining the deletion process. When a user initiates the deletion of an employee, the system prompts the user to specify the deletion target using the employee's UID. This approach eliminates ambiguity and ensures that the correct employee is removed from the database, even in cases where multiple employees share the same name, email, or contact number.
+
+#### Design Considerations
+
+- **Why this design**: Integrating UIDs enhances the robustness and reliability of the employee management system. It addresses the challenge of duplicate entries and streamlines the process of deleting, team assignment, and role designation, ensuring accuracy and precision in employee record management. In the future, the UID system can be further extended to support additional functionalities such as search, filtering, and sorting, providing users with a more robust and efficient employee management experience.
+
+- **Alternatives considered**: While alternatives such as relying solely on name, email, or contact number for identification were considered, these methods were prone to ambiguity and errors, especially in large datasets. The UID approach was selected for its ability to uniquely identify each employee, thereby enhancing the system's overall functionality and user experience.
+
 ### Filter Command Implementation
 
 The `FilterCommand` is implemented to allow users to refine the list of employees displayed based on specified criteria, such as role, team, and tags. This functionality is crucial for users who need to work with subsets of large employee datasets.
@@ -172,7 +191,6 @@ Given below is an example usage scenario and how the filter mechanism behaves at
 Step 1. The user executes `filter t/ developer`, intending to view only employees tagged as developers. The input is parsed by `FilterCommandParser`, which creates a `FilterCommand` with a predicate that checks the tags of each employee.
 
 Step 2. The `FilterCommand` is executed, calling `Model#updateFilteredEmployeeList(predicate)`, where `predicate` is the condition that an employee's tags must include "developer".
-
 
 #### Design Considerations
 
@@ -191,7 +209,6 @@ Given below is how the show all mechanism operates:
 Step 1. After various filter commands, the user decides to view all employees and executes `showAll`. This command creates a `ShowAllCommand` object.
 
 Step 2. `ShowAllCommand` executes and invokes `Model#updateFilteredEmployeeList(Predicate<Employee> predicate)` with a predicate that evaluates to true for all employees, effectively clearing any active filters.
-
 
 #### Design Considerations
 
@@ -234,7 +251,6 @@ Step 2. The `DeleteCommand` is executed, calling `Model#deleteEmployee(target)`,
 
 - **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of target uid for deletion allows for precise and flexible removal of employees without hard-coding specific deletion types.
 - **Alternatives considered:** A direct approach where the `DeleteCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
-
 
 ### \[Proposed\] Undo/redo feature
 
