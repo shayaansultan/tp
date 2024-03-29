@@ -22,5 +22,6 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Work in progress
+
   * Developer Guide:
     * Work in progress
