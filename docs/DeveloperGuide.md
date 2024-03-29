@@ -198,6 +198,43 @@ Step 2. `ShowAllCommand` executes and invokes `Model#updateFilteredEmployeeList(
 - **Why this design:** The implementation provides a straightforward and intuitive way to revert any filters and view the complete list of employees. It follows the existing command structure and integrates seamlessly with the model.
 - **Alternatives considered:** An alternative could have been to maintain a separate list for the unfiltered state and toggle between filtered and unfiltered lists. However, this was deemed unnecessary and potentially confusing, as the single list approach with dynamic predicates is simpler and more consistent with the rest of the application's design.
 
+## Delete by Name Command Implementation
+
+The `DeleteCommand` was further enhanced to allow users to remove employees from the list by their full name. This functionality is crucial for users who need to manage their employee datasets. The command has been enhanced to handle deletion by name in case of duplicate names.
+
+- `DeleteCommandParser` parses the user input and creates a `DeleteCommand` object with a specific target name that encapsulates the deletion logic.
+- `Model#deleteEmployee(Employee target)` is then called to remove the employee from the list according to the given criteria.
+- In the scenario where multiple employees have the same name, the user is prompted to delete by uid to ensure the correct employee is removed.
+
+Given below is an example usage scenario and how the delete by name mechanism behaves at each step.
+
+Step 1. The user executes `delete John Doe`, intending to remove the employee named John Doe. The input is parsed by `DeleteCommandParser`, which creates a `DeleteCommand` with the target name.
+
+Step 2. The `DeleteCommand` is executed, calling `Model#deleteEmployee(target)`, where `target` is the employee with the name "John Doe". If there are multiple employees with the name "John Doe", a `CommandException` is thrown asking the user to delete by uid.
+
+#### Design Considerations
+
+- **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of target name for deletion allows for precise and flexible removal of employees without hard-coding specific deletion types.
+- **Alternatives considered:** A direct approach where the `DeleteCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
+
+## Delete by UID Command Implementation
+
+The `DeleteCommand` is also implemented to allow users to remove employees from the list by their unique id. This functionality is crucial for users who need to manage their employee datasets, especially when there are multiple employees with the same name.
+
+- `DeleteCommandParser` parses the user input and creates a `DeleteCommand` object with a specific target uid that encapsulates the deletion logic.
+- `Model#deleteEmployee(Employee target)` is then called to remove the employee from the list according to the given criteria.
+
+Given below is an example usage scenario and how the delete by uid mechanism behaves at each step.
+
+Step 1. The user executes `delete uid/1234`, intending to remove the employee with uid 1234. The input is parsed by `DeleteCommandParser`, which creates a `DeleteCommand` with the target uid.
+
+Step 2. The `DeleteCommand` is executed, calling `Model#deleteEmployee(target)`, where `target` is the employee with the uid 1234.
+
+#### Design Considerations
+
+- **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of target uid for deletion allows for precise and flexible removal of employees without hard-coding specific deletion types.
+- **Alternatives considered:** A direct approach where the `DeleteCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
+
 
 ### \[Proposed\] Undo/redo feature
 
