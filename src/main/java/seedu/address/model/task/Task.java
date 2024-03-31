@@ -85,6 +85,35 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + (isDone ? "X" : " ") + "] " + description;
+        return "[" + (isDone ? "X" : "_") + "] " + description;
+    }
+
+    /**
+     * Returns true if the given string is a valid task string.
+     */
+    public static boolean isValidTaskString(String taskString) {
+        String[] taskStringArray = taskString.split(" ", 2);
+        if (taskStringArray.length != 2) {
+            return false;
+        }
+        String status = taskStringArray[0];
+        if (!status.equals("[X]") && !status.equals("[_]")) {
+            return false;
+        }
+        return Description.isValidDescription(taskStringArray[1]);
+    }
+
+    /**
+     * Parses a task string into a Task object.
+     */
+    public static Task parseTaskString(String taskString) {
+        String[] taskStringArray = taskString.split(" ", 2);
+        boolean isDone = taskStringArray[0].equals("[X]");
+        Description description = new Description(taskStringArray[1]);
+        Task task = new Task(description);
+        if (isDone) {
+            task.mark();
+        }
+        return task;
     }
 }
