@@ -85,6 +85,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return getDescription() + " (Done: " + isDone() + ")";
+        return "[" + (isDone ? "X" : " ") + "] " + description;
     }
 }
