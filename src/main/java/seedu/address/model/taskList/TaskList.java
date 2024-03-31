@@ -1,4 +1,4 @@
-package seedu.address.model.todoList;
+package seedu.address.model.taskList;
 
 import seedu.address.model.task.Task;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * Guarantees: details are present and not null, field values are validated,
  * immutable.
  */
-public class TodoList {
+public class TaskList {
 
     // Data fields
     private final List<Task> tasks;
@@ -18,7 +18,7 @@ public class TodoList {
     /**
      * Every field must be present and not null.
      */
-    public TodoList() {
+    public TaskList() {
         this.tasks = new ArrayList<>();
     }
 

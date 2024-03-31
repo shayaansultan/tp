@@ -4,16 +4,17 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
+import seedu.address.model.taskList.TaskList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TodoListTest {
+public class TaskListTest {
 
     @Test
     public void addTask() {
-        TodoList todoList = new TodoList();
+        TaskList todoList = new TaskList();
         Task task = new Task(new Description("Buy milk"));
         todoList.addTask(task);
 
@@ -23,7 +24,7 @@ public class TodoListTest {
 
     @Test
     public void markTask() {
-        TodoList todoList = new TodoList();
+        TaskList todoList = new TaskList();
         Task task = new Task(new Description("Buy milk"));
         todoList.addTask(task);
         todoList.markTask(0);
@@ -34,7 +35,7 @@ public class TodoListTest {
 
     @Test
     public void unmarkTask() {
-        TodoList todoList = new TodoList();
+        TaskList todoList = new TaskList();
         Task task = new Task(new Description("Buy milk"));
         todoList.addTask(task);
         todoList.markTask(0);
