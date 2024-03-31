@@ -12,6 +12,7 @@ import seedu.address.model.employee.Role;
 import seedu.address.model.employee.Team;
 import seedu.address.model.employee.UniqueId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tasklist.TaskList;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -35,6 +36,7 @@ public class EmployeeBuilder {
     private Role role;
     private Set<Tag> tags;
     private UniqueId uid;
+    private TaskList tasks;
 
     /**
      * Creates a {@code EmployeeBuilder} with the default details.
@@ -48,6 +50,7 @@ public class EmployeeBuilder {
         role = new Role(DEFAULT_ROLE);
         tags = new HashSet<>();
         uid = new UniqueId(DEFAULT_UID);
+        tasks = new TaskList();
     }
 
     /**
@@ -62,6 +65,9 @@ public class EmployeeBuilder {
         role = employeeToCopy.getRole();
         tags = new HashSet<>(employeeToCopy.getTags());
         uid = employeeToCopy.getUid();
+        for (int i = 0; i < employeeToCopy.getTasks().size(); i++) {
+            tasks.addTask(employeeToCopy.getTasks().get(i));
+        }
     }
 
     /**
