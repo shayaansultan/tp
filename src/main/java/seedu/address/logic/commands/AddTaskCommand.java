@@ -23,7 +23,7 @@ public class AddTaskCommand extends Command {
             + "TASK_DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " 1 Buy milk";
 
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s to Employee: %2$s";
+    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
 
     private final UniqueId uid;
     private final Description description;
