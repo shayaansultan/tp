@@ -46,6 +46,8 @@ public class EmployeeCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label uid;
+    @FXML
+    private Label tasks;
 
     /**
      * Creates a {@code EmployeeCode} with the given {@code Employee} and index to
@@ -64,5 +66,11 @@ public class EmployeeCard extends UiPart<Region> {
         employee.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        tasks.setText("Tasks:\n");
+
+        employee.getTasks().stream()
+                .map(task -> new Label(task.toString()))
+                .forEach(task -> tasks.setText(tasks.getText() + task.getText() + "\n"));
     }
 }
