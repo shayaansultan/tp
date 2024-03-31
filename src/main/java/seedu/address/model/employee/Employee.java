@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.todoList.TodoList;
 
 /**
  * Represents an Employee in the address book.
@@ -28,6 +29,7 @@ public class Employee {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final UniqueId uid;
+    private final TodoList todoList = new TodoList();
 
     /**
      * Every field must be present and not null.
@@ -80,6 +82,10 @@ public class Employee {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public TodoList getTodoList() {
+        return todoList;
     }
 
     /**
@@ -137,6 +143,7 @@ public class Employee {
                 .add("role", role)
                 .add("tags", tags)
                 .add("uid", uid)
+                .add("todoList", todoList)
                 .toString();
     }
 
