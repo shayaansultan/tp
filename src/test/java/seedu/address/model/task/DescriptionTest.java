@@ -17,6 +17,6 @@ public class DescriptionTest {
 
         // valid descriptions
         assertTrue(Description.isValidDescription("Buy milk"));
-        assertTrue(Description.isValidDescription("-"));
+        assertFalse(Description.isValidDescription("-"));
     }
 }
