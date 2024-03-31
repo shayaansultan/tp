@@ -15,7 +15,7 @@ public class Description {
      */
     public static final String VALIDATION_REGEX = "^.+$";
 
-    public String fullDescription;
+    private String fullDescription;
 
     /**
      * Constructs a {@code Description}.
@@ -32,6 +32,9 @@ public class Description {
      * Returns true if a given string is a valid description.
      */
     public static boolean isValidDescription(String test) {
+        if (test == null) {
+            return false;
+        }
         return test.trim().matches(VALIDATION_REGEX);
     }
 

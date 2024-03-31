@@ -1,14 +1,13 @@
-package seedu.address.model.todoList;
+package seedu.address.model.tasklist;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
-import seedu.address.model.taskList.TaskList;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TaskListTest {
 

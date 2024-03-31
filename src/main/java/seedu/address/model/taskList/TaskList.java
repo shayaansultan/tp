@@ -1,9 +1,9 @@
-package seedu.address.model.taskList;
-
-import seedu.address.model.task.Task;
+package seedu.address.model.tasklist;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import seedu.address.model.task.Task;
 
 /**
  * Represents a TodoList in the address book.
@@ -62,5 +62,4 @@ public class TaskList {
         }
         return sb.toString();
     }
-
 }

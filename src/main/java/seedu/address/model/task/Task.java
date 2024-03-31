@@ -87,5 +87,4 @@ public class Task {
     public String toString() {
         return getDescription() + " (Done: " + isDone() + ")";
     }
-
 }
