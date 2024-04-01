@@ -12,6 +12,8 @@ import seedu.address.model.employee.Role;
 import seedu.address.model.employee.Team;
 import seedu.address.model.employee.UniqueId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Task;
 import seedu.address.model.tasklist.TaskList;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -51,6 +53,7 @@ public class EmployeeBuilder {
         tags = new HashSet<>();
         uid = new UniqueId(DEFAULT_UID);
         tasks = new TaskList();
+        tasks.addTask(new Task(new Description("Buy milk")));
     }
 
     /**
