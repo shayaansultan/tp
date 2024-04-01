@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EMPLOYEE;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -36,6 +37,7 @@ import seedu.address.model.employee.Role;
 import seedu.address.model.employee.Team;
 import seedu.address.model.employee.UniqueId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -166,9 +168,11 @@ public class DeleteCommandTest {
         Set<Tag> tags = new HashSet<>();
         UniqueId uid1 = new UniqueId("1");
         UniqueId uid2 = new UniqueId("2");
+        List<Task> tasks1 = new ArrayList<>();
+        List<Task> tasks2 = new ArrayList<>();
 
-        Employee employee1 = new Employee(name, phone, email, address, team, role, tags, uid1);
-        Employee employee2 = new Employee(name, phone, email, address, team, role, tags, uid2);
+        Employee employee1 = new Employee(name, phone, email, address, team, role, tags, uid1, tasks1);
+        Employee employee2 = new Employee(name, phone, email, address, team, role, tags, uid2, tasks2);
 
         ModelStubWithEmployee model = new ModelStubWithEmployee(Arrays.asList(employee1, employee2));
 

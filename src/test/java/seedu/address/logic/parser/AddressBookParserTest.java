@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,6 +15,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -47,6 +47,7 @@ public class AddressBookParserTest {
         assertEquals(expected.getTags(), actual.getTags());
 
     }
+
     @Test
     public void parseCommand_add() throws Exception {
         Employee employee = new EmployeeBuilder().build();
@@ -100,6 +101,12 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_addTask() throws Exception {
+        assertTrue(parser.parseCommand(AddTaskCommand.COMMAND_WORD
+                + " uid/1000 hello world") instanceof AddTaskCommand);
     }
 
     @Test
