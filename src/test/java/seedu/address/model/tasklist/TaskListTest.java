@@ -10,37 +10,57 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 
 public class TaskListTest {
-
     @Test
     public void addTask() {
-        TaskList todoList = new TaskList();
+        TaskList taskList = new TaskList();
         Task task = new Task(new Description("Buy milk"));
-        todoList.addTask(task);
+        taskList.addTask(task);
 
         // check if task is added
-        assertEquals(todoList.getTasks().get(0), task);
+        assertEquals(taskList.getTasks().get(0), task);
+    }
+
+    @Test
+    public void removeTask() {
+        TaskList taskList = new TaskList();
+        Task task = new Task(new Description("Buy milk"));
+        taskList.addTask(task);
+        taskList.removeTask(0);
+
+        // check if task is removed
+        assertTrue(taskList.getTasks().isEmpty());
     }
 
     @Test
     public void markTask() {
-        TaskList todoList = new TaskList();
+        TaskList taskList = new TaskList();
         Task task = new Task(new Description("Buy milk"));
-        todoList.addTask(task);
-        todoList.markTask(0);
+        taskList.addTask(task);
+        taskList.markTask(0);
 
         // check if task is marked
-        assertTrue(todoList.getTasks().get(0).isDone());
+        assertTrue(taskList.getTasks().get(0).isDone());
     }
 
     @Test
     public void unmarkTask() {
-        TaskList todoList = new TaskList();
+        TaskList taskList = new TaskList();
         Task task = new Task(new Description("Buy milk"));
-        todoList.addTask(task);
-        todoList.markTask(0);
-        todoList.unmarkTask(0);
+        taskList.addTask(task);
+        taskList.markTask(0);
+        taskList.unmarkTask(0);
 
         // check if task is unmarked
-        assertFalse(todoList.getTasks().get(0).isDone());
+        assertFalse(taskList.getTasks().get(0).isDone());
+    }
+
+    @Test
+    public void testToString() {
+        TaskList taskList = new TaskList();
+        Task task = new Task(new Description("Buy milk"));
+        taskList.addTask(task);
+
+        // check if toString is correct
+        assertEquals("[_] Buy milk\n", taskList.toString());
     }
 }
