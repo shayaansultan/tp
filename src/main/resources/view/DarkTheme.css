@@ -99,12 +99,12 @@
     -fx-padding: 0 0 0 0;
 }
 
-.list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+.list-cell:filled:even { /*employee card at even interval*/
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #51154f, #074f78);
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7a1f77, #0a6ea9);
 }
 
 .list-cell:filled:selected {
@@ -137,13 +137,13 @@
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #000000; /* border background color */
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #1a1a1a; /* footer color */
 }
 
 .result-display {
@@ -185,7 +185,7 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#1d1d1d, 50%); /* menu bar list color */
 }
 
 .context-menu .label {
@@ -193,7 +193,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #1a1a1a; /* menu bar color */
 }
 
 .menu-bar .label {
@@ -308,7 +308,7 @@
 }
 
 #cardPane {
-    -fx-background-color: transparent;
+    -fx-background-color: transparent; /* do not change */
     -fx-border-width: 0;
 }
 
@@ -318,7 +318,7 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: #1a1a1a; /* command box color */
     -fx-background-insets: 0;
     -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
@@ -333,7 +333,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: #1a1a1a; /* output display box color */
     -fx-background-radius: 0;
 }
 
@@ -344,7 +344,7 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #3e7b91; /* tag color */
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;

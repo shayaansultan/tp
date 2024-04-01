@@ -19,6 +19,7 @@ import seedu.address.model.employee.Role;
 import seedu.address.model.employee.Team;
 import seedu.address.model.employee.UniqueId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Jackson-friendly version of {@link Employee}.
@@ -36,6 +37,7 @@ class JsonAdaptedEmployee {
     private final String role;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final Integer uid;
+    private final List<JsonAdaptedTask> tasksList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedEmployee} with the given employee details.
@@ -45,7 +47,7 @@ class JsonAdaptedEmployee {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("team") String team, @JsonProperty("role") String role,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
-            @JsonProperty("uid") String uid) {
+            @JsonProperty("uid") String uid, @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -56,6 +58,9 @@ class JsonAdaptedEmployee {
             this.tags.addAll(tags);
         }
         this.uid = Integer.parseInt(uid);
+        if (tasks != null) {
+            this.tasksList.addAll(tasks);
+        }
     }
 
     /**
@@ -72,6 +77,10 @@ class JsonAdaptedEmployee {
 
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+
+        tasksList.addAll(source.getTasks().stream()
+                .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
     }
 
@@ -158,7 +167,14 @@ class JsonAdaptedEmployee {
         final UniqueId modelUid = new UniqueId(uid);
 
         final Set<Tag> modelTags = new HashSet<>(employeeTags);
-        return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelTeam, modelRole, modelTags, modelUid);
+
+        final List<Task> employeeTasks = new ArrayList<>();
+        for (JsonAdaptedTask task : tasksList) {
+            employeeTasks.add(task.toModelType());
+        }
+
+        return new Employee(modelName, modelPhone, modelEmail, modelAddress, modelTeam, modelRole, modelTags, modelUid,
+                employeeTasks);
     }
 
 }

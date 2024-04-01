@@ -4,11 +4,15 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Task;
+import seedu.address.model.tasklist.TaskList;
 
 /**
  * Represents an Employee in the address book.
@@ -28,6 +32,27 @@ public class Employee {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final UniqueId uid;
+    private final TaskList taskList;
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Employee(Name name, Phone phone, Email email, Address address, Team team, Role role, Set<Tag> tags,
+            UniqueId uid, List<Task> tasks) {
+        requireAllNonNull(name, phone, email, address, team, role, tags, uid);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.team = team;
+        this.role = role;
+        this.tags.addAll(tags);
+        this.uid = uid;
+        this.taskList = new TaskList();
+        for (Task task : tasks) {
+            this.taskList.addTask(task);
+        }
+    }
 
     /**
      * Every field must be present and not null.
@@ -43,6 +68,7 @@ public class Employee {
         this.role = role;
         this.tags.addAll(tags);
         this.uid = uid;
+        this.taskList = new TaskList();
     }
 
     public Name getName() {
@@ -80,6 +106,17 @@ public class Employee {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public List<Task> getTasks() {
+        return taskList.getTasks();
+    }
+
+    /**
+     * Adds a task to the todo list.
+     */
+    public void addTask(Description description) {
+        taskList.addTask(new Task(description));
     }
 
     /**

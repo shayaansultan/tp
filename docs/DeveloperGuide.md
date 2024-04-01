@@ -160,6 +160,25 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Unique Identifier (UID) Implementation
+
+The introduction of Unique Identifiers (UID) marks a significant enhancement in managing employee records, ensuring the uniqueness of each entry and preventing duplicates. This section elaborates on the UID system's integration into the application, focusing on the deletion process and the assignment of teams and roles.
+
+- UID Assignment: Every employee added to the contact book is automatically assigned a unique identifier (UID). This UID serves as a definitive reference to each employee, distinguishing between individuals even if other attributes (such as name, email, and contact number) are identical.
+  The UID is generated sequentially, starting from `100` for the first employee and incrementing by one for each subsequent addition. This systematic approach ensures that each employee is uniquely identified within the system. To work with exisiting data, UID is set to the last UID in the data, which is also the maximum UID. Furthmore, the UID is displayed alongside the employee's details in the contact list, providing users with a clear and unambiguous reference point for each entry.
+
+- Enhanced Duplicate Detection: The system leverages UIDs to identify and prevent duplicate entries. Upon adding a new employee, the application checks for duplicates based on a combination of name, email, and contact number. If a potential duplicate is detected, the system relies on the UID to ascertain uniqueness, thereby maintaining the integrity of the employee database.
+
+#### Implications
+
+One of the major ways the UID system enhances the application is by streamlining the deletion process. When a user initiates the deletion of an employee, the system prompts the user to specify the deletion target using the employee's UID. This approach eliminates ambiguity and ensures that the correct employee is removed from the database, even in cases where multiple employees share the same name, email, or contact number.
+
+#### Design Considerations
+
+- **Why this design**: Integrating UIDs enhances the robustness and reliability of the employee management system. It addresses the challenge of duplicate entries and streamlines the process of deleting, team assignment, and role designation, ensuring accuracy and precision in employee record management. In the future, the UID system can be further extended to support additional functionalities such as search, filtering, and sorting, providing users with a more robust and efficient employee management experience.
+
+- **Alternatives considered**: While alternatives such as relying solely on name, email, or contact number for identification were considered, these methods were prone to ambiguity and errors, especially in large datasets. The UID approach was selected for its ability to uniquely identify each employee, thereby enhancing the system's overall functionality and user experience.
+
 ### Filter Command Implementation
 
 The `FilterCommand` is implemented to allow users to refine the list of employees displayed based on specified criteria, such as role, team, and tags. This functionality is crucial for users who need to work with subsets of large employee datasets.
@@ -172,7 +191,6 @@ Given below is an example usage scenario and how the filter mechanism behaves at
 Step 1. The user executes `filter t/ developer`, intending to view only employees tagged as developers. The input is parsed by `FilterCommandParser`, which creates a `FilterCommand` with a predicate that checks the tags of each employee.
 
 Step 2. The `FilterCommand` is executed, calling `Model#updateFilteredEmployeeList(predicate)`, where `predicate` is the condition that an employee's tags must include "developer".
-
 
 #### Design Considerations
 
@@ -192,11 +210,73 @@ Step 1. After various filter commands, the user decides to view all employees an
 
 Step 2. `ShowAllCommand` executes and invokes `Model#updateFilteredEmployeeList(Predicate<Employee> predicate)` with a predicate that evaluates to true for all employees, effectively clearing any active filters.
 
-
 #### Design Considerations
 
 - **Why this design:** The implementation provides a straightforward and intuitive way to revert any filters and view the complete list of employees. It follows the existing command structure and integrates seamlessly with the model.
 - **Alternatives considered:** An alternative could have been to maintain a separate list for the unfiltered state and toggle between filtered and unfiltered lists. However, this was deemed unnecessary and potentially confusing, as the single list approach with dynamic predicates is simpler and more consistent with the rest of the application's design.
+
+## Delete by Name Command Implementation
+
+The `DeleteCommand` was further enhanced to allow users to remove employees from the list by their full name. This functionality is crucial for users who need to manage their employee datasets. The command has been enhanced to handle deletion by name in case of duplicate names.
+
+- `DeleteCommandParser` parses the user input and creates a `DeleteCommand` object with a specific target name that encapsulates the deletion logic.
+- `Model#deleteEmployee(Employee target)` is then called to remove the employee from the list according to the given criteria.
+- In the scenario where multiple employees have the same name, the user is prompted to delete by uid to ensure the correct employee is removed.
+
+Given below is an example usage scenario and how the delete by name mechanism behaves at each step.
+
+Step 1. The user executes `delete John Doe`, intending to remove the employee named John Doe. The input is parsed by `DeleteCommandParser`, which creates a `DeleteCommand` with the target name.
+
+Step 2. The `DeleteCommand` is executed, calling `Model#deleteEmployee(target)`, where `target` is the employee with the name "John Doe". If there are multiple employees with the name "John Doe", a `CommandException` is thrown asking the user to delete by uid.
+
+#### Design Considerations
+
+- **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of target name for deletion allows for precise and flexible removal of employees without hard-coding specific deletion types.
+- **Alternatives considered:** A direct approach where the `DeleteCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
+
+## Delete by UID Command Implementation
+
+The `DeleteCommand` is also implemented to allow users to remove employees from the list by their unique id. This functionality is crucial for users who need to manage their employee datasets, especially when there are multiple employees with the same name.
+
+- `DeleteCommandParser` parses the user input and creates a `DeleteCommand` object with a specific target uid that encapsulates the deletion logic.
+- `Model#deleteEmployee(Employee target)` is then called to remove the employee from the list according to the given criteria.
+
+Given below is an example usage scenario and how the delete by uid mechanism behaves at each step.
+
+Step 1. The user executes `delete uid/1234`, intending to remove the employee with uid 1234. The input is parsed by `DeleteCommandParser`, which creates a `DeleteCommand` with the target uid.
+
+Step 2. The `DeleteCommand` is executed, calling `Model#deleteEmployee(target)`, where `target` is the employee with the uid 1234.
+
+#### Design Considerations
+
+- **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of target uid for deletion allows for precise and flexible removal of employees without hard-coding specific deletion types.
+- **Alternatives considered:** A direct approach where the `DeleteCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
+
+### Add Command Implementation
+
+The `AddCommand` implements the abstract class `Command` to add a new `Employee` to the `Model`.
+
+Given below is how the `AddCommand` operates:
+
+Step 1. After the user inputs all the `prefixes` necessary, which are `Name`, `Phone`, `Address`, `Email`, `Team`, `Role`, and optionally `Tag`, the `AddCommandParser` parses the input and creates a new `Employee` for the `AddCommand`.
+
+Step 2. The `AddCommand` will then store the added `Employee` and feed it to the `execute` method.
+
+Step 3. The `execute` method then gives the `Employee` parameter to the `addEmployee` method under the `Model` interface.
+
+Step 4. The `addEmployee` adds the `Employee` to the `Model`.
+
+The following class diagram shows the structure of an `Employee`:
+
+<puml src="diagrams/UpdatedEmployeeClassDiagram.puml" width="450" />
+
+And this is the sequence diagram that describes the steps:
+
+<puml src="diagrams/DeleteSequenceDiagram.puml" width="550" />
+
+#### Design considerations:
+
+- **Alternative:** `Team` and `Role` could have been further abstracted into a Class called `Header` as they appear above the names of the `Employee` in the GUI. This was considered so that we could filter the contact list to employees who are in the same team or role. However, it is rejected as filter will be able to be implemented in a simpler manner when avoiding this over-abstraction.
 
 
 ### \[Proposed\] Undo/redo feature

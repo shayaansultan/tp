@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -23,6 +25,7 @@ import seedu.address.model.employee.Role;
 import seedu.address.model.employee.Team;
 import seedu.address.model.employee.UniqueId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -57,8 +60,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         UniqueId uid = new UniqueId();
         uid.generateNewId();
+        List<Task> tasks = new ArrayList<>();
 
-        Employee employee = new Employee(name, phone, email, address, team, role, tagList, uid);
+        Employee employee = new Employee(name, phone, email, address, team, role, tagList, uid, tasks);
 
         return new AddCommand(employee);
     }

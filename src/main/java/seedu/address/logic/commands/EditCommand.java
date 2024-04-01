@@ -32,6 +32,7 @@ import seedu.address.model.employee.Role;
 import seedu.address.model.employee.Team;
 import seedu.address.model.employee.UniqueId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Edits the details of an existing employee in the address book.
@@ -113,9 +114,10 @@ public class EditCommand extends Command {
         Role updatedRole = editEmployeeDescriptor.getRole().orElse(employeeToEdit.getRole());
         Set<Tag> updatedTags = editEmployeeDescriptor.getTags().orElse(employeeToEdit.getTags());
         UniqueId uid = employeeToEdit.getUid();
+        List<Task> tasks = employeeToEdit.getTasks();
 
         return new Employee(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTeam, updatedRole,
-                updatedTags, uid);
+                updatedTags, uid, tasks);
     }
 
     @Override
