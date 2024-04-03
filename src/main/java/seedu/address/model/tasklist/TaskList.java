@@ -89,7 +89,7 @@ public class TaskList {
         if (size() == 0) {
             return 0;
         }
-        return (double) (getCompletedTasks() / size()) * 100;
+        return (double) getCompletedTasks() / size() * 100;
     }
 
     @Override

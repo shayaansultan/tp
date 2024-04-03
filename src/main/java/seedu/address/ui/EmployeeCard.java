@@ -60,6 +60,7 @@ public class EmployeeCard extends UiPart<Region> {
     public EmployeeCard(Employee employee, int displayedIndex) {
         super(FXML);
         this.employee = employee;
+        updateTaskList(employee);
         teamRole.setText(employee.getTeam().toString() + " | " + employee.getRole().value);
         id.setText(displayedIndex + ". ");
         name.setText(employee.getName().fullName);
@@ -72,7 +73,6 @@ public class EmployeeCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        updateTaskList(employee);
     }
 
     /**

@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -30,7 +31,8 @@ public class EmployeeListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Employee} using a {@code EmployeeCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Employee}
+     * using a {@code EmployeeCard}.
      */
     class EmployeeListViewCell extends ListCell<Employee> {
         @Override

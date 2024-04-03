@@ -219,11 +219,13 @@ public class Employee {
     }
 
     /**
-     * Returns the completion rate of tasks for this employee.
+     * Returns the completion rate of tasks for this employee rounded off to the
+     * nearest two decimals.
      *
-     * @return the completion rate of tasks
+     * @return the completion rate of tasks rounded off to the nearest two decimals
      */
     public double getTaskCompletionRate() {
-        return taskList.getCompletionRate();
+        double completionRate = taskList.getCompletionRate();
+        return Math.round(completionRate * 100.0) / 100.0;
     }
 }
