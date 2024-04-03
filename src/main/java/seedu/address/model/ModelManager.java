@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.employee.Employee;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -126,6 +127,12 @@ public class ModelManager implements Model {
     public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
         requireNonNull(predicate);
         filteredEmployees.setPredicate(predicate);
+    }
+
+    @Override
+    public void markTask(Employee employeeToMark, int taskIndex) {
+        requireAllNonNull(employeeToMark, taskIndex - 1);
+        employeeToMark.markTask(taskIndex - 1);
     }
 
     @Override

@@ -50,7 +50,7 @@ public class AddTaskCommand extends Command {
 
         for (Employee e : lastShownList) {
             assert uid != null;
-            if (e.getUid().getUidValue().equals(uid.getUidValue())) {
+            if ((e.getUid().getUidValue()).equals(uid.getUidValue())) {
                 employee = e;
                 break;
             }
@@ -61,13 +61,22 @@ public class AddTaskCommand extends Command {
         }
 
         employee.addTask(description);
+        model.updateFilteredEmployeeList(Model.PREDICATE_SHOW_ALL_EMPLOYEES);
         System.out.println("Task added: " + description + " to employee: " + employee.getName());
         return new CommandResult(String.format(MESSAGE_SUCCESS, description));
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        List<Employee> lastShownList = model.getFilteredEmployeeList();
+        boolean employeeExists = lastShownList.stream()
+                .anyMatch(employee -> employee.getUid().equals(uid));
+
+        if (!employeeExists) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_UID);
+        }
 
         try {
             return addTask(model);

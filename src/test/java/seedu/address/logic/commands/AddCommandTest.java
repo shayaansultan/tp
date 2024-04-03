@@ -158,6 +158,11 @@ public class AddCommandTest {
         public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void markTask(Employee employeeToMark, int taskIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
