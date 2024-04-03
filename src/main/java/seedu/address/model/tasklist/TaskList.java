@@ -1,8 +1,7 @@
 package seedu.address.model.tasklist;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.task.Task;
 
 /**
@@ -13,16 +12,16 @@ import seedu.address.model.task.Task;
 public class TaskList {
 
     // Data fields
-    private final List<Task> tasks;
+    private final ObservableList<Task> tasks;
 
     /**
      * Every field must be present and not null.
      */
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        this.tasks = FXCollections.observableArrayList();
     }
 
-    public List<Task> getTasks() {
+    public ObservableList<Task> getTasks() {
         return tasks;
     }
 
@@ -48,7 +47,7 @@ public class TaskList {
     }
 
     /**
-     * Unmarks a task as done.
+     * Marks a task as not done.
      */
     public void unmarkTask(int index) {
         tasks.get(index).unmark();

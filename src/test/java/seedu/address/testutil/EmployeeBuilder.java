@@ -68,8 +68,10 @@ public class EmployeeBuilder {
         role = employeeToCopy.getRole();
         tags = new HashSet<>(employeeToCopy.getTags());
         uid = employeeToCopy.getUid();
-        for (int i = 0; i < employeeToCopy.getTasks().size(); i++) {
-            tasks.addTask(employeeToCopy.getTasks().get(i));
+        tasks = new TaskList();
+
+        for (Task task : employeeToCopy.getTasks()) {
+            tasks.addTask(task);
         }
     }
 

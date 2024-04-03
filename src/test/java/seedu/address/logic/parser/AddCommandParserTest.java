@@ -40,7 +40,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalEmployees.AMY;
 import static seedu.address.testutil.TypicalEmployees.BOB;
 
@@ -181,14 +180,27 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void parse_optionalFieldsMissing_success() {
+    public void parse_optionalFieldsMissing_success() throws ParseException {
         // zero tags
         Employee expectedEmployee = new EmployeeBuilder(AMY).withTags().build();
-        assertParseSuccess(parser,
-                NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TEAM_DESC_AMY
-                        + ROLE_DESC_AMY,
-                new AddCommand(expectedEmployee));
+        AddCommand expectedCommand = new AddCommand(expectedEmployee);
+
+        // Parse the command
+        AddCommand actualCommand = parser.parse(NAME_DESC_AMY + PHONE_DESC_AMY
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TEAM_DESC_AMY + ROLE_DESC_AMY);
+
+        Employee actualEmployee = actualCommand.getEmployee();
+
+        assertEquals(expectedEmployee.getName(), actualEmployee.getName());
+        assertEquals(expectedEmployee.getPhone(), actualEmployee.getPhone());
+        assertEquals(expectedEmployee.getEmail(), actualEmployee.getEmail());
+        assertEquals(expectedEmployee.getAddress(), actualEmployee.getAddress());
+        assertEquals(expectedEmployee.getTeam(), actualEmployee.getTeam());
+        assertEquals(expectedEmployee.getRole(), actualEmployee.getRole());
+        assertEquals(expectedEmployee.getTags(), actualEmployee.getTags());
     }
+
+
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {

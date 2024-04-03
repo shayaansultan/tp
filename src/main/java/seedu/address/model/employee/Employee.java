@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
@@ -108,7 +109,7 @@ public class Employee {
         return Collections.unmodifiableSet(tags);
     }
 
-    public List<Task> getTasks() {
+    public ObservableList<Task> getTasks() {
         return taskList.getTasks();
     }
 
@@ -177,4 +178,19 @@ public class Employee {
                 .toString();
     }
 
+    public void unmarkTask(int taskNumber) {
+        taskList.unmarkTask(taskNumber);
+    }
+
+    public Task getTask(int taskNumber) {
+        return taskList.getTasks().get(taskNumber);
+    }
+
+    public void markTask(int taskNumber) {
+        taskList.markTask(taskNumber);
+    }
+
+    public void clearTasks() {
+        taskList.getTasks().clear();
+    }
 }

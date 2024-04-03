@@ -129,6 +129,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void markTask(Employee employeeToMark, int taskIndex) {
+        requireAllNonNull(employeeToMark, taskIndex - 1);
+        employeeToMark.markTask(taskIndex - 1);
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;

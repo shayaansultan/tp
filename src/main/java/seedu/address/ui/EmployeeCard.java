@@ -1,12 +1,14 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.employee.Employee;
 
 /**
@@ -47,7 +49,7 @@ public class EmployeeCard extends UiPart<Region> {
     @FXML
     private Label uid;
     @FXML
-    private Label tasks;
+    private VBox taskList;
 
     /**
      * Creates a {@code EmployeeCode} with the given {@code Employee} and index to
@@ -67,10 +69,21 @@ public class EmployeeCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        tasks.setText("Tasks:\n");
+        updateTaskList(employee);
+    }
 
+    /**
+     * Updates the task list in the UI.
+     */
+    public void updateTaskList(Employee employee) {
+        taskList.getChildren().clear(); // Clear existing task views
+
+        AtomicInteger taskIndex = new AtomicInteger(1);
         employee.getTasks().stream()
-                .map(task -> new Label(task.toString()))
-                .forEach(task -> tasks.setText(tasks.getText() + task.getText() + "\n"));
+                .map(task -> {
+                    String status = task.isDone() ? "[X] " : "[_] ";
+                    return new Label(taskIndex.getAndIncrement() + ". " + status + task.getDescription());
+                })
+                .forEach(taskLabel -> taskList.getChildren().add(taskLabel));
     }
 }
