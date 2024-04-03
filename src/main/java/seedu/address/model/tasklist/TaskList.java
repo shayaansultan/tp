@@ -55,6 +55,8 @@ public class TaskList {
 
     /**
      * Returns the number of tasks in the todo list.
+     * 
+     * @return the number of tasks in the todo list
      */
     public int size() {
         return tasks.size();
@@ -62,6 +64,8 @@ public class TaskList {
 
     /**
      * Returns completed tasks in the todo list.
+     * 
+     * @return the number of completed tasks in the todo list
      */
     public int getCompletedTasks() {
         return (int) tasks.stream().filter(Task::isDone).count();
@@ -69,6 +73,8 @@ public class TaskList {
 
     /**
      * Returns pending tasks in the todo list.
+     * 
+     * @return the number of pending tasks in the todo list
      */
     public int getPendingTasks() {
         return size() - getCompletedTasks();
@@ -76,6 +82,8 @@ public class TaskList {
 
     /**
      * Retuns the completion rate of the todo list.
+     * 
+     * @return the completion rate of the todo list
      */
     public double getCompletionRate() {
         if (size() == 0) {

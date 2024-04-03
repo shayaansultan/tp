@@ -50,6 +50,8 @@ public class EmployeeCard extends UiPart<Region> {
     private Label uid;
     @FXML
     private VBox taskList;
+    @FXML
+    private Label completionRate;
 
     /**
      * Creates a {@code EmployeeCode} with the given {@code Employee} and index to
@@ -65,6 +67,7 @@ public class EmployeeCard extends UiPart<Region> {
         address.setText(employee.getAddress().value);
         email.setText(employee.getEmail().value);
         uid.setText("uid: " + employee.getUid().toString());
+        completionRate.setText("Task Completion Rate: " + employee.getTaskCompletionRate());
         employee.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
