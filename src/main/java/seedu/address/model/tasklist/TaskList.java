@@ -55,7 +55,7 @@ public class TaskList {
 
     /**
      * Returns the number of tasks in the todo list.
-     * 
+     *
      * @return the number of tasks in the todo list
      */
     public int size() {
@@ -64,7 +64,7 @@ public class TaskList {
 
     /**
      * Returns completed tasks in the todo list.
-     * 
+     *
      * @return the number of completed tasks in the todo list
      */
     public int getCompletedTasks() {
@@ -73,7 +73,7 @@ public class TaskList {
 
     /**
      * Returns pending tasks in the todo list.
-     * 
+     *
      * @return the number of pending tasks in the todo list
      */
     public int getPendingTasks() {
@@ -82,14 +82,14 @@ public class TaskList {
 
     /**
      * Retuns the completion rate of the todo list.
-     * 
+     *
      * @return the completion rate of the todo list
      */
     public double getCompletionRate() {
         if (size() == 0) {
             return 0;
         }
-        return (double) getCompletedTasks() / size();
+        return (double) (getCompletedTasks() / size()) * 100;
     }
 
     @Override

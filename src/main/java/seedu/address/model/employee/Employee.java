@@ -34,6 +34,7 @@ public class Employee {
     private final Set<Tag> tags = new HashSet<>();
     private final UniqueId uid;
     private final TaskList taskList;
+    private final Double taskCompletionRate;
 
     /**
      * Every field must be present and not null.
@@ -53,6 +54,7 @@ public class Employee {
         for (Task task : tasks) {
             this.taskList.addTask(task);
         }
+        this.taskCompletionRate = this.taskList.getCompletionRate();
     }
 
     /**
@@ -70,6 +72,7 @@ public class Employee {
         this.tags.addAll(tags);
         this.uid = uid;
         this.taskList = new TaskList();
+        this.taskCompletionRate = this.taskList.getCompletionRate();
     }
 
     public Name getName() {
@@ -175,12 +178,13 @@ public class Employee {
                 .add("role", role)
                 .add("tags", tags)
                 .add("uid", uid)
+                .add("taskList", taskList)
                 .toString();
     }
 
     /**
      * Removes a task from the todo list.
-     * 
+     *
      * @param taskNumber the index of the task to be removed
      */
     public void unmarkTask(int taskNumber) {
@@ -189,9 +193,9 @@ public class Employee {
 
     /**
      * Returns the task object at the specified index.
-     * 
+     *
      * @param taskNumber the index of the task to be returned
-     * 
+     *
      * @return the number of tasks in the todo list
      */
     public Task getTask(int taskNumber) {
@@ -200,7 +204,7 @@ public class Employee {
 
     /**
      * Removes a task from the todo list.
-     * 
+     *
      * @param taskNumber the index of the task to be removed
      */
     public void markTask(int taskNumber) {
