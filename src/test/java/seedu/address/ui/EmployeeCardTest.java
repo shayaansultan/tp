@@ -10,7 +10,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.model.employee.Employee;
 import seedu.address.testutil.EmployeeBuilder;
-import seedu.address.ui.EmployeeCard;
 
 public class EmployeeCardTest extends ApplicationTest {
     private EmployeeCard employeeCard;
