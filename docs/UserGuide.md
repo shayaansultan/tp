@@ -27,7 +27,7 @@ Start using our APP **TODAY** by following our quick start guide below.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/v1.3.png)
+   ![Ui](./images/v1.3.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -200,7 +200,7 @@ Examples:
 
 - `find John` returns `john` and `John Doe`
 - `find alice david` returns `Alice Smith`, `David Williams`<br>
-  ![result for 'find alex david'](images/findAliceDavidResult.png)
+  ![result for 'find alex david'](./images/findAliceDavidResult.png)
 
 ### Deleting a employee : `delete`
 
@@ -307,7 +307,7 @@ We are thrilled to introduce a sophisticated enhancement to our application - th
 
 Within the dynamic interface of ContactSwift, each employee now boasts a visible completion rate on their profile card. This rate, a calculated metric representing the proportion of completed tasks to total tasks assigned, serves as an indicator of individual productivity levels. Automatically updated as tasks evolve, this metric ensures that you have the most current view of your team's performance.
 
-![Completion Rate Statistics](images/statisticsUi.png)
+![Completion Rate Statistics](./images/statisticsUi.png)
 
 **How to use it?** This feature requires no manual intervention to activate. The completion rate metric operates seamlessly, reflecting real-time updates as tasks are added, completed, or removed. This automatic integration ensures that productivity insights are consistently accurate and available without additional effort from you or your team.
 
