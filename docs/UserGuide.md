@@ -90,6 +90,25 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 T/A r/Manager`
 - `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Appartment p/1234567 T/B r/Secretary`
 
+### Filter employees by name, tags, roles, or teams: `filter`
+
+Filters the list of employees based on their name, tags, roles, or teams.
+
+Format: `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]`
+
+- Filters the employee list according to the specified criteria.
+- At least one of the parameters must be provided.
+- Employees matching all provided criteria will be listed (i.e., `AND` search).
+- Multiple values for each parameter can be provided, separated by a space.
+
+Examples:
+
+- `filter n/John Doe` : Shows all employees with the name `John Doe`.
+- `filter t/friend` : Shows all employees tagged as `friend`.
+- `filter r/Manager T/HR` : Shows all employees who are managers and belong to the HR team.
+- `filter t/friend t/colleague r/Technician` : Shows all employees tagged as `friend` and `colleague` who are also technicians.
+- `filter n/Jane Doe t/friend r/Executive` : Shows employees named `Jane Doe`, tagged as `friend`, and with the role of `Executive`.
+
 ### Listing all employees : `list`
 
 Shows a list of all employees in the address book.
