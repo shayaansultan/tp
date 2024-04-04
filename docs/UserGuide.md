@@ -142,18 +142,19 @@ Examples:
 - `unmark uid/1 2` unmarks the 2nd task in the task list of the employee with the `uid` of 1 as not completed.
 - `unmark uid/2 1` unmarks the 1st task in the task list of the employee with the `uid` of 2 as not completed.
 
-### Delete a Task from an employee's task list: `deletetask`
-
-Deletes a task from an employee's task list.
+### Delete a task from an employee's task list: `deleteTask`
 
 Format: `deleteTask uid/<uid> <taskIndex>`
 
 - Deletes the task at the specified `taskIndex` from the task list of the employee with the specified `uid`.
+- The `uid` refers to the user ID displayed beside the employee's name.
+- The `taskIndex` refers to the index number shown in the displayed task list.
+- The `taskIndex` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-1. `deleteTask uid/103 1` will delete the 1st task from the task list of the employee with the `uid` of 103.
-2. `deleteTask uid/148 2` will delete the 2nd task from the task list of the employee with the `uid` of 148.
+- `deleteTask uid/1 2` deletes the 2nd task in the task list of the employee with the `uid` of 1.
+- `deleteTask uid/2 1` deletes the 1st task in the task list of the employee with the `uid` of 2.
 
 ### Filter employees by name, tags, roles, or teams: `filter`
 

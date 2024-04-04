@@ -125,6 +125,13 @@ public class Employee {
     }
 
     /**
+     * Deletes a task from the todo list.
+     */
+    public void deleteTask(int taskNumber) {
+        taskList.removeTask(taskNumber);
+    }
+
+    /**
      * Returns true if both employees have the same name and id
      * This defines a weaker notion of equality between two employees.
      */
