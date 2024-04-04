@@ -90,6 +90,56 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 T/A r/Manager`
 - `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Appartment p/1234567 T/B r/Secretary`
 
+### Add task to an employee's task list: `addtask`
+
+Adds a task to an employee's task list.
+
+Format: `addTask uid/<uid> <description>`
+
+- Adds a task to the employee with the specified `uid`.
+- The `uid` refers to the user ID displayed beside the employee's name.
+- The description of the task must be provided.
+- The description of the task can only contain alphanumeric characters and spaces and cannot be empty.
+
+Examples:
+
+- `addTask uid/1 Complete the report by 5pm`
+- `addTask uid/2 Submit the proposal by 10am`
+
+### Mark a task as completed: `mark`
+
+Marks a task as completed in the employee's task list.
+
+Format: `mark uid/<uid> <taskIndex>`
+
+- Marks the task at the specified `taskIndex` as completed for the employee with the specified `uid`.
+- The `uid` refers to the user ID displayed beside the employee's name.
+- The `taskIndex` refers to the index number shown in the displayed task list.
+- The `taskIndex` **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+- `mark uid/1 2` marks the 2nd task in the task list of the employee with the `uid` of 1 as completed.
+- `mark uid/2 1` marks the 1st task in the task list of the employee with the `uid` of 2 as completed.
+
+
+### Unmark a task as completed: `unmark`
+
+Unmarks a task as completed in the employee's task list.
+
+Format: `unmark uid/<uid> <taskIndex>`
+
+- Unmarks the task at the specified `taskIndex` as not completed for the employee with the specified `uid`.
+- The `uid` refers to the user ID displayed beside the employee's name.
+- The `taskIndex` refers to the index number shown in the displayed task list.
+- The `taskIndex` **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+- `unmark uid/1 2` unmarks the 2nd task in the task list of the employee with the `uid` of 1 as not completed.
+- `unmark uid/2 1` unmarks the 1st task in the task list of the employee with the `uid` of 2 as not completed.
+
+
 ### Filter employees by name, tags, roles, or teams: `filter`
 
 Filters the list of employees based on their name, tags, roles, or teams.
