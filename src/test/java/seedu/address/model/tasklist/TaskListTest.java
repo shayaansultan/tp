@@ -55,7 +55,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void testToString() {
+    public void test_ToString() {
         TaskList taskList = new TaskList();
         Task task = new Task(new Description("Buy milk"));
         taskList.addTask(task);
@@ -63,4 +63,63 @@ public class TaskListTest {
         // check if toString is correct
         assertEquals("[_] Buy milk\n", taskList.toString());
     }
+
+    @Test
+    public void test_size() {
+        TaskList taskList = new TaskList();
+        assertEquals(0, taskList.size());
+
+        taskList.addTask(new Task(new Description("Task 1")));
+        assertEquals(1, taskList.size());
+
+        taskList.addTask(new Task(new Description("Task 2")));
+        assertEquals(2, taskList.size());
+    }
+
+    @Test
+    public void test_getCompletedTasks() {
+        TaskList taskList = new TaskList();
+        taskList.addTask(new Task(new Description("Task 1")));
+        taskList.addTask(new Task(new Description("Task 2")));
+
+        assertEquals(0, taskList.getCompletedTasks());
+
+        taskList.markTask(0);
+        assertEquals(1, taskList.getCompletedTasks());
+
+        taskList.markTask(1);
+        assertEquals(2, taskList.getCompletedTasks());
+    }
+
+    @Test
+    public void test_getPendingTasks() {
+        TaskList taskList = new TaskList();
+        taskList.addTask(new Task(new Description("Task 1")));
+        taskList.addTask(new Task(new Description("Task 2")));
+
+        assertEquals(2, taskList.getPendingTasks());
+
+        taskList.markTask(0);
+        assertEquals(1, taskList.getPendingTasks());
+
+        taskList.markTask(1);
+        assertEquals(0, taskList.getPendingTasks());
+    }
+
+    @Test
+    public void test_getCompletionRate() {
+        TaskList taskList = new TaskList();
+        assertEquals(0, taskList.getCompletionRate());
+
+        taskList.addTask(new Task(new Description("Task 1")));
+        taskList.addTask(new Task(new Description("Task 2")));
+        assertEquals(0, taskList.getCompletionRate());
+
+        taskList.markTask(0);
+        assertEquals(50, taskList.getCompletionRate());
+
+        taskList.markTask(1);
+        assertEquals(100, taskList.getCompletionRate());
+    }
+
 }
