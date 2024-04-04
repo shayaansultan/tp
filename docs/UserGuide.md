@@ -247,6 +247,74 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
+# Managing your employees
+
+Great! You have successfully installed ContactSwift and are ready to manage your employees. Let's use all the awesome todo list and statistic features that ContactSwift has to offer.
+
+### Adding Task
+
+Adds a task to a specified employee (by UID).
+
+Format: `addTask uid/<uid> <description>`
+
+Examples:
+
+1. `addTask uid/106 Complete the report by 5pm`
+2. `addTask uid/151 Prepare the presentation slides`
+
+### Mark Task
+
+Now that you have added a task, you can mark it as done.
+
+Mark a specified task as completed for an employee:
+
+Format: `markTask uid/<uid> <taskIndex>`
+
+Examples:
+
+1. `markTask uid/103 1`
+2. `markTask uid/106 2`
+
+### Unmark Task
+
+If you have marked a task by mistake, you can unmark it.
+
+Unmark a specified task as incomplete for an employee:
+
+Format: `unmarkTask uid/<uid> <taskIndex>`
+
+Examples:
+
+1. `unmarkTask uid/103 1`
+2. `unmarkTask uid/148 2`
+
+### Delete Task
+
+Want to clear up that messy task list? You can delete a task.
+
+Delete a specified task for an employee:
+
+Format: `deleteTask uid/<uid> <taskIndex>`
+
+Examples:
+
+1. `deleteTask uid/103 1`
+2. `deleteTask uid/148 2`
+
+## Track your team's productivity!
+
+We are thrilled to introduce a sophisticated enhancement to our application - the **Completion Rate Statistics**. This innovative feature is designed to provide a comprehensive overview of task management efficiency within your teams, offering a deeper insight into employee productivity.
+
+##### Understanding the Essence of Completion Rate Statistics
+
+Within the dynamic interface of ContactSwift, each employee now boasts a visible completion rate on their profile card. This rate, a calculated metric representing the proportion of completed tasks to total tasks assigned, serves as an indicator of individual productivity levels. Automatically updated as tasks evolve, this metric ensures that you have the most current view of your team's performance.
+
+![Completion Rate Statistics](./images/statisticsUi.png)
+
+**How to use it?** This feature requires no manual intervention to activate. The completion rate metric operates seamlessly, reflecting real-time updates as tasks are added, completed, or removed. This automatic integration ensures that productivity insights are consistently accurate and available without additional effort from you or your team.
+
+We believe that the Completion Rate Statistics feature will significantly contribute to enhancing the efficiency and productivity of your team, offering a clear, quantifiable measure of task management success. We are confident that this addition will empower you and your team to achieve and surpass your productivity goals.
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
