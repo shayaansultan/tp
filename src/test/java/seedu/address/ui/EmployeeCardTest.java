@@ -7,18 +7,11 @@ import org.testfx.framework.junit5.ApplicationTest;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import seedu.address.model.employee.Employee;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class EmployeeCardTest extends ApplicationTest {
-    private EmployeeCard employeeCard;
     private VBox taskList;
-
-    @Override
-    public void start(Stage stage) {
-        // Initialize JavaFX platform
-    }
 
     @Test
     public void updateTaskList_updatesTaskListCorrectly() {
@@ -28,7 +21,7 @@ public class EmployeeCardTest extends ApplicationTest {
         employeeBuilder.withTask("Task 2");
 
         Employee employee = employeeBuilder.build();
-        employeeCard = new EmployeeCard(employee, 1); // Initialize employeeCard
+        EmployeeCard employeeCard = new EmployeeCard(employee, 1); // Initialize employeeCard
         employeeCard.updateTaskList(employee);
 
         Label taskLabel1 = (Label) employeeCard.getTaskList().getChildren().get(1);
