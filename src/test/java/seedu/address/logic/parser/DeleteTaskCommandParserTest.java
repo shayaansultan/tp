@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.UniqueId;
@@ -13,9 +14,9 @@ public class DeleteTaskCommandParserTest {
     private DeleteTaskCommandParser parser = new DeleteTaskCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteTaskCommand() throws ParseException {
+    public void parse_validArgs_returnsDeleteTaskCommand() throws IllegalStateException, IllegalValueException {
         DeleteTaskCommand command = parser.parse("uid/1 1");
-        assertEquals(new DeleteTaskCommand(new UniqueId("1"), 1), command);
+        assertEquals(new DeleteTaskCommand(new UniqueId(1), 1), command);
     }
 
     @Test
