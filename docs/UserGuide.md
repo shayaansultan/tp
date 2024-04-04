@@ -126,7 +126,6 @@ Examples:
 - `mark uid/1 2` marks the 2nd task in the task list of the employee with the `uid` of 1 as completed.
 - `mark uid/2 1` marks the 1st task in the task list of the employee with the `uid` of 2 as completed.
 
-
 ### Unmark a task as completed: `unmark`
 
 Unmarks a task as completed in the employee's task list.
@@ -142,7 +141,6 @@ Examples:
 
 - `unmark uid/1 2` unmarks the 2nd task in the task list of the employee with the `uid` of 1 as not completed.
 - `unmark uid/2 1` unmarks the 1st task in the task list of the employee with the `uid` of 2 as not completed.
-
 
 ### Filter employees by name, tags, roles, or teams: `filter`
 
@@ -309,7 +307,7 @@ We are thrilled to introduce a sophisticated enhancement to our application - th
 
 Within the dynamic interface of ContactSwift, each employee now boasts a visible completion rate on their profile card. This rate, a calculated metric representing the proportion of completed tasks to total tasks assigned, serves as an indicator of individual productivity levels. Automatically updated as tasks evolve, this metric ensures that you have the most current view of your team's performance.
 
-![Completion Rate Statistics](./images/statisticsUi.png)
+![Completion Rate Statistics](images/statisticsUi.png)
 
 **How to use it?** This feature requires no manual intervention to activate. The completion rate metric operates seamlessly, reflecting real-time updates as tasks are added, completed, or removed. This automatic integration ensures that productivity insights are consistently accurate and available without additional effort from you or your team.
 
@@ -338,10 +336,10 @@ _Details coming soon ..._
 
 | Action     | Format, Examples                                                                                                                                                                                  |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS T/TEAM r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 T/A r/Cleaner t/friend t/colleague`  |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS T/TEAM r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 T/A r/Cleaner t/friend t/colleague` |
 | **Clear**  | `clear`                                                                                                                                                                                           |
 | **Delete** | `delete INDEX`/`delete UID`/`delete NAME`<br> e.g., `delete 3`, `delete 101`, `delete John`                                                                                                       |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                      |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                     |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                        |
 | **List**   | `list`                                                                                                                                                                                            |
 | **Help**   | `help`                                                                                                                                                                                            |
