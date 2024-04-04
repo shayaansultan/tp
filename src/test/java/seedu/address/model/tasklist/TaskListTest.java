@@ -55,7 +55,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void test_ToString() {
+    public void test_toString() {
         TaskList taskList = new TaskList();
         Task task = new Task(new Description("Buy milk"));
         taskList.addTask(task);
