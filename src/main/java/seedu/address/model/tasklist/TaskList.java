@@ -53,6 +53,45 @@ public class TaskList {
         tasks.get(index).unmark();
     }
 
+    /**
+     * Returns the number of tasks in the todo list.
+     *
+     * @return the number of tasks in the todo list
+     */
+    public int size() {
+        return tasks.size();
+    }
+
+    /**
+     * Returns completed tasks in the todo list.
+     *
+     * @return the number of completed tasks in the todo list
+     */
+    public int getCompletedTasks() {
+        return (int) tasks.stream().filter(Task::isDone).count();
+    }
+
+    /**
+     * Returns pending tasks in the todo list.
+     *
+     * @return the number of pending tasks in the todo list
+     */
+    public int getPendingTasks() {
+        return size() - getCompletedTasks();
+    }
+
+    /**
+     * Retuns the completion rate of the todo list.
+     *
+     * @return the completion rate of the todo list
+     */
+    public double getCompletionRate() {
+        if (size() == 0) {
+            return 0;
+        }
+        return (double) getCompletedTasks() / size() * 100;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

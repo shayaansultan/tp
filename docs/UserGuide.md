@@ -8,6 +8,10 @@
 
 ContactSwift is a **desktop app for managing emplyoee contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ContactSwift can get your contact management tasks done faster than traditional GUI apps.
 
+This APP allows small business owners to manage their employees intuitively using simple commands and a compact list of their information. A key advantage of using this APP is the feature that allows users to track their employees tasks and completion rate, adding on the ability to filter your employee list using specific parameters!
+
+Start using our APP **TODAY** by following our quick start guide below.
+
 <!-- * Table of Contents -->
 <page-nav-print />
 
@@ -23,7 +27,7 @@ ContactSwift is a **desktop app for managing emplyoee contacts, optimized for us
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/v1.2.png)
+   ![Ui](./images/v1.3.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -122,7 +126,6 @@ Examples:
 - `mark uid/1 2` marks the 2nd task in the task list of the employee with the `uid` of 1 as completed.
 - `mark uid/2 1` marks the 1st task in the task list of the employee with the `uid` of 2 as completed.
 
-
 ### Unmark a task as completed: `unmark`
 
 Unmarks a task as completed in the employee's task list.
@@ -140,8 +143,6 @@ Examples:
 - `unmark uid/2 1` unmarks the 1st task in the task list of the employee with the `uid` of 2 as not completed.
 
 ### Delete a task from an employee's task list: `deleteTask`
-
-Deletes a task from the employee's task list.
 
 Format: `deleteTask uid/<uid> <taskIndex>`
 
@@ -212,8 +213,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 
 - `find John` returns `john` and `John Doe`
-- `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+- `find alice david` returns `Alice Smith`, `David Williams`<br>
+  ![result for 'find alex david'](./images/findAliceDavidResult.png)
 
 ### Deleting a employee : `delete`
 
@@ -257,6 +258,24 @@ AddressBook data are saved automatically as a JSON file `[JAR file location]/dat
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
+
+# Managing your employees
+
+Great! You have successfully installed ContactSwift and are ready to manage your employees. Let's use all the awesome features that ContactSwift has to offer.
+
+## Track your team's productivity!
+
+We are thrilled to introduce a sophisticated enhancement to our application - the **Completion Rate Statistics**. This innovative feature is designed to provide a comprehensive overview of task management efficiency within your teams, offering a deeper insight into employee productivity.
+
+##### Understanding the Essence of Completion Rate Statistics
+
+Within the dynamic interface of ContactSwift, each employee now boasts a visible completion rate on their profile card. This rate, a calculated metric representing the proportion of completed tasks to total tasks assigned, serves as an indicator of individual productivity levels. Automatically updated as tasks evolve, this metric ensures that you have the most current view of your team's performance.
+
+![Completion Rate Statistics](./images/statisticsUi.png)
+
+**How to use it?** This feature requires no manual intervention to activate. The completion rate metric operates seamlessly, reflecting real-time updates as tasks are added, completed, or removed. This automatic integration ensures that productivity insights are consistently accurate and available without additional effort from you or your team.
+
+We believe that the Completion Rate Statistics feature will significantly contribute to enhancing the efficiency and productivity of your team, offering a clear, quantifiable measure of task management success. We are confident that this addition will empower you and your team to achieve and surpass your productivity goals.
 
 ### Archiving data files `[coming in v2.0]`
 

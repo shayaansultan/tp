@@ -100,6 +100,10 @@ public class Employee {
         return uid;
     }
 
+    public TaskList getTaskList() {
+        return taskList;
+    }
+
     /**
      * Returns an immutable tag set, which throws
      * {@code UnsupportedOperationException}
@@ -182,22 +186,54 @@ public class Employee {
                 .add("role", role)
                 .add("tags", tags)
                 .add("uid", uid)
+                .add("tasks", taskList)
                 .toString();
     }
 
+    /**
+     * Removes a task from the todo list.
+     *
+     * @param taskNumber the index of the task to be removed
+     */
     public void unmarkTask(int taskNumber) {
         taskList.unmarkTask(taskNumber);
     }
 
+    /**
+     * Returns the task object at the specified index.
+     *
+     * @param taskNumber the index of the task to be returned
+     *
+     * @return the number of tasks in the todo list
+     */
     public Task getTask(int taskNumber) {
         return taskList.getTasks().get(taskNumber);
     }
 
+    /**
+     * Removes a task from the todo list.
+     *
+     * @param taskNumber the index of the task to be removed
+     */
     public void markTask(int taskNumber) {
         taskList.markTask(taskNumber);
     }
 
+    /**
+     * Removes all tasks from the todo list.
+     */
     public void clearTasks() {
         taskList.getTasks().clear();
+    }
+
+    /**
+     * Returns the completion rate of tasks for this employee rounded off to the
+     * nearest two decimals.
+     *
+     * @return the completion rate of tasks rounded off to the nearest two decimals
+     */
+    public double getTaskCompletionRate() {
+        double completionRate = taskList.getCompletionRate();
+        return Math.round(completionRate * 100.0) / 100.0;
     }
 }

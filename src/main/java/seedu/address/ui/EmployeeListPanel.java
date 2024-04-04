@@ -30,7 +30,8 @@ public class EmployeeListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Employee} using a {@code EmployeeCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Employee}
+     * using a {@code EmployeeCard}.
      */
     class EmployeeListViewCell extends ListCell<Employee> {
         @Override

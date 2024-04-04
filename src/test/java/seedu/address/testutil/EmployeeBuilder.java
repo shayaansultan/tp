@@ -140,8 +140,19 @@ public class EmployeeBuilder {
         return this;
     }
 
-    public Employee build() {
-        return new Employee(name, phone, email, address, team, role, tags, uid);
+    /**
+     * Adds a task to the {@code Employee} that we are building.
+     */
+    public EmployeeBuilder withTask(String description) {
+        tasks.addTask(new Task(new Description(description)));
+        return this;
     }
 
+    public Employee build() {
+        return new Employee(name, phone, email, address, team, role, tags, uid, tasks.getTasks());
+    }
+
+    public Employee buildWithoutTask() {
+        return new Employee(name, phone, email, address, team, role, tags, uid);
+    }
 }

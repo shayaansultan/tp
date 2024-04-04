@@ -15,8 +15,12 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BOB;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class EmployeeTest {
@@ -98,7 +102,141 @@ public class EmployeeTest {
     public void toStringMethod() {
         String expected = Employee.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", team=" + ALICE.getTeam()
-                + ", role=" + ALICE.getRole() + ", tags=" + ALICE.getTags() + ", uid=" + ALICE.getUid() + "}";
+                + ", role=" + ALICE.getRole() + ", tags=" + ALICE.getTags() + ", uid=" + ALICE.getUid()
+                + ", tasks=" + ALICE.getTaskList() + "}";
         assertEquals(expected, ALICE.toString());
+    }
+
+    @Test
+    public void test_getTaskCompletionRate_noTasks() {
+        Employee alice = new EmployeeBuilder().withName("Alice").build(); // Alice with no tasks
+        assertEquals(0.0, alice.getTaskCompletionRate());
+    }
+
+    @Test
+    public void test_getTaskCompletionRate_allTasksCompleted() {
+        EmployeeBuilder aliceBuilder = new EmployeeBuilder().withName("Alice");
+        // Add and mark all tasks as completed
+        for (int i = 0; i < 5; i++) {
+            aliceBuilder.withTask("Task " + i);
+        }
+        Employee alice = aliceBuilder.build();
+        for (int i = 0; i < alice.getTaskList().size(); i++) {
+            alice.markTask(i);
+        }
+        assertEquals(100.00, alice.getTaskCompletionRate());
+    }
+
+    @Test
+    public void test_getTaskCompletionRate_someTasksCompleted() {
+        EmployeeBuilder aliceBuilder = new EmployeeBuilder().withName("Alice");
+        // Add tasks and mark half of them as completed
+        for (int i = 0; i < 10; i++) {
+            aliceBuilder.withTask("Task " + i);
+        }
+        Employee alice = aliceBuilder.build();
+        for (int i = 0; i < alice.getTaskList().size() / 2; i++) {
+            alice.markTask(i);
+        }
+        double expectedCompletionRate = (double) (alice.getTaskList().getCompletedTasks() * 100)
+                / alice.getTaskList().size();
+        expectedCompletionRate = Math.round(expectedCompletionRate * 100.0) / 100.0;
+        assertEquals(expectedCompletionRate, alice.getTaskCompletionRate());
+    }
+
+    @Test
+    public void constructor_nullName_throwsNullPointerException() {
+        String nullName = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withName(nullName).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullPhone_throwsNullPointerException() {
+        String nullPhone = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withPhone(nullPhone).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullEmail_throwsNullPointerException() {
+        String nullEmail = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withEmail(nullEmail).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullAddress_throwsNullPointerException() {
+        String nullAddress = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withAddress(nullAddress).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullTeam_throwsNullPointerException() {
+        String nullTeam = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withTeam(nullTeam).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullRole_throwsNullPointerException() {
+        String nullRole = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withRole(nullRole).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullTags_throwsNullPointerException() {
+        String nullTags = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withTags(nullTags).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullUid_throwsNullPointerException() {
+        String nullUid = null;
+        assertThrows(Exception.class, () -> {
+            new EmployeeBuilder().withUid(nullUid).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullTasks_throwsNullPointerException() {
+        String nullTasks = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withTask(nullTasks).build();
+        });
+    }
+
+    @Test
+    public void constructor_allFieldsPresent_success() {
+        Name testName = new Name(EmployeeBuilder.DEFAULT_NAME);
+        Phone testPhone = new Phone(EmployeeBuilder.DEFAULT_PHONE);
+        Email testEmail = new Email(EmployeeBuilder.DEFAULT_EMAIL);
+        Address testAddress = new Address(EmployeeBuilder.DEFAULT_ADDRESS);
+        Team testTeam = new Team(EmployeeBuilder.DEFAULT_TEAM);
+        Role testRole = new Role(EmployeeBuilder.DEFAULT_ROLE);
+        Set<Tag> testTags = new HashSet<>();
+        UniqueId testUid = new UniqueId(EmployeeBuilder.DEFAULT_UID);
+
+        Employee employee = new Employee(testName, testPhone, testEmail, testAddress, testTeam, testRole, testTags,
+                testUid);
+
+        assertEquals(testName, employee.getName());
+        assertEquals(testPhone, employee.getPhone());
+        assertEquals(testEmail, employee.getEmail());
+        assertEquals(testAddress, employee.getAddress());
+        assertEquals(testTeam, employee.getTeam());
+        assertEquals(testRole, employee.getRole());
+        assertEquals(testTags, employee.getTags());
+        assertEquals(testUid, employee.getUid());
     }
 }
