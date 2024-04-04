@@ -102,4 +102,41 @@ public class EmployeeTest {
                 + ", tasks=" + ALICE.getTaskList() + "}";
         assertEquals(expected, ALICE.toString());
     }
+
+    @Test
+    public void test_getTaskCompletionRate_noTasks() {
+        Employee alice = new EmployeeBuilder().withName("Alice").build(); // Alice with no tasks
+        assertEquals(0.0, alice.getTaskCompletionRate());
+    }
+
+    @Test
+    public void test_getTaskCompletionRate_allTasksCompleted() {
+        EmployeeBuilder aliceBuilder = new EmployeeBuilder().withName("Alice");
+        // Add and mark all tasks as completed
+        for (int i = 0; i < 5; i++) {
+            aliceBuilder.withTask("Task " + i);
+        }
+        Employee alice = aliceBuilder.build();
+        for (int i = 0; i < alice.getTaskList().size(); i++) {
+            alice.markTask(i);
+        }
+        assertEquals(100.00, alice.getTaskCompletionRate());
+    }
+
+    @Test
+    public void test_getTaskCompletionRate_someTasksCompleted() {
+        EmployeeBuilder aliceBuilder = new EmployeeBuilder().withName("Alice");
+        // Add tasks and mark half of them as completed
+        for (int i = 0; i < 10; i++) {
+            aliceBuilder.withTask("Task " + i);
+        }
+        Employee alice = aliceBuilder.build();
+        for (int i = 0; i < alice.getTaskList().size() / 2; i++) {
+            alice.markTask(i);
+        }
+        double expectedCompletionRate = (double) (alice.getTaskList().getCompletedTasks() * 100)
+                / alice.getTaskList().size();
+        expectedCompletionRate = Math.round(expectedCompletionRate * 100.0) / 100.0;
+        assertEquals(expectedCompletionRate, alice.getTaskCompletionRate());
+    }
 }
