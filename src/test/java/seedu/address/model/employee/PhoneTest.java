@@ -64,7 +64,8 @@ public class PhoneTest {
     public void hashCode_sameObject_hashCodeEqual() {
         Phone phone1 = new Phone("123456");
 
-        assertEquals(phone1.hashCode(), phone1.hashCode(), "Hash code should be equal for the same object");
+        assertEquals(phone1.hashCode(), phone1.hashCode(),
+                "Hash code should be equal for the same object");
     }
 
     @Test
@@ -72,7 +73,8 @@ public class PhoneTest {
         Phone phone1 = new Phone("123456");
         Phone phone2 = new Phone("123456");
 
-        assertEquals(phone1.hashCode(), phone2.hashCode(), "Hash code should be equal for objects with same value");
+        assertEquals(phone1.hashCode(), phone2.hashCode(),
+                "Hash code should be equal for objects with same value");
     }
 
     @Test
@@ -80,6 +82,7 @@ public class PhoneTest {
         Phone phone1 = new Phone("123456");
         Phone phone2 = new Phone("654321");
 
-        assertNotEquals(phone1.hashCode(), phone2.hashCode(), "Hash code should be different for objects with different values");
+        assertNotEquals(phone1.hashCode(), phone2.hashCode(),
+                "Hash code should be different for objects with different values");
     }
 }
