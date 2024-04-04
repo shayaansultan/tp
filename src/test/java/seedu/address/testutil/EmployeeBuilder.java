@@ -152,4 +152,7 @@ public class EmployeeBuilder {
         return new Employee(name, phone, email, address, team, role, tags, uid, tasks.getTasks());
     }
 
+    public Employee buildWithoutTask() {
+        return new Employee(name, phone, email, address, team, role, tags, uid);
+    }
 }

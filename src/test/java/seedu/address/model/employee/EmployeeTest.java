@@ -211,4 +211,69 @@ public class EmployeeTest {
             new EmployeeBuilder().withTask(nullTasks).build();
         });
     }
+
+    // For Constructor Without the TaskList
+    @Test
+    public void constructor2_nullName_throwsNullPointerException() {
+        String nullName = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withName(nullName).buildWithoutTask();
+        });
+    }
+
+    @Test
+    public void constructor2_nullPhone_throwsNullPointerException() {
+        String nullPhone = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withPhone(nullPhone).buildWithoutTask();
+        });
+    }
+
+    @Test
+    public void constructor2_nullEmail_throwsNullPointerException() {
+        String nullEmail = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withEmail(nullEmail).buildWithoutTask();
+        });
+    }
+
+    @Test
+    public void constructor2_nullAddress_throwsNullPointerException() {
+        String nullAddress = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withAddress(nullAddress).buildWithoutTask();
+        });
+    }
+
+    @Test
+    public void constructor2_nullTeam_throwsNullPointerException() {
+        String nullTeam = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withTeam(nullTeam).buildWithoutTask();
+        });
+    }
+
+    @Test
+    public void constructor2_nullRole_throwsNullPointerException() {
+        String nullRole = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withRole(nullRole).buildWithoutTask();
+        });
+    }
+
+    @Test
+    public void constructor2_nullTags_throwsNullPointerException() {
+        String nullTags = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withTags(nullTags).buildWithoutTask();
+        });
+    }
+
+    @Test
+    public void constructor2_nullUid_throwsNullPointerException() {
+        String nullUid = null;
+        assertThrows(Exception.class, () -> {
+            new EmployeeBuilder().withUid(nullUid).buildWithoutTask();
+        });
+    }
 }
