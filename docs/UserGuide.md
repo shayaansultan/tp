@@ -142,6 +142,19 @@ Examples:
 - `unmark uid/1 2` unmarks the 2nd task in the task list of the employee with the `uid` of 1 as not completed.
 - `unmark uid/2 1` unmarks the 1st task in the task list of the employee with the `uid` of 2 as not completed.
 
+### Delete a Task from an employee's task list: `deletetask`
+
+Deletes a task from an employee's task list.
+
+Format: `deleteTask uid/<uid> <taskIndex>`
+
+- Deletes the task at the specified `taskIndex` from the task list of the employee with the specified `uid`.
+
+Examples:
+
+1. `deleteTask uid/103 1` will delete the 1st task from the task list of the employee with the `uid` of 103.
+2. `deleteTask uid/148 2` will delete the 2nd task from the task list of the employee with the `uid` of 148.
+
 ### Filter employees by name, tags, roles, or teams: `filter`
 
 Filters the list of employees based on their name, tags, roles, or teams.
@@ -247,57 +260,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 # Managing your employees
 
-Great! You have successfully installed ContactSwift and are ready to manage your employees. Let's use all the awesome todo list and statistic features that ContactSwift has to offer.
-
-### Adding Task
-
-Adds a task to a specified employee (by UID).
-
-Format: `addTask uid/<uid> <description>`
-
-Examples:
-
-1. `addTask uid/106 Complete the report by 5pm`
-2. `addTask uid/151 Prepare the presentation slides`
-
-### Mark Task
-
-Now that you have added a task, you can mark it as done.
-
-Mark a specified task as completed for an employee:
-
-Format: `markTask uid/<uid> <taskIndex>`
-
-Examples:
-
-1. `markTask uid/103 1`
-2. `markTask uid/106 2`
-
-### Unmark Task
-
-If you have marked a task by mistake, you can unmark it.
-
-Unmark a specified task as incomplete for an employee:
-
-Format: `unmarkTask uid/<uid> <taskIndex>`
-
-Examples:
-
-1. `unmarkTask uid/103 1`
-2. `unmarkTask uid/148 2`
-
-### Delete Task
-
-Want to clear up that messy task list? You can delete a task.
-
-Delete a specified task for an employee:
-
-Format: `deleteTask uid/<uid> <taskIndex>`
-
-Examples:
-
-1. `deleteTask uid/103 1`
-2. `deleteTask uid/148 2`
+Great! You have successfully installed ContactSwift and are ready to manage your employees. Let's use all the awesome features that ContactSwift has to offer.
 
 ## Track your team's productivity!
 
