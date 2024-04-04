@@ -8,6 +8,10 @@
 
 ContactSwift is a **desktop app for managing emplyoee contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ContactSwift can get your contact management tasks done faster than traditional GUI apps.
 
+This APP allows small business owners to manage their employees intuitively using simple commands and a compact list of their information. A key advantage of using this APP is the feature that allows users to track their employees tasks and completion rate, adding on the ability to filter your employee list using specific parameters!
+
+Start using our APP **TODAY** by following our quick start guide below.
+
 <!-- * Table of Contents -->
 <page-nav-print />
 
@@ -23,7 +27,7 @@ ContactSwift is a **desktop app for managing emplyoee contacts, optimized for us
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/v1.2.png)
+   ![Ui](images/v1.3.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -197,8 +201,8 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 
 - `find John` returns `john` and `John Doe`
-- `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+- `find alice david` returns `Alice Smith`, `David Williams`<br>
+  ![result for 'find alex david'](images/findAliceDavidResult.png)
 
 ### Deleting a employee : `delete`
 
@@ -266,10 +270,10 @@ _Details coming soon ..._
 
 | Action     | Format, Examples                                                                                                                                                                                  |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS T/TEAM r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 T/A r/Cleaner t/friend t/colleague` |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS T/TEAM r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 T/A r/Cleaner t/friend t/colleague`  |
 | **Clear**  | `clear`                                                                                                                                                                                           |
 | **Delete** | `delete INDEX`/`delete UID`/`delete NAME`<br> e.g., `delete 3`, `delete 101`, `delete John`                                                                                                       |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                     |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                      |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                        |
 | **List**   | `list`                                                                                                                                                                                            |
 | **Help**   | `help`                                                                                                                                                                                            |
