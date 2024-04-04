@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalEmployees.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -172,5 +173,54 @@ public class UniqueEmployeeListTest {
     @Test
     public void toStringMethod() {
         assertEquals(uniqueEmployeeList.asUnmodifiableObservableList().toString(), uniqueEmployeeList.toString());
+    }
+
+    @Test
+    public void iterator_iterateList_success() {
+        uniqueEmployeeList.add(ALICE);
+        uniqueEmployeeList.add(BOB);
+        Iterator<Employee> iterator = uniqueEmployeeList.iterator();
+        assertTrue(iterator.hasNext());
+        assertEquals(ALICE, iterator.next());
+        assertTrue(iterator.hasNext());
+        assertEquals(BOB, iterator.next());
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    public void equals_differentTypes_returnsFalse() {
+        assertFalse(uniqueEmployeeList.equals(5));
+    }
+
+    @Test
+    public void hashCode_identicalLists_haveSameHashCode() {
+        uniqueEmployeeList.add(ALICE);
+        UniqueEmployeeList otherList = new UniqueEmployeeList();
+        otherList.add(ALICE);
+        assertEquals(uniqueEmployeeList.hashCode(), otherList.hashCode());
+    }
+
+    @Test
+    public void setEmployees_listWithExistingAndNewEmployees_success() {
+        uniqueEmployeeList.add(ALICE);
+        List<Employee> newEmployees = Arrays.asList(ALICE, BOB);
+        uniqueEmployeeList.setEmployees(newEmployees);
+        UniqueEmployeeList expectedUniqueEmployeeList = new UniqueEmployeeList();
+        expectedUniqueEmployeeList.add(ALICE);
+        expectedUniqueEmployeeList.add(BOB);
+        assertEquals(expectedUniqueEmployeeList, uniqueEmployeeList);
+    }
+
+    @Test
+    public void remove_nonExistentEmployee_throwsEmployeeNotFoundException() {
+        uniqueEmployeeList.add(ALICE);
+        assertThrows(EmployeeNotFoundException.class, () -> uniqueEmployeeList.remove(BOB));
+    }
+
+    @Test
+    public void add_existingEmployeeWithDifferentObject_throwsDuplicateEmployeeException() {
+        uniqueEmployeeList.add(ALICE);
+        Employee sameAsAlice = new EmployeeBuilder(ALICE).build(); // Assuming this creates a copy of ALICE
+        assertThrows(DuplicateEmployeeException.class, () -> uniqueEmployeeList.add(sameAsAlice));
     }
 }
