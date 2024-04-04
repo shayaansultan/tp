@@ -197,24 +197,6 @@ Step 2. The `FilterCommand` is executed, calling `Model#updateFilteredEmployeeLi
 - **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of predicates for filtering allows for flexible and dynamic searches without hard-coding specific query types.
 - **Alternatives considered:** A direct approach where the `FilterCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
 
-### Show All Command Implementation
-
-The `ShowAllCommand` is a simple feature designed to reset any filters applied and show the complete list of employees.
-
-- `ShowAllCommand` directly interacts with the `Model` to reset the filtered employee list to show all employees.
-- It calls `Model#updateFilteredEmployeeList(Predicate<Employee> predicate)` with a predicate that always returns true, ensuring all employees are displayed.
-
-Given below is how the show all mechanism operates:
-
-Step 1. After various filter commands, the user decides to view all employees and executes `showAll`. This command creates a `ShowAllCommand` object.
-
-Step 2. `ShowAllCommand` executes and invokes `Model#updateFilteredEmployeeList(Predicate<Employee> predicate)` with a predicate that evaluates to true for all employees, effectively clearing any active filters.
-
-#### Design Considerations
-
-- **Why this design:** The implementation provides a straightforward and intuitive way to revert any filters and view the complete list of employees. It follows the existing command structure and integrates seamlessly with the model.
-- **Alternatives considered:** An alternative could have been to maintain a separate list for the unfiltered state and toggle between filtered and unfiltered lists. However, this was deemed unnecessary and potentially confusing, as the single list approach with dynamic predicates is simpler and more consistent with the rest of the application's design.
-
 ## Delete by Name Command Implementation
 
 The `DeleteCommand` was further enhanced to allow users to remove employees from the list by their full name. This functionality is crucial for users who need to manage their employee datasets. The command has been enhanced to handle deletion by name in case of duplicate names.
