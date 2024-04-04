@@ -89,4 +89,8 @@ public class EmployeeCard extends UiPart<Region> {
                 })
                 .forEach(taskLabel -> taskList.getChildren().add(taskLabel));
     }
+
+    public VBox getTaskList() {
+        return this.taskList;
+    }
 }
