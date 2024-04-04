@@ -15,8 +15,11 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEmployees.ALICE;
 import static seedu.address.testutil.TypicalEmployees.BOB;
 
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EmployeeBuilder;
 
 public class EmployeeTest {
@@ -275,5 +278,29 @@ public class EmployeeTest {
         assertThrows(Exception.class, () -> {
             new EmployeeBuilder().withUid(nullUid).buildWithoutTask();
         });
+    }
+
+    @Test
+    public void constructor_allFieldsPresent_success() {
+        Name testName = new Name(EmployeeBuilder.DEFAULT_NAME);
+        Phone testPhone = new Phone(EmployeeBuilder.DEFAULT_PHONE);
+        Email testEmail = new Email(EmployeeBuilder.DEFAULT_EMAIL);
+        Address testAddress = new Address(EmployeeBuilder.DEFAULT_ADDRESS);
+        Team testTeam = new Team(EmployeeBuilder.DEFAULT_TEAM);
+        Role testRole = new Role(EmployeeBuilder.DEFAULT_ROLE);
+        Set<Tag> testTags = new HashSet<>();
+        UniqueId testUid = new UniqueId(EmployeeBuilder.DEFAULT_UID);
+
+        Employee employee = new Employee(testName, testPhone, testEmail, testAddress, testTeam, testRole, testTags,
+                testUid);
+
+        assertEquals(testName, employee.getName());
+        assertEquals(testPhone, employee.getPhone());
+        assertEquals(testEmail, employee.getEmail());
+        assertEquals(testAddress, employee.getAddress());
+        assertEquals(testTeam, employee.getTeam());
+        assertEquals(testRole, employee.getRole());
+        assertEquals(testTags, employee.getTags());
+        assertEquals(testUid, employee.getUid());
     }
 }
