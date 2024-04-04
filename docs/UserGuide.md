@@ -27,7 +27,7 @@ Start using our APP **TODAY** by following our quick start guide below.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/v1.3.png)
+   ![Ui](./images/v1.3.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -126,7 +126,6 @@ Examples:
 - `mark uid/1 2` marks the 2nd task in the task list of the employee with the `uid` of 1 as completed.
 - `mark uid/2 1` marks the 1st task in the task list of the employee with the `uid` of 2 as completed.
 
-
 ### Unmark a task as completed: `unmark`
 
 Unmarks a task as completed in the employee's task list.
@@ -143,6 +142,18 @@ Examples:
 - `unmark uid/1 2` unmarks the 2nd task in the task list of the employee with the `uid` of 1 as not completed.
 - `unmark uid/2 1` unmarks the 1st task in the task list of the employee with the `uid` of 2 as not completed.
 
+### Delete a Task from an employee's task list: `deletetask`
+
+Deletes a task from an employee's task list.
+
+Format: `deleteTask uid/<uid> <taskIndex>`
+
+- Deletes the task at the specified `taskIndex` from the task list of the employee with the specified `uid`.
+
+Examples:
+
+1. `deleteTask uid/103 1` will delete the 1st task from the task list of the employee with the `uid` of 103.
+2. `deleteTask uid/148 2` will delete the 2nd task from the task list of the employee with the `uid` of 148.
 
 ### Filter employees by name, tags, roles, or teams: `filter`
 
@@ -202,7 +213,7 @@ Examples:
 
 - `find John` returns `john` and `John Doe`
 - `find alice david` returns `Alice Smith`, `David Williams`<br>
-  ![result for 'find alex david'](images/findAliceDavidResult.png)
+  ![result for 'find alex david'](./images/findAliceDavidResult.png)
 
 ### Deleting a employee : `delete`
 
@@ -249,57 +260,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 # Managing your employees
 
-Great! You have successfully installed ContactSwift and are ready to manage your employees. Let's use all the awesome todo list and statistic features that ContactSwift has to offer.
-
-### Adding Task
-
-Adds a task to a specified employee (by UID).
-
-Format: `addTask uid/<uid> <description>`
-
-Examples:
-
-1. `addTask uid/106 Complete the report by 5pm`
-2. `addTask uid/151 Prepare the presentation slides`
-
-### Mark Task
-
-Now that you have added a task, you can mark it as done.
-
-Mark a specified task as completed for an employee:
-
-Format: `markTask uid/<uid> <taskIndex>`
-
-Examples:
-
-1. `markTask uid/103 1`
-2. `markTask uid/106 2`
-
-### Unmark Task
-
-If you have marked a task by mistake, you can unmark it.
-
-Unmark a specified task as incomplete for an employee:
-
-Format: `unmarkTask uid/<uid> <taskIndex>`
-
-Examples:
-
-1. `unmarkTask uid/103 1`
-2. `unmarkTask uid/148 2`
-
-### Delete Task
-
-Want to clear up that messy task list? You can delete a task.
-
-Delete a specified task for an employee:
-
-Format: `deleteTask uid/<uid> <taskIndex>`
-
-Examples:
-
-1. `deleteTask uid/103 1`
-2. `deleteTask uid/148 2`
+Great! You have successfully installed ContactSwift and are ready to manage your employees. Let's use all the awesome features that ContactSwift has to offer.
 
 ## Track your team's productivity!
 
@@ -338,10 +299,10 @@ _Details coming soon ..._
 
 | Action     | Format, Examples                                                                                                                                                                                  |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS T/TEAM r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 T/A r/Cleaner t/friend t/colleague`  |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS T/TEAM r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 T/A r/Cleaner t/friend t/colleague` |
 | **Clear**  | `clear`                                                                                                                                                                                           |
 | **Delete** | `delete INDEX`/`delete UID`/`delete NAME`<br> e.g., `delete 3`, `delete 101`, `delete John`                                                                                                       |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                      |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                     |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                        |
 | **List**   | `list`                                                                                                                                                                                            |
 | **Help**   | `help`                                                                                                                                                                                            |
