@@ -203,4 +203,12 @@ public class EmployeeTest {
             new EmployeeBuilder().withUid(nullUid).build();
         });
     }
+
+    @Test
+    public void constructor_nullTasks_throwsNullPointerException() {
+        String nullTasks = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withTask(nullTasks).build();
+        });
+    }
 }
