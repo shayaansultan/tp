@@ -25,7 +25,6 @@ import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ShowAllCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.NameContainsKeywordsPredicate;
@@ -141,11 +140,5 @@ public class AddressBookParserTest {
 
         Predicate<Employee> actualPredicate = command.getPredicate();
         assertTrue(actualPredicate.test(sampleEmployee));
-    }
-
-    @Test
-    public void parseCommand_showAll() throws Exception {
-        assertTrue(parser.parseCommand(ShowAllCommand.COMMAND_WORD) instanceof ShowAllCommand);
-        assertTrue(parser.parseCommand(ShowAllCommand.COMMAND_WORD + "   ") instanceof ShowAllCommand);
     }
 }

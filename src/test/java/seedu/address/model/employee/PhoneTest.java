@@ -1,6 +1,8 @@
 package seedu.address.model.employee;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -56,5 +58,31 @@ public class PhoneTest {
 
         // different values -> returns false
         assertFalse(phone.equals(new Phone("995")));
+    }
+
+    @Test
+    public void hashCode_sameObject_hashCodeEqual() {
+        Phone phone1 = new Phone("123456");
+
+        assertEquals(phone1.hashCode(), phone1.hashCode(),
+                "Hash code should be equal for the same object");
+    }
+
+    @Test
+    public void hashCode_sameValue_hashCodeEqual() {
+        Phone phone1 = new Phone("123456");
+        Phone phone2 = new Phone("123456");
+
+        assertEquals(phone1.hashCode(), phone2.hashCode(),
+                "Hash code should be equal for objects with same value");
+    }
+
+    @Test
+    public void hashCode_differentValue_hashCodeNotEqual() {
+        Phone phone1 = new Phone("123456");
+        Phone phone2 = new Phone("654321");
+
+        assertNotEquals(phone1.hashCode(), phone2.hashCode(),
+                "Hash code should be different for objects with different values");
     }
 }

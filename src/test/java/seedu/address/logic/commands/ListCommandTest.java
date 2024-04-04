@@ -1,8 +1,11 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEmployeeAtIndex;
 import static seedu.address.testutil.TypicalEmployees.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEmployees.getTypicalEmployees;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -10,6 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ModelStub;
+import seedu.address.model.ModelStubWithFilteredEmployeeList;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -35,5 +40,14 @@ public class ListCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         showEmployeeAtIndex(model, INDEX_FIRST_EMPLOYEE);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_list_success() {
+        ModelStub modelStub = new ModelStubWithFilteredEmployeeList();
+        ListCommand listCommand = new ListCommand();
+
+        assertDoesNotThrow(() -> listCommand.execute(modelStub));
+        assertEquals(getTypicalEmployees(), modelStub.getFilteredEmployeeList());
     }
 }

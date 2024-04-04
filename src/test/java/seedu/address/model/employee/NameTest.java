@@ -1,6 +1,8 @@
 package seedu.address.model.employee;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -56,5 +58,31 @@ public class NameTest {
 
         // different values -> returns false
         assertFalse(name.equals(new Name("Other Valid Name")));
+    }
+
+    @Test
+    public void hashCode_sameObject_hashCodeEqual() {
+        Name name1 = new Name("Jon");
+
+        assertEquals(name1.hashCode(), name1.hashCode(),
+                "Hash code should be equal for the same object");
+    }
+
+    @Test
+    public void hashCode_sameValue_hashCodeEqual() {
+        Name name1 = new Name("Jon");
+        Name name2 = new Name("Jon");
+
+        assertEquals(name1.hashCode(), name2.hashCode(),
+                "Hash code should be equal for objects with same value");
+    }
+
+    @Test
+    public void hashCode_differentValue_hashCodeNotEqual() {
+        Name name1 = new Name("Jon");
+        Name name2 = new Name("Doe");
+
+        assertNotEquals(name1.hashCode(), name2.hashCode(),
+                "Hash code should be different for objects with different values");
     }
 }
