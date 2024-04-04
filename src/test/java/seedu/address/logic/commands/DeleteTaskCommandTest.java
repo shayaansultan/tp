@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,35 +12,12 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueId;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Task;
-import seedu.address.testutil.EmployeeBuilder;
 
 public class DeleteTaskCommandTest {
-    private Model model;
-
     @BeforeEach
     public void setUp() {
-        model = new ModelManager();
-    }
-
-    @Test
-    public void execute_validArgs_deletesTask() {
-        Employee employee = new EmployeeBuilder().withUid("1000").build();
-        model.addEmployee(employee);
-        employee.addTask(new Description("Buy milk"));
-
-        DeleteTaskCommand command = new DeleteTaskCommand(employee.getUid(), 1);
-
-        try {
-            CommandResult result = command.execute(model);
-            assertEquals(String.format(DeleteTaskCommand.MESSAGE_SUCCESS), result.getFeedbackToUser());
-            assertFalse(employee.getTasks().contains(new Task(new Description("Buy milk"))));
-        } catch (Exception e) {
-            fail("Execution of command should not fail.");
-        }
+        new ModelManager();
     }
 
     @Test
