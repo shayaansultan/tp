@@ -38,7 +38,6 @@ class JsonAdaptedEmployee {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final Integer uid;
     private final List<JsonAdaptedTask> tasksList = new ArrayList<>();
-    private final Double completionRate;
 
     /**
      * Constructs a {@code JsonAdaptedEmployee} with the given employee details.
@@ -48,8 +47,7 @@ class JsonAdaptedEmployee {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("team") String team, @JsonProperty("role") String role,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
-            @JsonProperty("uid") String uid, @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
-            @JsonProperty("completionRate") Double completionRate) {
+            @JsonProperty("uid") String uid, @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -63,7 +61,6 @@ class JsonAdaptedEmployee {
         if (tasks != null) {
             this.tasksList.addAll(tasks);
         }
-        this.completionRate = completionRate;
     }
 
     /**
@@ -77,7 +74,6 @@ class JsonAdaptedEmployee {
         team = source.getTeam().teamName;
         role = source.getRole().value;
         uid = source.getUid().getUidValue();
-        completionRate = source.getTaskCompletionRate();
 
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

@@ -34,7 +34,6 @@ public class Employee {
     private final Set<Tag> tags = new HashSet<>();
     private final UniqueId uid;
     private final TaskList taskList;
-    private final Double taskCompletionRate;
 
     /**
      * Every field must be present and not null.
@@ -54,7 +53,6 @@ public class Employee {
         for (Task task : tasks) {
             this.taskList.addTask(task);
         }
-        this.taskCompletionRate = this.taskList.getCompletionRate();
     }
 
     /**
@@ -72,7 +70,6 @@ public class Employee {
         this.tags.addAll(tags);
         this.uid = uid;
         this.taskList = new TaskList();
-        this.taskCompletionRate = this.taskList.getCompletionRate();
     }
 
     public Name getName() {
@@ -101,6 +98,10 @@ public class Employee {
 
     public UniqueId getUid() {
         return uid;
+    }
+
+    public TaskList getTaskList() {
+        return taskList;
     }
 
     /**
@@ -178,7 +179,7 @@ public class Employee {
                 .add("role", role)
                 .add("tags", tags)
                 .add("uid", uid)
-                .add("taskList", taskList)
+                .add("tasks", taskList)
                 .toString();
     }
 
