@@ -139,4 +139,68 @@ public class EmployeeTest {
         expectedCompletionRate = Math.round(expectedCompletionRate * 100.0) / 100.0;
         assertEquals(expectedCompletionRate, alice.getTaskCompletionRate());
     }
+
+    @Test
+    public void constructor_nullName_throwsNullPointerException() {
+        String nullName = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withName(nullName).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullPhone_throwsNullPointerException() {
+        String nullPhone = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withPhone(nullPhone).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullEmail_throwsNullPointerException() {
+        String nullEmail = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withEmail(nullEmail).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullAddress_throwsNullPointerException() {
+        String nullAddress = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withAddress(nullAddress).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullTeam_throwsNullPointerException() {
+        String nullTeam = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withTeam(nullTeam).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullRole_throwsNullPointerException() {
+        String nullRole = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withRole(nullRole).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullTags_throwsNullPointerException() {
+        String nullTags = null;
+        assertThrows(NullPointerException.class, () -> {
+            new EmployeeBuilder().withTags(nullTags).build();
+        });
+    }
+
+    @Test
+    public void constructor_nullUid_throwsNullPointerException() {
+        String nullUid = null;
+        assertThrows(Exception.class, () -> {
+            new EmployeeBuilder().withUid(nullUid).build();
+        });
+    }
 }
