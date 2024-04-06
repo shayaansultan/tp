@@ -301,7 +301,7 @@ _Details coming soon ..._
 **A1:** Follow the instructions on the [Java 11 download page](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 
 **Q2: How can I transfer my ContactSwift data to another computer?**  
-**A2:** Install ContactSwift on the other computer and replace the data file with the one from your previous installation.
+**A2:** Install ContactSwift on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ContactSwift home folder.
 
 ---
 
@@ -313,12 +313,16 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                  |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS T/TEAM r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 T/A r/Cleaner t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                                                           |
-| **Delete** | `delete INDEX`/`delete UID`/`delete NAME`<br> e.g., `delete 3`, `delete 101`, `delete John`                                                                                                       |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                     |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                        |
-| **List**   | `list`                                                                                                                                                                                            |
-| **Help**   | `help`                                                                                                                                                                                            |
+| Action          | Format, Examples                                                                                                                                                                                  |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS T/TEAM r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 T/A r/Cleaner t/friend t/colleague` |
+| **Add Task**    | `addTask uid/<uid> <description>` <br> e.g., `addTask uid/1 Complete the report by 5pm`, `addTask uid/2 Submit the proposal by 10am`                                                              |
+| **Clear**       | `clear`                                                                                                                                                                                           |
+| **Delete**      | `delete INDEX`/`delete uid/<UID>`/`delete NAME`<br> e.g., `delete 3`, `delete uid/101`, `delete John Doe`                                                                                         |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                     |
+| **Filter**      | `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]` <br> e.g., `filter t/friend`,`filter r/Manager T/HR`, `filter T/HR t/friend r/Executive`                                                              |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                        |
+| **List**        | `list`                                                                                                                                                                                            |
+| **Help**        | `help`                                                                                                                                                                                            |
+| **Mark Task**   | `mark uid/<uid> <taskIndex>` <br> e.g., `mark uid/1 3`                                                                                                                                            |
+| **Unmark Task** | `unmark uid/<uid> <taskIndex>` <br> e.g., `unmark uid/1 2`                                                                                                                                        |
