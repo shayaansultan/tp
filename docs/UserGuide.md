@@ -6,43 +6,52 @@
 
 # ContactSwift User Guide
 
-ContactSwift is a **desktop app for managing emplyoee contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ContactSwift can get your contact management tasks done faster than traditional GUI apps.
+Welcome to ContactSwift, the **desktop app for managing employee contacts and tasks**, optimized for use via a Command Line Interface (CLI) while still offering the Graphical User Interface (GUI) benefits. Designed for small business owners, managers, and team leaders, ContactSwift streamlines contact management and task tracking, especially for those managing remote teams.
 
-This APP allows small business owners to manage their employees intuitively using simple commands and a compact list of their information. A key advantage of using this APP is the feature that allows users to track their employees tasks and completion rate, adding on the ability to filter your employee list using specific parameters!
+**Key Features:**
+- Fast and efficient contact management through CLI commands.
+- Task tracking and productivity analysis with completion rate statistics.
+- Easy filtering and searching of employee information based on various parameters.
 
-Start using our APP **TODAY** by following our quick start guide below.
+**Who is this for?**
+- Small business owners and remote team managers looking for an efficient way to manage contact details and tasks.
 
-<!-- * Table of Contents -->
-<page-nav-print />
+Start managing your team more effectively with ContactSwift **today** by following the steps in our quick start guide.
+
+## Table of Contents
+
+1. [Quick Start](#quick-start)
+2. [Features](#features)
+3. [Managing Your Employees](#managing-your-employees)
+4. [FAQ](#faq)
+5. [Known Issues](#known-issues)
+6. [Command Summary](#command-summary)
 
 ---
 
-## Quick start
+## Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+**Begin your ContactSwift journey with these simple steps:**
 
-2. Download the latest `contactswift.jar` from [here](https://github.com/AY2324S2-CS2103T-T17-2/tp/releases/tag/MVP).
+1. Ensure Java `11` or above is installed on your computer. [Find out how to check your Java version](https://www.java.com/en/download/help/version_manual.html).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+2. Download the latest `contactswift.jar` from our [releases page](https://github.com/AY2324S2-CS2103T-T17-2/tp/releases/tag/v1.3).
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar contactswift.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](./images/v1.3.png)
+3. Choose a folder as your _home folder_ for ContactSwift and copy the downloaded file there.
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+4. Open a command terminal, navigate (`cd`) to your home folder, and run the application with the command `java -jar contactswift.jar`. You'll see the GUI, preloaded with some sample data, as shown below:
 
-   - `list` : Lists all contacts.
+   ![ContactSwift Main Interface](./images/v1.3.png)  
+   *Figure 1: The main interface of ContactSwift, showing sample data.*
 
-   - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 T/A r/Manager` : Adds a contact named `John Doe` to the Address Book.
+5. To execute commands, type them into the command box and press Enter. For instance, typing **`help`** and pressing Enter will display the help window. Try out these commands:
+    - `list` – Lists all contacts.
+    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 T/A r/Manager` – Adds a contact named `John Doe`.
+    - `delete 3` – Deletes the 3rd contact in the list.
+    - `clear` – Removes all contacts.
+    - `exit` – Closes the app.
 
-   - `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   - `clear` : Deletes all contacts.
-
-   - `exit` : Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
+Refer to the [Features](#features) section for more detailed command descriptions.
 
 ---
 
@@ -50,7 +59,7 @@ Start using our APP **TODAY** by following our quick start guide below.
 
 <box type="info" seamless>
 
-**Notes about the command format:**<br>
+**Understanding the command format is crucial for using ContactSwift effectively. Here are some tips:**<br>
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -82,7 +91,7 @@ Format: `help`
 
 Adds a employee to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS T/TAG r/ROLE [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE T/TEAM [t/TAG]…​`
 
 <box type="tip" seamless>
 
@@ -98,7 +107,7 @@ Examples:
 
 Adds a task to an employee's task list.
 
-Format: `addTask uid/<uid> <description>`
+Format: `addTask uid/<UID> <description>`
 
 - Adds a task to the employee with the specified `uid`.
 - The `uid` refers to the user ID displayed beside the employee's name.
@@ -114,7 +123,7 @@ Examples:
 
 Marks a task as completed in the employee's task list.
 
-Format: `mark uid/<uid> <taskIndex>`
+Format: `mark uid/<UID> <taskIndex>`
 
 - Marks the task at the specified `taskIndex` as completed for the employee with the specified `uid`.
 - The `uid` refers to the user ID displayed beside the employee's name.
@@ -130,7 +139,7 @@ Examples:
 
 Unmarks a task as completed in the employee's task list.
 
-Format: `unmark uid/<uid> <taskIndex>`
+Format: `unmark uid/<UID> <taskIndex>`
 
 - Unmarks the task at the specified `taskIndex` as not completed for the employee with the specified `uid`.
 - The `uid` refers to the user ID displayed beside the employee's name.
@@ -144,7 +153,7 @@ Examples:
 
 ### Delete a task from an employee's task list: `deleteTask`
 
-Format: `deleteTask uid/<uid> <taskIndex>`
+Format: `deleteTask uid/<UID> <taskIndex>`
 
 - Deletes the task at the specified `taskIndex` from the task list of the employee with the specified `uid`.
 - The `uid` refers to the user ID displayed beside the employee's name.
@@ -220,17 +229,18 @@ Examples:
 
 Deletes the specified employee from the address book.
 
-Format: `delete INDEX`/`delete UID`/`delete NAME`
+Format: `delete INDEX` or `delete uid/<UID>` or `delete NAME`
 
 - Deletes the employee at the specified `INDEX`/`UID`/`NAME`.
 - The index refers to the index number shown in the displayed employee list.
-- The index **must be a positive integer** 1, 2, 3, …​
+- The index **must be a positive integer** 1, 2, 3, …​ and must be within the range of the displayed list.
 - The UID refers to the user ID displayed beside the employee's name.
+- The name must be an exact match, however it is case-insensitive.
 
 Examples:
 
 - `list` followed by `delete 2` deletes the 2nd employee in the address book.
-- `delete betsy` deletes the the employee with the name `betsy` if there are no duplicates. In the case of duplicates, a list will be provided to prompt for specifics.
+- `delete betsy` deletes the employee with the name `betsy` if there are no duplicates. In the case of duplicates, the user will be prompted to delete by uid.
 
 ### Clearing all entries : `clear`
 
@@ -259,6 +269,8 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
+---
+
 # Managing your employees
 
 Great! You have successfully installed ContactSwift and are ready to manage your employees. Let's use all the awesome features that ContactSwift has to offer.
@@ -285,8 +297,11 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q1: How do I install Java 11?**  
+**A1:** Follow the instructions on the [Java 11 download page](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+
+**Q2: How can I transfer my ContactSwift data to another computer?**  
+**A2:** Install ContactSwift on the other computer and replace the data file with the one from your previous installation.
 
 ---
 
