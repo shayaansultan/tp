@@ -65,7 +65,7 @@ Refer to the [Features](#features) section for more detailed command description
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 - Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 - Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -81,7 +81,7 @@ Refer to the [Features](#features) section for more detailed command description
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -89,7 +89,7 @@ Format: `help`
 
 ### Adding an employee: `add`
 
-Adds a employee to the address book.
+Adds an employee to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/ROLE T/TEAM [t/TAG]…​`
 
@@ -190,7 +190,7 @@ Shows a list of all employees in the address book.
 
 Format: `list`
 
-### Editing a employee : `edit`
+### Editing an employee : `edit`
 
 Edits an existing employee in the address book.
 
@@ -199,7 +199,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [
 - Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
-- When editing tags, the existing tags of the employee will be removed i.e adding of tags is not cumulative.
+- When editing tags, the existing tags of the employee will be removed i.e. adding of tags is not cumulative.
 - You can remove all the employee’s tags by typing `t/` without
   specifying any tags after it.
 
@@ -225,7 +225,7 @@ Examples:
 - `find alice david` returns `Alice Smith`, `David Williams`<br>
   ![result for 'find alex david'](./images/findAliceDavidResult.png)
 
-### Deleting a employee : `delete`
+### Deleting an employee : `delete`
 
 Deletes the specified employee from the address book.
 
@@ -319,6 +319,7 @@ _Details coming soon ..._
 | **Add Task**    | `addTask uid/<uid> <description>` <br> e.g., `addTask uid/1 Complete the report by 5pm`, `addTask uid/2 Submit the proposal by 10am`                                                              |
 | **Clear**       | `clear`                                                                                                                                                                                           |
 | **Delete**      | `delete INDEX`/`delete uid/<UID>`/`delete NAME`<br> e.g., `delete 3`, `delete uid/101`, `delete John Doe`                                                                                         |
+| **Delete Task** | `deleteTask uid/<UID> <taskIndex>` <br> e.g., `deleteTask uid/1 3`                                                                                                                                |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                     |
 | **Filter**      | `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]` <br> e.g., `filter t/friend`,`filter r/Manager T/HR`, `filter T/HR t/friend r/Executive`                                                              |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                        |
