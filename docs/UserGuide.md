@@ -6,17 +6,34 @@
 
 # ContactSwift User Guide
 
-Welcome to ContactSwift, the **desktop app for managing employee contacts and tasks**, optimized for use via a Command Line Interface (CLI) while still offering the Graphical User Interface (GUI) benefits. Designed for small business owners, managers, and team leaders, ContactSwift streamlines contact management and task tracking, especially for those managing remote teams.
+Welcome to ContactSwift, the desktop app designed for efficient employee contact and task management. Optimized for use via a [Command Line Interface (CLI)](#cli-command-line-interface) while also providing a [Graphical User Interface (GUI)](#gui-graphical-user-interface), ContactSwift is ideal for small business owners, managers, and team leaders who aim to streamline their remote team’s workflows.
+
+This guide will equip you with everything you need to maximize the benefits of ContactSwift, from initial setup to advanced features.
 
 **Key Features:**
-- Fast and efficient contact management through CLI commands.
-- Task tracking and productivity analysis with completion rate statistics.
-- Easy filtering and searching of employee information based on various parameters.
+- Rapid contact management through intuitive CLI commands.
+- Comprehensive task tracking and productivity analysis.
+- Advanced filtering and searching capabilities for employee information.
+
+**Unique ID System:**
+Each contact in ContactSwift is assigned a unique identifier (UID), ensuring precise and efficient management of contact details. This UID is key to performing actions like editing, deleting, or adding tasks for specific contacts. You will encounter these UIDs as you use various commands, offering a streamlined way to manage large datasets.
 
 **Who is this for?**
-- Small business owners and remote team managers looking for an efficient way to manage contact details and tasks.
+This guide is tailored for small business owners and remote team managers seeking an effective solution to manage contact details and tasks. We assume users have a basic understanding of command-line operations but have structured this guide to be accessible even to those new to CLI environments.
 
-Start managing your team more effectively with ContactSwift **today** by following the steps in our quick start guide.
+**Purpose of this Guide:**
+To help you quickly become proficient with ContactSwift, enabling you to manage your team’s contacts and tasks more effectively and efficiently.
+
+## How to Use This Guide
+
+Navigate through this guide using the [Table of Contents](#table-of-contents). Icons and formatting are used throughout to signify different types of information:
+- **Bold** for commands and important terms.
+- *Italics* for notes and additional information.
+- `Code` for actual input commands.
+
+Check the [Glossary](#glossary) for explanations of technical terms to ensure a smooth learning experience with ContactSwift.
+
+---
 
 ## Table of Contents
 
@@ -26,32 +43,34 @@ Start managing your team more effectively with ContactSwift **today** by followi
 4. [FAQ](#faq)
 5. [Known Issues](#known-issues)
 6. [Command Summary](#command-summary)
+7. [Glossary](#glossary)
 
 ---
 
 ## Quick Start
 
-**Begin your ContactSwift journey with these simple steps:**
+Embark on your ContactSwift journey with these straightforward steps:
 
-1. Ensure Java `11` or above is installed on your computer. [Find out how to check your Java version](https://www.java.com/en/download/help/version_manual.html).
-
-2. Download the latest `contactswift.jar` from our [releases page](https://github.com/AY2324S2-CS2103T-T17-2/tp/releases/tag/v1.3).
-
-3. Choose a folder as your _home folder_ for ContactSwift and copy the downloaded file there.
-
-4. Open a command terminal, navigate (`cd`) to your home folder, and run the application with the command `java -jar contactswift.jar`. You'll see the GUI, preloaded with some sample data, as shown below:
+1. **Installation**: Ensure Java `11` or above is installed on your computer. [Learn how to check your Java version](https://www.java.com/en/download/help/version_manual.html).
+2. **Download**: Access the latest `contactswift.jar` from our [releases page](https://github.com/AY2324S2-CS2103T-T17-2/tp/releases/tag/v1.3).
+3. **Setup**: Select a folder as your home for ContactSwift and move the downloaded file there.
+4. **Launch**: Open a command terminal, navigate to your home folder, and initiate the application with `java -jar contactswift.jar`. The GUI, populated with sample data, will appear as shown below:
 
    ![ContactSwift Main Interface](./images/v1.3.png)  
-   *Figure 1: The main interface of ContactSwift, showing sample data.*
+   *Figure 1: The main interface of ContactSwift, showcasing sample data.*
 
-5. To execute commands, type them into the command box and press Enter. For instance, typing **`help`** and pressing Enter will display the help window. Try out these commands:
-    - `list` – Lists all contacts.
-    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 T/A r/Manager` – Adds a contact named `John Doe`.
-    - `delete 3` – Deletes the 3rd contact in the list.
-    - `clear` – Removes all contacts.
-    - `exit` – Closes the app.
+5. **Get Commanding**: Input commands in the command box and press Enter. Try these to get started:
+    - `list` – Displays all contacts.
+    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 T/A r/Manager` – Adds a new contact.
+    - `delete uid/101` – Removes the contact with the 'uid' of 101.
+    - `edit 2 n/James Lee` – Updates the name of the second contact.
+    - `find John` – Searches for contacts with the name `John`.
+    - `filter r/Manager` – Filters contacts by role.
+    - `addTask uid/1 Complete the report by 5pm` – Adds a task to the contact with the `uid` of 1.
+    - `clear` – Deletes all contacts.
+    - `exit` – Closes the application.
 
-Refer to the [Features](#features) section for more detailed command descriptions.
+For a detailed explanation of all commands, refer to the [Features](#features) section.
 
 ---
 
@@ -84,6 +103,7 @@ Refer to the [Features](#features) section for more detailed command description
 Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
+*Figure: The help command output in ContactSwift.*
 
 Format: `help`
 
@@ -102,6 +122,10 @@ Examples:
 
 - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 T/A r/Manager`
 - `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Appartment p/1234567 T/B r/Secretary`
+
+<box type="warning">
+**Caution:** Ensure the `PHONE_NUMBER` is valid; ContactSwift does not accept phone numbers with less than 3 digits.
+</box>
 
 ### Add task to an employee's task list: `addtask`
 
@@ -229,7 +253,7 @@ Examples:
 
 Deletes the specified employee from the address book.
 
-Format: `delete INDEX` or `delete uid/<UID>` or `delete NAME`
+Format: `delete INDEX` or `delete uid/<uid>` or `delete NAME`
 
 - Deletes the employee at the specified `INDEX`/`UID`/`NAME`.
 - The index refers to the index number shown in the displayed employee list.
@@ -237,10 +261,13 @@ Format: `delete INDEX` or `delete uid/<UID>` or `delete NAME`
 - The UID refers to the user ID displayed beside the employee's name.
 - The name must be an exact match, however it is case-insensitive.
 
+**Caution:** Deleting an employee is irreversible. Ensure you have selected the correct `INDEX`, `uid`, or `NAME` before proceeding.
+
 Examples:
 
 - `list` followed by `delete 2` deletes the 2nd employee in the address book.
 - `delete betsy` deletes the employee with the name `betsy` if there are no duplicates. In the case of duplicates, the user will be prompted to delete by uid.
+- `delete uid/101` deletes the employee with the `uid` of 101.
 
 ### Clearing all entries : `clear`
 
@@ -254,19 +281,14 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Saving the Data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ContactSwift data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+**Note:** While ContactSwift attempts to save automatically, it's good practice to regularly back up your data file, especially before making bulk changes or updates.
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<box type="warning" seamless>
-
-**Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+<box type="warning">
+**Caution:** If your changes to the data file make its format invalid, ContactSwift will discard all data and start with an empty data file at the next run. We recommend taking a backup of the file before editing it. Furthermore, certain edits can cause ContactSwift to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Edit the data file only if you are confident that you can update it correctly.
 </box>
 
 ---
@@ -321,9 +343,22 @@ _Details coming soon ..._
 | **Delete**      | `delete INDEX`/`delete uid/<UID>`/`delete NAME`<br> e.g., `delete 3`, `delete uid/101`, `delete John Doe`                                                                                         |
 | **Delete Task** | `deleteTask uid/<UID> <taskIndex>` <br> e.g., `deleteTask uid/1 3`                                                                                                                                |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                     |
+| **Exit**        | `exit`                                                                                                                                                                                            |
 | **Filter**      | `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]` <br> e.g., `filter t/friend`,`filter r/Manager T/HR`, `filter T/HR t/friend r/Executive`                                                              |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                        |
 | **List**        | `list`                                                                                                                                                                                            |
 | **Help**        | `help`                                                                                                                                                                                            |
 | **Mark Task**   | `mark uid/<uid> <taskIndex>` <br> e.g., `mark uid/1 3`                                                                                                                                            |
 | **Unmark Task** | `unmark uid/<uid> <taskIndex>` <br> e.g., `unmark uid/1 2`                                                                                                                                        |
+
+---
+
+## Glossary
+
+### CLI (Command Line Interface)
+A type of user interface that allows users to interact with a computer program or operating system by typing commands into a console or terminal. CLI is known for its efficiency in performing tasks, enabling users to execute complex commands through concise textual input.
+
+### GUI (Graphical User Interface)
+A user interface that allows users to interact with electronic devices through graphical icons and visual indicators, as opposed to text-based interfaces, typed command labels, or text navigation. GUIs are typically considered user-friendly, especially for navigating complex software or managing multiple tasks simultaneously, as they provide a visual representation of the system’s operations.
+
+---
