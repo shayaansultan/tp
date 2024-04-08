@@ -13,14 +13,14 @@ import seedu.address.model.employee.Employee;
 /**
  * A Model stub that contains employees.
  */
-public class ModelStubWithEmployee extends ModelStub {
+public class ModelStubWithEmployees extends ModelStub {
     private final ObservableList<Employee> employees = FXCollections.observableArrayList();
 
     /**
-     * Initializes a ModelStubWithEmployee with the given employee.
-     * @param employee The employee to be added to the model.
+     * Initializes a ModelStubWithEmployees with the given employee.
+     * @param employeesList The employees to be added to the model.
      */
-    public ModelStubWithEmployee(List<Employee> employeesList) {
+    public ModelStubWithEmployees(List<Employee> employeesList) {
         requireNonNull(employeesList);
         employees.addAll(employeesList);
     }

@@ -34,7 +34,4 @@ public class ModelStubWithFilteredEmployeeList extends ModelStub {
         filteredEmployees = employees.stream().filter(predicate).collect(Collectors
                 .toCollection(FXCollections::observableArrayList));
     }
-    public void resetData() {
-        filteredEmployees = FXCollections.observableArrayList(employees);
-    }
 }

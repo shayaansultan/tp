@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelStub;
-import seedu.address.model.ModelStubWithEmployee;
+import seedu.address.model.ModelStubWithEmployees;
 import seedu.address.model.ModelStubWithNoEmployee;
 import seedu.address.model.employee.Employee;
 import seedu.address.testutil.EmployeeBuilder;
@@ -26,7 +26,7 @@ public class FilterCommandTest {
     public void execute_validFilter_success() {
         Employee testEmployee = new EmployeeBuilder().withName("Alice").build();
 
-        ModelStub modelStub = new ModelStubWithEmployee(Collections.singletonList(testEmployee));
+        ModelStub modelStub = new ModelStubWithEmployees(Collections.singletonList(testEmployee));
 
         Predicate<Employee> predicate = employee -> employee.getName().equals(testEmployee.getName());
         FilterCommand filterCommand = new FilterCommand(predicate, "Name: Alice");

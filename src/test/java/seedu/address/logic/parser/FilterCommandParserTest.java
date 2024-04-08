@@ -15,7 +15,7 @@ public class FilterCommandParserTest {
     public void parse_validArgs_returnsFilterCommand() {
         assertDoesNotThrow(() -> parser.parse("filter n/ Alice"));
         assertDoesNotThrow(() -> parser.parse("filter t/ friend"));
-        assertDoesNotThrow(() -> parser.parse("filter T/ Team A"));
+        assertDoesNotThrow(() -> parser.parse("filter T/ A"));
         assertDoesNotThrow(() -> parser.parse("filter r/ Manager"));
     }
 
@@ -30,5 +30,26 @@ public class FilterCommandParserTest {
     public void parse_nullArgs_throwsNullPointerException() {
         FilterCommandParser parser = new FilterCommandParser();
         assertThrows(NullPointerException.class, () -> parser.parse(null));
+    }
+
+    @Test
+    public void parse_multipleNames_throwsParseException() {
+        FilterCommandParser parser = new FilterCommandParser();
+        String input = "filter n/Alice n/Bob";
+        assertThrows(ParseException.class, () -> parser.parse(input));
+    }
+
+    @Test
+    public void parse_multipleRoles_throwsParseException() {
+        FilterCommandParser parser = new FilterCommandParser();
+        String input = "filter r/Manager r/Developer";
+        assertThrows(ParseException.class, () -> parser.parse(input));
+    }
+
+    @Test
+    public void parse_multipleTeams_throwsParseException() {
+        FilterCommandParser parser = new FilterCommandParser();
+        String input = "filter T/Marketing T/Sales";
+        assertThrows(ParseException.class, () -> parser.parse(input));
     }
 }

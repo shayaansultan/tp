@@ -26,7 +26,7 @@ import seedu.address.logic.parser.DeleteCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ModelStubWithEmployee;
+import seedu.address.model.ModelStubWithEmployees;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.employee.Address;
 import seedu.address.model.employee.Email;
@@ -150,7 +150,7 @@ public class DeleteCommandTest {
     @Test
     void execute_noTargetIndexNameOrUid_throwsCommandException() {
         // Arrange
-        ModelStubWithEmployee model = new ModelStubWithEmployee(new ArrayList<>());
+        ModelStubWithEmployees model = new ModelStubWithEmployees(new ArrayList<>());
         DeleteCommand deleteCommand = new DeleteCommand();
 
         assertThrows(CommandException.class, () -> deleteCommand.execute(model));
@@ -174,7 +174,7 @@ public class DeleteCommandTest {
         Employee employee1 = new Employee(name, phone, email, address, team, role, tags, uid1, tasks1);
         Employee employee2 = new Employee(name, phone, email, address, team, role, tags, uid2, tasks2);
 
-        ModelStubWithEmployee model = new ModelStubWithEmployee(Arrays.asList(employee1, employee2));
+        ModelStubWithEmployees model = new ModelStubWithEmployees(Arrays.asList(employee1, employee2));
 
         DeleteCommand deleteCommand = new DeleteCommand(name.fullName);
 

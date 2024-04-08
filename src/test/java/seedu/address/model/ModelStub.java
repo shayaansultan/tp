@@ -1,6 +1,5 @@
 package seedu.address.model;
 
-
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
@@ -10,6 +9,8 @@ import seedu.address.model.employee.Employee;
 
 /**
  * A default model stub that have all of the methods failing.
+ * This code was reused from AddCommandTest.java previously written by authors of AB3.
+ * This private class was extracted out to a public class to be used in other test classes as well.
  */
 public class ModelStub implements Model {
     @Override
