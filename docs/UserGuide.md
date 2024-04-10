@@ -11,12 +11,13 @@ Welcome to ContactSwift, the desktop app designed for efficient employee contact
 This guide will equip you with everything you need to maximize the benefits of ContactSwift, from initial setup to advanced features.
 
 **Key Features:**
+
 - Rapid contact management through intuitive CLI commands.
 - Comprehensive task tracking and productivity analysis.
-- Advanced filtering and searching capabilities for employee information.
+- Advanced filtering and searching capabilities for employee information (even if employees may have some same fields).
 
 **Unique ID System:**
-Each contact in ContactSwift is assigned a unique identifier (UID), ensuring precise and efficient management of contact details. This UID is key to performing actions like editing, deleting, or adding tasks for specific contacts. You will encounter these UIDs as you use various commands, offering a streamlined way to manage large datasets.
+Each contact in ContactSwift is assigned a unique identifier (UID), ensuring precise and efficient management of contact details. This UID is key to performing actions like editing, deleting, or adding tasks for specific contacts. You will encounter these UIDs as you use various commands, offering a streamlined way to manage large datasets. This system is designed to enhance the user experience, enabling you to easily deal with duplicates!
 
 **Who is this for?**
 This guide is tailored for small business owners and remote team managers seeking an effective solution to manage contact details and tasks. We assume users have a basic understanding of command-line operations but have structured this guide to be accessible even to those new to CLI environments.
@@ -27,9 +28,10 @@ To help you quickly become proficient with ContactSwift, enabling you to manage 
 ## How to Use This Guide
 
 Navigate through this guide using the [Table of Contents](#table-of-contents). Icons and formatting are used throughout to signify different types of information:
+
 - **Bold** for commands and important terms.
-- *Italics* for notes and additional information.
-- `Code` for actual input commands.
+- _Italics_ for notes and additional information.
+- `Code` for actual input commands and any technical references to code, filenames, terminology, etc.
 
 Check the [Glossary](#glossary) for explanations of technical terms to ensure a smooth learning experience with ContactSwift.
 
@@ -57,18 +59,18 @@ Embark on your ContactSwift journey with these straightforward steps:
 4. **Launch**: Open a command terminal, navigate to your home folder, and initiate the application with `java -jar contactswift.jar`. The GUI, populated with sample data, will appear as shown below:
 
    ![ContactSwift Main Interface](./images/v1.3.png)  
-   *Figure 1: The main interface of ContactSwift, showcasing sample data.*
+   _Figure 1: The main interface of ContactSwift, showcasing sample data._
 
 5. **Get Commanding**: Input commands in the command box and press Enter. Try these to get started:
-    - `list` – Displays all contacts.
-    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 T/A r/Manager` – Adds a new contact.
-    - `delete uid/101` – Removes the contact with the 'uid' of 101.
-    - `edit 2 n/James Lee` – Updates the name of the second contact.
-    - `find John` – Searches for contacts with the name `John`.
-    - `filter r/Manager` – Filters contacts by role.
-    - `addTask uid/1 Complete the report by 5pm` – Adds a task to the contact with the `uid` of 1.
-    - `clear` – Deletes all contacts.
-    - `exit` – Closes the application.
+   - `list` – Displays all contacts.
+   - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 T/A r/Manager` – Adds a new contact.
+   - `delete uid/101` – Removes the contact with the 'uid' of 101.
+   - `edit 2 n/James Lee` – Updates the name of the second contact.
+   - `find John` – Searches for contacts with the name `John`.
+   - `filter r/Manager` – Filters contacts by role.
+   - `addTask uid/1 Complete the report by 5pm` – Adds a task to the contact with the `uid` of 1.
+   - `clear` – Deletes all contacts.
+   - `exit` – Closes the application.
 
 For a detailed explanation of all commands, refer to the [Features](#features) section.
 
@@ -103,7 +105,7 @@ For a detailed explanation of all commands, refer to the [Features](#features) s
 Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
-*Figure: The help command output in ContactSwift.*
+_Figure: The help command output in ContactSwift._
 
 Format: `help`
 
@@ -336,7 +338,7 @@ _Details coming soon ..._
 ## Command summary
 
 | Action          | Format, Examples                                                                                                                                                                                  |
-|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS T/TEAM r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 T/A r/Cleaner t/friend t/colleague` |
 | **Add Task**    | `addTask uid/<uid> <description>` <br> e.g., `addTask uid/1 Complete the report by 5pm`, `addTask uid/2 Submit the proposal by 10am`                                                              |
 | **Clear**       | `clear`                                                                                                                                                                                           |
@@ -356,9 +358,15 @@ _Details coming soon ..._
 ## Glossary
 
 ### CLI (Command Line Interface)
+
 A type of user interface that allows users to interact with a computer program or operating system by typing commands into a console or terminal. CLI is known for its efficiency in performing tasks, enabling users to execute complex commands through concise textual input.
 
 ### GUI (Graphical User Interface)
+
 A user interface that allows users to interact with electronic devices through graphical icons and visual indicators, as opposed to text-based interfaces, typed command labels, or text navigation. GUIs are typically considered user-friendly, especially for navigating complex software or managing multiple tasks simultaneously, as they provide a visual representation of the system’s operations.
+
+### Unique Identifier (UID)
+
+UID is a unique identifier assigned to each contact in ContactSwift, enabling precise and efficient management of contact details. Such identifiers serve to differentiate contacts and facilitate actions like editing, deleting, or adding tasks for specific contacts. UIDs are essential for managing large datasets and ensuring accurate contact management.
 
 ---
