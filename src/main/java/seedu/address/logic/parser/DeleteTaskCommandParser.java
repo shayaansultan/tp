@@ -15,13 +15,14 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
             + "Example: " + DeleteTaskCommand.COMMAND_WORD + " uid/1 1";
     private static final String INVALID_FORMAT = "Invalid format!";
     private static final String INVALID_UID_FORMAT = "Invalid UID format! Correct format: uid/<UID>";
-    private static final String INVALID_TASK_INDEX_FORMAT = "Invalid task index format! It should be a positive integer more than 0.";
+    private static final String INVALID_TASK_INDEX_FORMAT = "Invalid task index format!"
+            + "It should be a positive integer more than 0.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the
      * DeleteTaskCommand
      * and returns a DeleteTaskCommand object for execution.
-     * 
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteTaskCommand parse(String args) throws ParseException {
