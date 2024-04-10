@@ -18,7 +18,7 @@ import seedu.address.model.employee.UniqueId;
 public class UnmarkTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
-    public static final String MESSAGE_SUCCESS = "Task unmarked as not done: %1$s";
+    public static final String MESSAGE_SUCCESS = "Task unmarked %1$s";
     private static final Logger LOGGER = Logger.getLogger(UnmarkTaskCommand.class.getName());
 
     private final UniqueId uid;
@@ -26,7 +26,8 @@ public class UnmarkTaskCommand extends Command {
 
     /**
      * Constructor for UnmarkTaskCommand
-     * @param uid UniqueId of the employee
+     *
+     * @param uid        UniqueId of the employee
      * @param taskNumber Task number to be marked as done
      */
     public UnmarkTaskCommand(UniqueId uid, int taskNumber) {
@@ -57,6 +58,7 @@ public class UnmarkTaskCommand extends Command {
 
     /**
      * Getter for UniqueId
+     *
      * @return UniqueId of the employee
      */
     public UniqueId getUid() {
@@ -65,6 +67,7 @@ public class UnmarkTaskCommand extends Command {
 
     /**
      * Getter for task number
+     *
      * @return Task number to be marked as not done
      */
     public int getTaskNumber() {

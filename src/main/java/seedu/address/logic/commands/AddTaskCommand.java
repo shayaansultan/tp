@@ -18,11 +18,6 @@ public class AddTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "addTask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the todo list of an employee. "
-            + "Parameters: UID (must be a positive integer) "
-            + "TASK_DESCRIPTION\n"
-            + "Example: " + COMMAND_WORD + " uid/1 Buy milk";
-
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
 
     private final UniqueId uid;

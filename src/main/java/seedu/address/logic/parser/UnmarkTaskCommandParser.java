@@ -8,6 +8,13 @@ import seedu.address.model.employee.UniqueId;
  * Parses input arguments and creates a new UnmarkTaskCommand object
  */
 public class UnmarkTaskCommandParser implements Parser<UnmarkTaskCommand> {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the
+     * UnmarkTaskCommand and returns a UnmarkTaskCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     */
     @Override
     public UnmarkTaskCommand parse(String args) throws ParseException {
         String[] splitArgs = args.trim().split("\\s+");

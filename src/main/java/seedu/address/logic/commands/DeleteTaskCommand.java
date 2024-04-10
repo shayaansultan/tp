@@ -16,11 +16,6 @@ import seedu.address.model.employee.UniqueId;
 public class DeleteTaskCommand extends Command {
     public static final String COMMAND_WORD = "deleteTask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a task from the todo list of an employee. "
-            + "Parameters: UID (must be a positive integer) TASK_INDEX (must be a positive integer)\n"
-            + "The TASK_INDEX is one based and not zero based.\n"
-            + "Example: " + COMMAND_WORD + " uid/1 1";
-
     public static final String MESSAGE_SUCCESS = "Task deleted successfully!";
 
     private final UniqueId uid;
@@ -43,7 +38,7 @@ public class DeleteTaskCommand extends Command {
      * @param model {@code Model} which the command should operate on.
      * @return a CommandResult representing the result of the command execution.
      * @throws CommandException if the employee with the given UID does not exist in
-     *                         the model or the task index is invalid.
+     *                          the model or the task index is invalid.
      */
     private CommandResult deleteTask(Model model) throws CommandException {
         List<Employee> lastShownList = model.getFilteredEmployeeList();
@@ -74,7 +69,7 @@ public class DeleteTaskCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
