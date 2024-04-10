@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EMPLOYEE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.UniqueId;
@@ -48,8 +49,11 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_specialCharacterArgs_throwsParseException() {
-        assertParseFailure(parser, "$", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        String expectedMessage = "Name should only contain alphabetic characters and spaces. "
+                + DeleteCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, "$", expectedMessage);
     }
+
 
     @Test
     public void parse_invalidUidFormat_throwsNullPointerException() {
@@ -58,7 +62,8 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_missingUid_throwsParseException() {
-        assertParseFailure(parser, "uid/", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        String expectedMessage = "Invalid UID format. " + DeleteCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, "uid/", expectedMessage);
     }
 
     @Test
@@ -73,50 +78,58 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parseDeleteByUniqueId_invalidUidFormat_throwsParseException() {
-        DeleteCommandParser parser = new DeleteCommandParser();
-
-        // UID format without digits
-        assertThrows(ParseException.class, () -> parser.parse("uid/abc"));
+        // UID format with non-digits
+        assertParseFailure(parser, "uid/abc",
+                "UID should only contain numbers. "
+                        + DeleteCommand.MESSAGE_USAGE);
 
         // UID format with special characters
-        assertThrows(ParseException.class, () -> parser.parse("uid/123!@#"));
+        assertParseFailure(parser, "uid/123!@#",
+                "UID should only contain numbers. "
+                        + DeleteCommand.MESSAGE_USAGE);
 
         // No UID after the prefix
-        assertThrows(ParseException.class, () -> parser.parse("uid/"));
+        assertParseFailure(parser, "uid/",
+                "Invalid UID format. "
+                        + DeleteCommand.MESSAGE_USAGE);
     }
 
     @Test
     public void parseDeleteByName_invalidNameFormat_throwsParseException() {
-        DeleteCommandParser parser = new DeleteCommandParser();
-
         // Name with numbers
-        assertThrows(ParseException.class, () -> parser.parse("John Doe1"));
+        assertParseFailure(parser, "John Doe1",
+                "Name should only contain alphabetic characters and spaces. "
+                        + DeleteCommand.MESSAGE_USAGE);
 
         // Name with special characters
-        assertThrows(ParseException.class, () -> parser.parse("John@Doe"));
-
-        // Empty string after trim
-        assertThrows(ParseException.class, () -> parser.parse("   "));
+        assertParseFailure(parser, "John@Doe",
+                "Name should only contain alphabetic characters and spaces. "
+                        + DeleteCommand.MESSAGE_USAGE);
+    }
+    @Test
+    public void parse_emptyStringAfterTrim_throwsParseException() {
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, "   ", expectedMessage);
     }
 
     @Test
     public void parse_invalidUid_throwsParseException() {
         String invalidUid = "invalid";
-        assertParseFailure(parser, "uid/" + invalidUid, String
-                .format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "uid/" + invalidUid,
+                "UID should only contain numbers. " + DeleteCommand.MESSAGE_USAGE);
     }
 
     @Test
     public void parse_missingUidPart_throwsParseException() {
-        assertParseFailure(parser, "uid/", String
-                .format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        String expectedMessage = "Invalid UID format. " + DeleteCommand.MESSAGE_USAGE;
+        assertParseFailure(parser, "uid/", expectedMessage);
     }
 
     @Test
     public void parse_uidWithExtraSlash_throwsParseException() {
         String uidWithExtraSlash = "12345/";
-        assertParseFailure(parser, "uid/" + uidWithExtraSlash, String
-                .format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "uid/" + uidWithExtraSlash,
+                "UID should only contain numbers. " + DeleteCommand.MESSAGE_USAGE);
     }
-
 }

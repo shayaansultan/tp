@@ -179,7 +179,7 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(name.fullName);
 
         // Act and Assert
-        assertThrows(CommandException.class, () -> deleteCommand.deleteByName(model));
+        assertThrows(CommandException.class, () -> deleteCommand.execute(model));
     }
 
     @Test
@@ -270,7 +270,8 @@ public class DeleteCommandTest {
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
         DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
-        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
+        String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex
+                + ", targetName=null, uid=null}";
         assertEquals(expected, deleteCommand.toString());
     }
 

@@ -52,13 +52,14 @@ public class UnmarkTaskCommandTest {
     }
 
     @Test
-    public void execute_invalidTaskNumber_throwsCommandException() {
-        Employee employee = new EmployeeBuilder().withUid("1").build();
-        model.addEmployee(employee);
+    public void constructor_invalidTaskNumber_throwsIllegalArgumentException() {
+        UniqueId uid = new UniqueId("1");
 
-        UnmarkTaskCommand unmarkTaskCommand = new UnmarkTaskCommand(employee.getUid(), -1);
+        IllegalArgumentException exception = assertThrows(
+                IllegalArgumentException.class, () -> new UnmarkTaskCommand(uid, -1),
+                "Task number must be greater than zero."
+        );
 
-        assertThrows(CommandException.class, () -> unmarkTaskCommand.execute(model),
-                Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        assertEquals("Task number must be greater than zero.", exception.getMessage());
     }
 }

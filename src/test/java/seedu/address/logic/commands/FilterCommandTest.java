@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -44,4 +45,42 @@ public class FilterCommandTest {
         assertThrows(CommandException.class, () -> filterCommand.execute(modelStub));
     }
 
+    @Test
+    public void equals() {
+        Predicate<Employee> alicePredicate = employee -> employee.getName().equals("Alice");
+        Predicate<Employee> bobPredicate = employee -> employee.getName().equals("Bob");
+
+        FilterCommand filterAliceCommand = new FilterCommand(alicePredicate, "Name: Alice");
+        FilterCommand filterAliceCommandCopy = new FilterCommand(alicePredicate, "Name: Alice");
+        FilterCommand filterBobCommand = new FilterCommand(bobPredicate, "Name: Bob");
+
+        // same object -> returns true
+        assertEquals(filterAliceCommand, filterAliceCommand);
+
+        // same values -> returns true
+        assertEquals(filterAliceCommand, filterAliceCommandCopy);
+
+        // different types -> returns false
+        assertNotEquals(1, filterAliceCommand);
+
+        // null -> returns false
+        assertNotEquals(null, filterAliceCommand);
+
+        // different predicate -> returns false
+        assertNotEquals(filterAliceCommand, filterBobCommand);
+    }
+
+    @Test
+    public void hashCode_test() {
+        Predicate<Employee> predicate = employee -> employee.getName().equals("Alice");
+        FilterCommand filterCommand = new FilterCommand(predicate, "Name: Alice");
+        FilterCommand filterCommandCopy = new FilterCommand(predicate, "Name: Alice");
+
+        assertEquals(filterCommand.hashCode(), filterCommandCopy.hashCode());
+
+        // Consistent across calls
+        int hash1 = filterCommand.hashCode();
+        int hash2 = filterCommand.hashCode();
+        assertEquals(hash1, hash2);
+    }
 }
