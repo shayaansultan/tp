@@ -19,6 +19,7 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
+      <Label fx:id="uid" styleClass="cell_small_label" text="\$uid" />
          <Label fx:id="teamRole" styleClass="cell_small_label" text="\$teamRole" />
       <HBox alignment="CENTER_LEFT" spacing="5">
         <Label fx:id="id" styleClass="cell_big_label">
@@ -28,7 +29,6 @@
           </minWidth>
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-        <Label fx:id="uid" styleClass="cell_small_label" text="\$uid" />
         <Label fx:id="completionRate" styleClass="cell_small_label" text="\$productivity"/>
       </HBox>
       <FlowPane fx:id="tags" />
