@@ -26,7 +26,7 @@ public class UnmarkTaskCommand extends Command {
 
     /**
      * Constructor for UnmarkTaskCommand
-     * 
+     *
      * @param uid        UniqueId of the employee
      * @param taskNumber Task number to be marked as done
      */
@@ -58,7 +58,7 @@ public class UnmarkTaskCommand extends Command {
 
     /**
      * Getter for UniqueId
-     * 
+     *
      * @return UniqueId of the employee
      */
     public UniqueId getUid() {
@@ -67,7 +67,7 @@ public class UnmarkTaskCommand extends Command {
 
     /**
      * Getter for task number
-     * 
+     *
      * @return Task number to be marked as not done
      */
     public int getTaskNumber() {
