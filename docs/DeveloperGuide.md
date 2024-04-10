@@ -4,7 +4,7 @@
   pageNav: 3
 ---
 
-# AB-3 Developer Guide
+# ContactSwift Developer Guide
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -388,114 +388,117 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​              | I want to …​                                   | So that I can…​                                       |
-| -------- | -------------------- | ---------------------------------------------- | ----------------------------------------------------- |
-| `* * *`  | small business owner | easily add new contacts to my database         | quickly message and nurture my employees              |
-| `* * *`  | busy professional    | access my contact information from my computer | stay organized and responsive even when I'm on the go |
-| `* * *`  | user                 | add new contacts to my address book            | easily store their information                        |
-| `* * *`  | user                 | delete contacts I no longer need               | keep my address book organized                        |
-| `* * *`  | user                 | view a complete list of all my contacts        | browse through them easily                            |
+| Priority | As a …​              | I want to …​                            | So that I can…​                                           |
+|----------|----------------------|-----------------------------------------|-----------------------------------------------------------|
+| `* * *`  | small business owner | add employees to my contacts list       | have quick access to my employees' contact details.       |
+| `* * *`  | small business owner | view employee contacts                  | easily manage and reach out to employees.                 |
+| `* * *`  | small business owner | delete employee contacts                | keep the contact list updated and free of redundancies.   |
+| `* *`    | small business owner | edit details of employees               | ensure all contact information is current and correct.    |
+| `* * `   | team leader          | assign tasks to employees               | manage the workload and responsibilities within my team.  |
+| `* * `   | team leader          | mark tasks as complete for employees    | track progress and ensure timely completion of tasks.     |
+| `* *`    | manager              | filter employees by role, team, or tags | quickly find employees based on specific criteria.        |
+| `* *`    | manager              | find employees by name                  | quickly get contact details for communication purposes.   |
+| `* *`    | manager              | list all employees                      | have an overview of all employees in the organization.    |
+| `* *`    | new user             | access a help guide                     | understand how to use the application efficiently.        |
+| `*`      | IT support           | clear all entries from the address book | perform system maintenance or prepare for new data entry. |
+| `*`      | business analyst     | export contact and task data            | analyze workforce distribution and task completion rates. |
 
-_{More to be added}_
 
 ### Use cases
 
-#### **Use Case: Add Contact for ContactSwift v1.2**
+Here are the revised use cases, aligned with the features detailed in your User Guide:
 
-**System:** ContactSwift v1.2
+#### **Use Case: Add Employee**
+
+**System:** ContactSwift v1.4
 
 **Actor:** User
 
-1. **User adds a new contact:**
+**Preconditions:** User is logged into the system.
 
-   - Command: `add contact /name Jane Smith /email jane@example.com /number 9876543210`
-
+1. **User initiates the addition of a new employee:**
+   - Command: `add n/Jane Smith p/98765432 e/jane@example.com a/123 Clementi Rd r/Manager T/HR`
 2. **ContactSwift processes the command:**
-
    - Validates the command format and required details.
-   - Generates a unique ID for the new contact.
-
-3. **ContactSwift updates the address book:**
-
-   - Adds the contact details to the in-memory database.
+   - Generates a unique ID for the new employee.
+3. **ContactSwift updates the employee directory:**
+   - Adds the employee details to the in-memory database.
    - Sends a success message to the user.
-
 4. **User verifies the addition:**
-   - Command: `list all`
+   - Command: `list`
    - ContactSwift displays the updated list with Jane Smith's details.
 
-#### **Use Case: Delete Contact for ContactSwift v1.2**
+#### **Use Case: Delete Employee by UID**
 
-**System:** ContactSwift v1.2
+**System:** ContactSwift v1.4
 
 **Actor:** User
 
-1. **User identifies the contact to delete:**
+**Preconditions:** User has the list of employees displayed.
 
-   - Command: `list all`
-
-2. **ContactSwift displays the contact list:**
-
-   - User identifies the contact to delete, e.g., with the ID 5678.
-
-3. **User initiates the deletion:**
-
-   - Command: `delete contact /id 5678`
-
-4. **ContactSwift processes the deletion:**
-
-   - Verifies the command format and the contact ID.
-   - Deletes the contact if conditions are met.
-
-5. **ContactSwift updates the address book:**
-
-   - Removes the contact from the in-memory database.
+1. **User identifies the employee to delete using UID:**
+   - Command: `delete uid/100`
+2. **ContactSwift processes the deletion:**
+   - Validates the UID exists.
+   - Deletes the employee from the in-memory database.
+3. **ContactSwift updates the employee directory:**
+   - Removes the employee from the list.
    - Sends a confirmation message to the user.
+4. **User verifies the deletion:**
+   - Command: `list`
+   - ContactSwift displays the updated list without the deleted employee.
 
-6. **User verifies the deletion:**
-   - Command: `list all`
-   - ContactSwift displays the updated list without the deleted contact.
+#### **Use Case: Edit Employee Details**
 
-#### **Use Case: Quick Contact Addition for ContactSwift v1.2**
-
-**System:** ContactSwift v1.2
+**System:** ContactSwift v1.4
 
 **Actor:** User
 
-1. **User meets a new contact at a networking event:**
+**Preconditions:** User has the list of employees displayed.
 
-   - Command: `add contact /name Sam Johnson /email sam@example.com /number 5551234567`
-
-2. **ContactSwift processes the command:**
-
-   - Validates the command format and required details.
-   - Generates a unique ID for the new contact.
-
-3. **ContactSwift updates the address book:**
-
-   - Adds the contact details to the in-memory database.
+1. **User selects an employee to edit:**
+   - Command: `edit 2 n/John Doe p/98765432`
+2. **ContactSwift processes the edit command:**
+   - Validates the command format and index.
+   - Updates the employee's details in the in-memory database.
+3. **ContactSwift reflects the changes:**
+   - Updates the employee's details in the display.
    - Sends a success message to the user.
+4. **User verifies the update:**
+   - Command: `list`
+   - ContactSwift displays the updated list with John Doe's new details.
 
-4. **User verifies the addition:**
-   - Command: `list all`
-   - ContactSwift displays the updated list with Sam Johnson's details.
+#### **Use Case: Assign Task to Employee**
 
-_{More to be added}_
+**System:** ContactSwift v1.4
+
+**Actor:** User
+
+**Preconditions:** User has the list of employees displayed.
+
+1. **User assigns a task to an employee:**
+   - Command: `addTask uid/100 Complete the report by 5pm`
+2. **ContactSwift processes the task addition:**
+   - Validates the command format and UID.
+   - Adds the task to the employee's task list.
+3. **ContactSwift confirms the addition:**
+   - Sends a success message to the user.
+4. **User verifies the task addition:**
+   - Command: `list`
+   - ContactSwift displays the updated task list for the employee.
 
 ### Non-Functional Requirements
 
-1.  Cross-Platform Compatibility: Must be executable on any mainstream operating system (Windows, macOS, Linux) with Java Runtime Environment (JRE) version 11 or above installed. This ensures that the application can serve a wide user base without being restricted by their OS choice.
-2.  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The design and user interaction model of the software should cater to users with above-average typing speeds for regular English text. It implies that the command-line interface (CLI) or similar input methods should allow for faster task accomplishment compared to traditional graphical user interface (GUI) interactions involving the mouse. This would include quick command shortcuts for adding, deleting, and searching for contacts, among other actions.
-5.  Intuitive User Interface: Despite the focus on efficiency and command-line usage, the software should still offer an intuitive interface for those moments when a user prefers or needs to interact with the software in a more traditional manner. This includes clear visual cues, easy navigation, and minimalistic design to reduce cognitive load.
-6.  Data Security: The software should ensure that private contact details are stored securely and are not accessible to unauthorized users. This includes encryption of sensitive data and secure access control mechanisms.
-7.  Data Integrity: The software should ensure that contact details are stored accurately and are not lost or corrupted due to software errors or hardware failures. This includes regular data backups and error-checking mechanisms.
-8.  Portability: As a Java application packaged in a .jar file, it should ensure that all dependencies are included or easily resolvable, making the application easily portable and runnable across different systems without additional setup.
-9.  All operations should run in under 0.5 seconds for a typical user with a typical address book size (1000 employees).
-10. Should work well with 500 MB of memory, and should not consume more than 0.5 GB of memory for a typical user with a typical address book size (50k employees).
+1. Cross-Platform Compatibility: The application must be executable on any mainstream operating system, including Windows, macOS, and Linux, with Java Runtime Environment (JRE) version 11 or above installed, ensuring accessibility for a diverse user base across different operating systems.
+2. Performance Efficiency: The application should handle up to 1,000 employee records while maintaining response times under 2 seconds for all functionalities under typical usage conditions.
+3. User Efficiency and Command-Line Proficiency: Designed for users with above-average typing speeds, the application should facilitate task completion via CLI commands significantly faster than equivalent tasks performed using a GUI. Specifically, users should be able to accomplish at least 80% of the tasks 30% faster using commands than using the mouse, ensuring the software optimizes productivity for those proficient in typing regular English text. This efficiency gain should be validated through user testing and time-motion studies to ensure the interface meets the high-speed requirements of proficient typists.
+4. User Interface Design: The software must provide an intuitive, user-friendly interface, balancing efficiency for CLI users with accessibility for those preferring or requiring GUI interaction. This includes clear visual cues, streamlined navigation, and a minimalistic design to minimize cognitive load.
+5. Data Security: The application must employ robust encryption and access control mechanisms to ensure that private contact details are secure and inaccessible to unauthorized users, complying with industry-standard security protocols.
+6. Data Integrity: The software should incorporate data validation, regular backups, and error-checking mechanisms to prevent loss or corruption of contact information, ensuring high data integrity and reliability.
+7. Portability: The application, packaged as a .jar file, must include all necessary dependencies or facilitate easy resolution of such dependencies, ensuring smooth operation across different systems without complex setup procedures.
+8. Operational Speed: Every operation within the application should complete within 0.5 seconds for a dataset containing up to 1,000 employees, ensuring a seamless user experience.
+9. Memory Usage: The application should operate efficiently within 500 MB of memory and should not exceed 0.5 GB of memory usage, even with an address book size of up to 50,000 employees, optimizing resource utilization.
 
-<!-- *{More to be added}* -->
 
 ### Glossary
 
@@ -557,9 +560,9 @@ testers are expected to do more _exploratory_ testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a employee
+### Deleting an employee
 
-1. Deleting a employee while all employees are being shown
+1. Deleting an employee while all employees are being shown
 
    1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
 
