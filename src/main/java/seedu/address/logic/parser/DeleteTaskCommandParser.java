@@ -15,7 +15,7 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
             + "Example: " + DeleteTaskCommand.COMMAND_WORD + " uid/1 1";
     private static final String INVALID_FORMAT = "Invalid format!";
     private static final String INVALID_UID_FORMAT = "Invalid UID format! Correct format: uid/<UID>";
-    private static final String INVALID_TASK_INDEX_FORMAT = "Invalid task index format! It should be a positive integer.";
+    private static final String INVALID_TASK_INDEX_FORMAT = "Invalid task index format! It should be a positive integer more than 0.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the
@@ -30,13 +30,13 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
             throw new ParseException(INVALID_FORMAT + "\n" + COMMAND_FORMAT);
         }
 
-        String uidString = splitArgs[0].trim();
+        String uidStr = splitArgs[0].trim();
 
-        if (uidString.isEmpty() || !uidString.startsWith("uid/")) {
+        if (uidStr.isEmpty() || !uidStr.startsWith("uid/")) {
             throw new ParseException(INVALID_UID_FORMAT);
         }
 
-        UniqueId uid = new UniqueId(uidString.substring(4));
+        UniqueId uid = new UniqueId(uidStr.substring(4));
 
         int taskIndex;
         try {
