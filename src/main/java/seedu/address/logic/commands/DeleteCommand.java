@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -14,7 +16,7 @@ import seedu.address.model.employee.Employee;
 import seedu.address.model.employee.UniqueId;
 
 /**
- * Deletes a employee identified using it's displayed index from the address
+ * Deletes an employee identified using it's displayed index from the address
  * book.
  */
 public class DeleteCommand extends Command {
@@ -22,14 +24,20 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the employee identified by the index number used in the displayed employee list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the employee identified by the index number used in the displayed employee list, "
+            + "by the name, or by the unique identifier (UID).\n"
+            + "Parameters: INDEX (must be a positive integer), NAME (name of the employee), "
+            + "or uid/UID (unique identifier of the employee)\n"
+            + "Examples:\n"
+            + COMMAND_WORD + " 1\n" // example of deletion by index
+            + COMMAND_WORD + " John Doe\n" // example of deletion by name
+            + COMMAND_WORD + " uid/100"; // example of deletion by UID
 
     public static final String MESSAGE_DELETE_EMPLOYEE_SUCCESS = "Deleted Employee: %1$s";
-    public static final String MESSAGE_DELETE_EMPLOYEE_DUPLICATE = "Multiple employees with the same name found. "
-            + "Please use the unique ID to delete the employee.";
-
+    private static final String MESSAGE_MULTIPLE_EMPLOYEES_FOUND = "Multiple employees "
+            + "with this name found. Please delete by UID.\n"
+            + "Format: delete uid/UID_NUMBER\n" + "Example: delete uid/101";
+    private static final Logger LOGGER = Logger.getLogger(DeleteCommand.class.getName());
     private final Index targetIndex;
     private final String targetName;
     private final UniqueId uid;
@@ -42,7 +50,6 @@ public class DeleteCommand extends Command {
         this.targetName = null;
         this.uid = null;
     }
-
 
     /**
      * Constructor for index-based deletion
@@ -81,17 +88,19 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        LOGGER.log(Level.INFO, "Executing delete command");
 
         if (targetIndex != null) {
             // Index-based deletion logic remains the same
             return deleteByIndex(model);
-        } else if (targetName != null && !targetName.isEmpty()) {
+        } else if (targetName != null && !targetName.trim().isEmpty()) {
             // Implement name-based deletion logic
             return deleteByName(model);
         } else if (uid != null) {
             // Implement unique id-based deletion logic
             return deleteByUid(model);
         } else {
+            LOGGER.log(Level.WARNING, "Invalid command format");
             throw new CommandException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
     }
@@ -105,8 +114,11 @@ public class DeleteCommand extends Command {
      */
     private CommandResult deleteByIndex(Model model) throws CommandException {
         List<Employee> lastShownList = model.getFilteredEmployeeList();
+        requireNonNull(lastShownList, "Employee list is null");
 
+        assert targetIndex != null;
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            LOGGER.log(Level.WARNING, "Invalid employee index");
             throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_INDEX);
         }
 
@@ -116,16 +128,17 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Deletes a employee by name
+     * Deletes an employee by name
      *
      * @param model the model to execute the command
      * @return the result of the command
      * @throws CommandException if the employee is not found
      */
-    CommandResult deleteByName(Model model) throws CommandException {
+    private CommandResult deleteByName(Model model) throws CommandException {
         List<Employee> lastShownList = model.getFilteredEmployeeList();
-        List<Employee> employeesWithTargetName = new ArrayList<>();
+        requireNonNull(lastShownList, "Employee list is null");
 
+        List<Employee> employeesWithTargetName = new ArrayList<>();
         for (Employee employee : lastShownList) {
             if (employee.getName().fullName.equalsIgnoreCase(targetName)) {
                 employeesWithTargetName.add(employee);
@@ -133,14 +146,15 @@ public class DeleteCommand extends Command {
         }
 
         if (employeesWithTargetName.size() > 1) {
-            throw new CommandException("Multiple employees with this name found. Please delete by uid.\n"
-                    + "Format: delete uid/UID_NUMBER\n" + "Example: delete uid/101");
-        } else if (employeesWithTargetName.size() == 1) {
-            model.deleteEmployee(employeesWithTargetName.get(0));
-            return new CommandResult(
-                    String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employeesWithTargetName.get(0))));
-        } else {
+            LOGGER.log(Level.WARNING, "Multiple employees found with name: " + targetName);
+            throw new CommandException(MESSAGE_MULTIPLE_EMPLOYEES_FOUND);
+        } else if (employeesWithTargetName.isEmpty()) {
+            LOGGER.log(Level.WARNING, "No employee found with name: " + targetName);
             throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
+        } else {
+            Employee employeeToDelete = employeesWithTargetName.get(0);
+            model.deleteEmployee(employeeToDelete);
+            return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employeeToDelete)));
         }
     }
 
@@ -153,13 +167,17 @@ public class DeleteCommand extends Command {
      */
     private CommandResult deleteByUid(Model model) throws CommandException {
         List<Employee> lastShownList = model.getFilteredEmployeeList();
+        requireNonNull(lastShownList, "Employee list is null");
+
         for (Employee employee : lastShownList) {
             assert uid != null;
-            if (employee.getUid().getUidValue().equals(uid.getUidValue())) {
+            if (employee.getUid().equals(uid)) {
                 model.deleteEmployee(employee);
                 return new CommandResult(String.format(MESSAGE_DELETE_EMPLOYEE_SUCCESS, Messages.format(employee)));
             }
         }
+
+        LOGGER.log(Level.WARNING, "No employee found with UID: " + uid);
         throw new CommandException(Messages.MESSAGE_EMPLOYEE_NOT_FOUND);
     }
 
@@ -185,6 +203,7 @@ public class DeleteCommand extends Command {
                 && otherDeleteCommand.uid != null
                 && uid.equals(otherDeleteCommand.uid);
 
+        // Check if both commands have the same name
         boolean isNameEqual = targetName != null
                 && otherDeleteCommand.targetName != null
                 && targetName.equalsIgnoreCase(otherDeleteCommand.targetName);
@@ -196,6 +215,8 @@ public class DeleteCommand extends Command {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("targetIndex", targetIndex)
+                .add("targetName", targetName)
+                .add("uid", uid)
                 .toString();
     }
 }

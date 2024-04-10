@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.util.CommandUtil.findEmployeeByUniqueId;
 
-import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -17,6 +19,7 @@ public class UnmarkTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark";
     public static final String MESSAGE_SUCCESS = "Task unmarked as not done: %1$s";
+    private static final Logger LOGGER = Logger.getLogger(UnmarkTaskCommand.class.getName());
 
     private final UniqueId uid;
     private final int taskNumber;
@@ -27,36 +30,29 @@ public class UnmarkTaskCommand extends Command {
      * @param taskNumber Task number to be marked as done
      */
     public UnmarkTaskCommand(UniqueId uid, int taskNumber) {
+        requireNonNull(uid);
+        if (taskNumber <= 0) {
+            throw new IllegalArgumentException("Task number must be greater than zero.");
+        }
         this.uid = uid;
-        this.taskNumber = taskNumber - 1;
+        this.taskNumber = taskNumber;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Employee> lastShownList = model.getFilteredEmployeeList();
-        Employee employee = null;
-
-        for (Employee e : lastShownList) {
-            if (e.getUid().equals(this.uid)) {
-                employee = e;
-                break;
-            }
-        }
-
-        if (employee == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EMPLOYEE_DISPLAYED_UID);
-        }
+        Employee employee = findEmployeeByUniqueId(model, uid);
 
         try {
-            employee.unmarkTask(this.taskNumber);
+            employee.unmarkTask(taskNumber - 1);
             model.updateFilteredEmployeeList(Model.PREDICATE_SHOW_ALL_EMPLOYEES);
         } catch (IndexOutOfBoundsException e) {
+            LOGGER.log(Level.WARNING, "Task number out of bounds", e);
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, employee.getTask(this.taskNumber)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, employee.getTask(taskNumber - 1).toString()));
     }
 
     /**
