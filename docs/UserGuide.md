@@ -133,10 +133,10 @@ Examples:
 
 Adds a task to an employee's task list.
 
-Format: `addTask uid/<UID> <description>`
+Format: `addTask uid/UID DESCRIPTION`
 
-- Adds a task to the employee with the specified `uid`.
-- The `uid` refers to the user ID displayed beside the employee's name.
+- Adds a task to the employee with the specified `UID`.
+- The `UID` refers to the user ID displayed beside the employee's name.
 - The description of the task must be provided.
 - The description of the task can only contain alphanumeric characters and spaces and cannot be empty.
 
@@ -149,47 +149,47 @@ Examples:
 
 Marks a task as completed in the employee's task list.
 
-Format: `mark uid/<UID> <taskIndex>`
+Format: `mark uid/UID TASKINDEX`
 
-- Marks the task at the specified `taskIndex` as completed for the employee with the specified `uid`.
-- The `uid` refers to the user ID displayed beside the employee's name.
-- The `taskIndex` refers to the index number shown in the displayed task list.
-- The `taskIndex` **must be a positive integer** 1, 2, 3, …​
+- Marks the task at the specified `TASKINDEX` as completed for the employee with the specified `uid`.
+- The `UID` refers to the user ID displayed beside the employee's name.
+- The `TASKINDEX` refers to the index number shown in the displayed task list.
+- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-- `mark uid/1 2` marks the 2nd task in the task list of the employee with the `uid` of 1 as completed.
-- `mark uid/2 1` marks the 1st task in the task list of the employee with the `uid` of 2 as completed.
+- `mark uid/1 2` marks the 2nd task in the task list of the employee with the `UID` of 1 as completed.
+- `mark uid/2 1` marks the 1st task in the task list of the employee with the `UID` of 2 as completed.
 
 ### Unmark a task as completed: `unmark`
 
 Unmarks a task as completed in the employee's task list.
 
-Format: `unmark uid/<UID> <taskIndex>`
+Format: `unmark uid/UID TASKINDEX`
 
-- Unmarks the task at the specified `taskIndex` as not completed for the employee with the specified `uid`.
-- The `uid` refers to the user ID displayed beside the employee's name.
-- The `taskIndex` refers to the index number shown in the displayed task list.
-- The `taskIndex` **must be a positive integer** 1, 2, 3, …​
+- Unmarks the task at the specified `TASKINDEX` as not completed for the employee with the specified `uid`.
+- The `UID` refers to the user ID displayed beside the employee's name.
+- The `TASKINDEX` refers to the index number shown in the displayed task list.
+- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-- `unmark uid/1 2` unmarks the 2nd task in the task list of the employee with the `uid` of 1 as not completed.
-- `unmark uid/2 1` unmarks the 1st task in the task list of the employee with the `uid` of 2 as not completed.
+- `unmark uid/1 2` unmarks the 2nd task in the task list of the employee with the `UID` of 1 as not completed.
+- `unmark uid/2 1` unmarks the 1st task in the task list of the employee with the `UID` of 2 as not completed.
 
 ### Delete a task from an employee's task list: `deleteTask`
 
-Format: `deleteTask uid/<UID> <taskIndex>`
+Format: `deleteTask uid/UID TASKINDEX`
 
-- Deletes the task at the specified `taskIndex` from the task list of the employee with the specified `uid`.
-- The `uid` refers to the user ID displayed beside the employee's name.
-- The `taskIndex` refers to the index number shown in the displayed task list.
-- The `taskIndex` **must be a positive integer** 1, 2, 3, …​
+- Deletes the task at the specified `TASKINDEX` from the task list of the employee with the specified `uid`.
+- The `UID` refers to the user ID displayed beside the employee's name.
+- The `TASKINDEX` refers to the index number shown in the displayed task list.
+- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
-- `deleteTask uid/1 2` deletes the 2nd task in the task list of the employee with the `uid` of 1.
-- `deleteTask uid/2 1` deletes the 1st task in the task list of the employee with the `uid` of 2.
+- `deleteTask uid/1 2` deletes the 2nd task in the task list of the employee with the `UID` of 1.
+- `deleteTask uid/2 1` deletes the 1st task in the task list of the employee with the `UID` of 2.
 
 ### Filter employees by name, tags, roles, or teams: `filter`
 
@@ -209,6 +209,8 @@ Examples:
 - `filter r/Manager T/HR` : Shows all employees who are managers and belong to the HR team.
 - `filter t/friend t/colleague r/Technician` : Shows all employees tagged as `friend` and `colleague` who are also technicians.
 - `filter n/Jane Doe t/friend r/Executive` : Shows employees named `Jane Doe`, tagged as `friend`, and with the role of `Executive`.
+- `filter t/remote` should produce a similar output as below:
+ ![result for 'filter tag remote'](./images/filterTagRemoteResult.png)
 
 ### Listing all employees : `list`
 
@@ -255,15 +257,16 @@ Examples:
 
 Deletes the specified employee from the address book.
 
-Format: `delete INDEX` or `delete uid/<uid>` or `delete NAME`
+Format: `delete INDEX` or `delete uid/UID` or `delete NAME`
 
 - Deletes the employee at the specified `INDEX`/`UID`/`NAME`.
+- The `NAME` should not include numbers.
 - The index refers to the index number shown in the displayed employee list.
 - The index **must be a positive integer** 1, 2, 3, …​ and must be within the range of the displayed list.
 - The UID refers to the user ID displayed beside the employee's name.
 - The name must be an exact match, however it is case-insensitive.
 
-**Caution:** Deleting an employee is irreversible. Ensure you have selected the correct `INDEX`, `uid`, or `NAME` before proceeding.
+**Caution:** Deleting an employee is irreversible. Ensure you have selected the correct `INDEX`, `UID`, or `NAME` before proceeding.
 
 Examples:
 
@@ -340,18 +343,18 @@ _Details coming soon ..._
 | Action          | Format, Examples                                                                                                                                                                                  |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS T/TEAM r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 T/A r/Cleaner t/friend t/colleague` |
-| **Add Task**    | `addTask uid/<uid> <description>` <br> e.g., `addTask uid/1 Complete the report by 5pm`, `addTask uid/2 Submit the proposal by 10am`                                                              |
+| **Add Task**    | `addTask uid/UID DESCRIPTION` <br> e.g., `addTask uid/1 Complete the report by 5pm`, `addTask uid/2 Submit the proposal by 10am`                                                              |
 | **Clear**       | `clear`                                                                                                                                                                                           |
-| **Delete**      | `delete INDEX`/`delete uid/<UID>`/`delete NAME`<br> e.g., `delete 3`, `delete uid/101`, `delete John Doe`                                                                                         |
-| **Delete Task** | `deleteTask uid/<UID> <taskIndex>` <br> e.g., `deleteTask uid/1 3`                                                                                                                                |
+| **Delete**      | `delete INDEX`/`delete uid/UID`/`delete NAME`<br> e.g., `delete 3`, `delete uid/101`, `delete John Doe`                                                                                         |
+| **Delete Task** | `deleteTask uid/UID TASKINDEX` <br> e.g., `deleteTask uid/1 3`                                                                                                                                |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                     |
 | **Exit**        | `exit`                                                                                                                                                                                            |
 | **Filter**      | `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]` <br> e.g., `filter t/friend`,`filter r/Manager T/HR`, `filter T/HR t/friend r/Executive`                                                              |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                        |
 | **List**        | `list`                                                                                                                                                                                            |
 | **Help**        | `help`                                                                                                                                                                                            |
-| **Mark Task**   | `mark uid/<uid> <taskIndex>` <br> e.g., `mark uid/1 3`                                                                                                                                            |
-| **Unmark Task** | `unmark uid/<uid> <taskIndex>` <br> e.g., `unmark uid/1 2`                                                                                                                                        |
+| **Mark Task**   | `mark uid/UID TASKINDEX` <br> e.g., `mark uid/1 3`                                                                                                                                            |
+| **Unmark Task** | `unmark uid/UID TASKINDEX` <br> e.g., `unmark uid/1 2`                                                                                                                                        |
 
 ---
 
@@ -368,5 +371,9 @@ A user interface that allows users to interact with electronic devices through g
 ### Unique Identifier (UID)
 
 UID is a unique identifier assigned to each contact in ContactSwift, enabling precise and efficient management of contact details. Such identifiers serve to differentiate contacts and facilitate actions like editing, deleting, or adding tasks for specific contacts. UIDs are essential for managing large datasets and ensuring accurate contact management.
+
+### Alphanumeric characters
+
+Any combination of the alphabets A-Z and numbers 0-9.
 
 ---
