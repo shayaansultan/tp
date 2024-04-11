@@ -13,7 +13,9 @@
 
 ## **Acknowledgements**
 
-_{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
+I would like to acknowledge the use of GitHub Copilot, an AI programming assistant, which helped speed up the coding process. While Copilot provided suggestions and code snippets, the high-level ideas and concepts in this project are original.
+
+Moreover, one of the features introduced in our product is a basic tasklist for each employee, a feature which was inspired (but code not reused) by our iP. 
 
 ---
 
@@ -72,7 +74,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EmployeeListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -81,7 +83,7 @@ The `UI` component,
 - executes user commands using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- depends on some classes in the `Model` component, as it displays `Employee` object residing in the `Model`.
 
 ### Logic component
 
@@ -125,14 +127,14 @@ How the parsing works:
 
 The `Model` component,
 
-- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the address book data i.e., all `Employee` objects (which are contained in a `UniqueEmployeeList` object).
+- stores the currently 'selected' `Employee` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Employee>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Employee` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Employee` needing their own `Tag` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
@@ -165,7 +167,7 @@ This section describes some noteworthy details on how certain features are imple
 The introduction of Unique Identifiers (UID) marks a significant enhancement in managing employee records, ensuring the uniqueness of each entry and preventing duplicates. This section elaborates on the UID system's integration into the application, focusing on the deletion process and the assignment of teams and roles.
 
 - UID Assignment: Every employee added to the contact book is automatically assigned a unique identifier (UID). This UID serves as a definitive reference to each employee, distinguishing between individuals even if other attributes (such as name, email, and contact number) are identical.
-  The UID is generated sequentially, starting from `100` for the first employee and incrementing by one for each subsequent addition. This systematic approach ensures that each employee is uniquely identified within the system. To work with exisiting data, UID is set to the last UID in the data, which is also the maximum UID. Furthmore, the UID is displayed alongside the employee's details in the contact list, providing users with a clear and unambiguous reference point for each entry.
+  The UID is generated sequentially, starting from `100` for the first employee and incrementing by one for each subsequent addition. This systematic approach ensures that each employee is uniquely identified within the system. To work with exisiting data, UID is set to the last UID in the data, which is also the maximum UID. Furthermore, the UID is displayed alongside the employee's details in the contact list, providing users with a clear and unambiguous reference point for each entry.
 
 - Enhanced Duplicate Detection: The system leverages UIDs to identify and prevent duplicate entries. Upon adding a new employee, the application checks for duplicates based on a combination of name, email, and contact number. If a potential duplicate is detected, the system relies on the UID to ascertain uniqueness, thereby maintaining the integrity of the employee database.
 
@@ -197,7 +199,7 @@ Step 2. The `FilterCommand` is executed, calling `Model#updateFilteredEmployeeLi
 - **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of predicates for filtering allows for flexible and dynamic searches without hard-coding specific query types.
 - **Alternatives considered:** A direct approach where the `FilterCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
 
-## Delete by Name Command Implementation
+### Delete by Name Command Implementation
 
 The `DeleteCommand` was further enhanced to allow users to remove employees from the list by their full name. This functionality is crucial for users who need to manage their employee datasets. The command has been enhanced to handle deletion by name in case of duplicate names.
 
@@ -216,7 +218,7 @@ Step 2. The `DeleteCommand` is executed, calling `Model#deleteEmployee(target)`,
 - **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of target name for deletion allows for precise and flexible removal of employees without hard-coding specific deletion types.
 - **Alternatives considered:** A direct approach where the `DeleteCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
 
-## Delete by UID Command Implementation
+### Delete by UID Command Implementation
 
 The `DeleteCommand` is also implemented to allow users to remove employees from the list by their unique id. This functionality is crucial for users who need to manage their employee datasets, especially when there are multiple employees with the same name.
 
@@ -418,12 +420,15 @@ Here are the revised use cases, aligned with the features detailed in your User 
 
 1. **User initiates the addition of a new employee:**
    - Command: `add n/Jane Smith p/98765432 e/jane@example.com a/123 Clementi Rd r/Manager T/HR`
+
 2. **ContactSwift processes the command:**
    - Validates the command format and required details.
    - Generates a unique ID for the new employee.
+
 3. **ContactSwift updates the employee directory:**
    - Adds the employee details to the in-memory database.
    - Sends a success message to the user.
+
 4. **User verifies the addition:**
    - Command: `list`
    - ContactSwift displays the updated list with Jane Smith's details.
@@ -438,12 +443,15 @@ Here are the revised use cases, aligned with the features detailed in your User 
 
 1. **User identifies the employee to delete using UID:**
    - Command: `delete uid/100`
+
 2. **ContactSwift processes the deletion:**
    - Validates the UID exists.
    - Deletes the employee from the in-memory database.
+
 3. **ContactSwift updates the employee directory:**
    - Removes the employee from the list.
    - Sends a confirmation message to the user.
+
 4. **User verifies the deletion:**
    - Command: `list`
    - ContactSwift displays the updated list without the deleted employee.
@@ -458,12 +466,15 @@ Here are the revised use cases, aligned with the features detailed in your User 
 
 1. **User selects an employee to edit:**
    - Command: `edit 2 n/John Doe p/98765432`
+
 2. **ContactSwift processes the edit command:**
    - Validates the command format and index.
    - Updates the employee's details in the in-memory database.
+
 3. **ContactSwift reflects the changes:**
    - Updates the employee's details in the display.
    - Sends a success message to the user.
+
 4. **User verifies the update:**
    - Command: `list`
    - ContactSwift displays the updated list with John Doe's new details.
@@ -478,11 +489,14 @@ Here are the revised use cases, aligned with the features detailed in your User 
 
 1. **User assigns a task to an employee:**
    - Command: `addTask uid/100 Complete the report by 5pm`
+
 2. **ContactSwift processes the task addition:**
    - Validates the command format and UID.
    - Adds the task to the employee's task list.
+
 3. **ContactSwift confirms the addition:**
    - Sends a success message to the user.
+
 4. **User verifies the task addition:**
    - Command: `list`
    - ContactSwift displays the updated task list for the employee.
@@ -490,20 +504,30 @@ Here are the revised use cases, aligned with the features detailed in your User 
 ### Non-Functional Requirements
 
 1. Cross-Platform Compatibility: The application must be executable on any mainstream operating system, including Windows, macOS, and Linux, with Java Runtime Environment (JRE) version 11 or above installed, ensuring accessibility for a diverse user base across different operating systems.
+
 2. Performance Efficiency: The application should handle up to 1,000 employee records while maintaining response times under 2 seconds for all functionalities under typical usage conditions.
+
 3. User Efficiency and Command-Line Proficiency: Designed for users with above-average typing speeds, the application should facilitate task completion via CLI commands significantly faster than equivalent tasks performed using a GUI. Specifically, users should be able to accomplish at least 80% of the tasks 30% faster using commands than using the mouse, ensuring the software optimizes productivity for those proficient in typing regular English text. This efficiency gain should be validated through user testing and time-motion studies to ensure the interface meets the high-speed requirements of proficient typists.
+
 4. User Interface Design: The software must provide an intuitive, user-friendly interface, balancing efficiency for CLI users with accessibility for those preferring or requiring GUI interaction. This includes clear visual cues, streamlined navigation, and a minimalistic design to minimize cognitive load.
+
 5. Data Security: The application must employ robust encryption and access control mechanisms to ensure that private contact details are secure and inaccessible to unauthorized users, complying with industry-standard security protocols.
+
 6. Data Integrity: The software should incorporate data validation, regular backups, and error-checking mechanisms to prevent loss or corruption of contact information, ensuring high data integrity and reliability.
+
 7. Portability: The application, packaged as a .jar file, must include all necessary dependencies or facilitate easy resolution of such dependencies, ensuring smooth operation across different systems without complex setup procedures.
+
 8. Operational Speed: Every operation within the application should complete within 0.5 seconds for a dataset containing up to 1,000 employees, ensuring a seamless user experience.
+
 9. Memory Usage: The application should operate efficiently within 500 MB of memory and should not exceed 0.5 GB of memory usage, even with an address book size of up to 50,000 employees, optimizing resource utilization.
 
 
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, MacOS
+
 - **Private contact detail**: A contact detail that is not meant to be shared with others
+
 - **Quick Contact Addition**: Allows users to rapidly add new contacts to their address book during networking events. Generates a unique ID for each contact.
 
 - **Command Format**: The syntax used to input commands in ContactSwift. Example commands include adding or deleting contacts, and the format must be followed for successful execution.
