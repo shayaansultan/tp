@@ -201,8 +201,11 @@ Format: `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]`
 - At least one of the parameters must be provided.
 - Employees matching all provided criteria will be listed (i.e., `AND` search).
 - Only single values are allowed for the name, role, and team parameters. Tags can accept multiple values, each preceded by `t/`.
+- When filtering by team, prepend "Team " to the team name (e.g., `T/Team HR`) to ensure accurate filtering.
 - Name and team fields are case-insensitive, meaning they do not require an exact match of case to filter correctly. For instance, `T/Team HR` is equivalent to `T/team hr`.
 - Role and tag fields are case-sensitive, meaning they require an exact match of case to filter correctly. For instance, `r/Manager` will not match `r/manager`.
+- Name must be an exact match, however it is case-insensitive. For instance, `n/jane` will not match `Jane Doe`. It must be the full name `n/jane doe`.
+- The order of the parameters does not matter. e.g. `filter n/John Doe t/friend` will produce the same output as `filter t/friend n/John Doe`.
 
 Examples:
 
@@ -354,7 +357,7 @@ _Details coming soon ..._
 | **Delete Task** | `deleteTask uid/UID TASKINDEX` <br> e.g., `deleteTask uid/1 3`                                                                                                                                    |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                     |
 | **Exit**        | `exit`                                                                                                                                                                                            |
-| **Filter**      | `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]` <br> e.g., `filter t/friend`,`filter r/Manager T/HR`, `filter T/HR t/friend r/Executive`                                                              |
+| **Filter**      | `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]` <br> e.g., `filter t/friend`,`filter r/Manager T/Team HR`, `filter T/Team HR t/friend r/Executive`                                                    |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                        |
 | **List**        | `list`                                                                                                                                                                                            |
 | **Help**        | `help`                                                                                                                                                                                            |
