@@ -200,17 +200,22 @@ Format: `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]`
 - Filters the employee list according to the specified criteria.
 - At least one of the parameters must be provided.
 - Employees matching all provided criteria will be listed (i.e., `AND` search).
-- Multiple values for each parameter can be provided, separated by a space.
+- Only single values are allowed for the name, role, and team parameters. Tags can accept multiple values, each preceded by `t/`.
+- Name and team fields are case-insensitive, meaning they do not require an exact match of case to filter correctly. For instance, `T/Team HR` is equivalent to `T/team hr`.
+- Role and tag fields are case-sensitive, meaning they require an exact match of case to filter correctly. For instance, `r/Manager` will not match `r/manager`.
 
 Examples:
 
 - `filter n/John Doe` : Shows all employees with the name `John Doe`.
 - `filter t/friend` : Shows all employees tagged as `friend`.
-- `filter r/Manager T/HR` : Shows all employees who are managers and belong to the HR team.
-- `filter t/friend t/colleague r/Technician` : Shows all employees tagged as `friend` and `colleague` who are also technicians.
-- `filter n/Jane Doe t/friend r/Executive` : Shows employees named `Jane Doe`, tagged as `friend`, and with the role of `Executive`.
+- `filter r/Manager T/Team HR` : Shows all employees who are managers and belong to the 'HR' team, regardless of how the team name's case is entered.
+- `filter t/friend t/Colleague` : Shows all employees tagged as `friend` and `Colleague`, respecting case for tags.
+- `filter n/jane doe` : Shows employees named `Jane Doe`, regardless of the case used in the filter.
+- `filter T/team marketing` : Shows all employees belonging to the Marketing team, regardless of the case used in the filter.
+- `filter r/Executive T/TEAM SALES` : Shows employees with the role `Executive` (exact case match required) and in the 'Sales' team, regardless of how the team name's case is entered.
+- `filter t/friends t/remote` : Shows employees tagged as `friends` and `remote`, respecting case for tags.
 - `filter t/remote` should produce a similar output as below:
- ![result for 'filter tag remote'](./images/filterTagRemoteResult.png)
+  ![result for 'filter tag remote'](./images/filterTagRemoteResult.png)
 
 ### Listing all employees : `list`
 
@@ -341,20 +346,20 @@ _Details coming soon ..._
 ## Command summary
 
 | Action          | Format, Examples                                                                                                                                                                                  |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS T/TEAM r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 T/A r/Cleaner t/friend t/colleague` |
-| **Add Task**    | `addTask uid/UID DESCRIPTION` <br> e.g., `addTask uid/1 Complete the report by 5pm`, `addTask uid/2 Submit the proposal by 10am`                                                              |
+| **Add Task**    | `addTask uid/UID DESCRIPTION` <br> e.g., `addTask uid/1 Complete the report by 5pm`, `addTask uid/2 Submit the proposal by 10am`                                                                  |
 | **Clear**       | `clear`                                                                                                                                                                                           |
-| **Delete**      | `delete INDEX`/`delete uid/UID`/`delete NAME`<br> e.g., `delete 3`, `delete uid/101`, `delete John Doe`                                                                                         |
-| **Delete Task** | `deleteTask uid/UID TASKINDEX` <br> e.g., `deleteTask uid/1 3`                                                                                                                                |
+| **Delete**      | `delete INDEX`/`delete uid/UID`/`delete NAME`<br> e.g., `delete 3`, `delete uid/101`, `delete John Doe`                                                                                           |
+| **Delete Task** | `deleteTask uid/UID TASKINDEX` <br> e.g., `deleteTask uid/1 3`                                                                                                                                    |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                     |
 | **Exit**        | `exit`                                                                                                                                                                                            |
 | **Filter**      | `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]` <br> e.g., `filter t/friend`,`filter r/Manager T/HR`, `filter T/HR t/friend r/Executive`                                                              |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                        |
 | **List**        | `list`                                                                                                                                                                                            |
 | **Help**        | `help`                                                                                                                                                                                            |
-| **Mark Task**   | `mark uid/UID TASKINDEX` <br> e.g., `mark uid/1 3`                                                                                                                                            |
-| **Unmark Task** | `unmark uid/UID TASKINDEX` <br> e.g., `unmark uid/1 2`                                                                                                                                        |
+| **Mark Task**   | `mark uid/UID TASKINDEX` <br> e.g., `mark uid/1 3`                                                                                                                                                |
+| **Unmark Task** | `unmark uid/UID TASKINDEX` <br> e.g., `unmark uid/1 2`                                                                                                                                            |
 
 ---
 
