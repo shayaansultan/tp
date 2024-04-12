@@ -21,7 +21,7 @@ import seedu.address.model.tag.Tag;
  */
 public class FilterCommandParser implements Parser<FilterCommand> {
     private static final String MULTIPLE_VALUES_NOT_ALLOWED = "Multiple %s values are not allowed.";
-    private static final String INVALID_ARGUMENTS = "Invalid arguments for filter command: %s";
+    private static final String NO_VALID_FIELDS_PRESENT = "No valid fields present for filter command";
     private static final Logger LOGGER = Logger.getLogger(FilterCommandParser.class.getName());
 
     @Override
@@ -31,7 +31,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TAG, PREFIX_TEAM, PREFIX_ROLE);
 
         checkSingleValues(argMultimap);
-        checkAtLeastOneFieldIsPresent(argMultimap, args);
+        checkAtLeastOneFieldIsPresent(argMultimap);
 
         StringJoiner filterDescription = new StringJoiner(", ");
         Predicate<Employee> predicate = buildPredicatesAndDescriptions(argMultimap, filterDescription);
@@ -61,16 +61,15 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      * Ensures that at least one valid filtering field is present in the argument multimap.
      *
      * @param argMultimap The parsed argument multimap.
-     * @param args The original input arguments.
      * @throws ParseException if no valid filter criteria are provided.
      */
-    private void checkAtLeastOneFieldIsPresent(ArgumentMultimap argMultimap, String args) throws ParseException {
+    private void checkAtLeastOneFieldIsPresent(ArgumentMultimap argMultimap) throws ParseException {
         if (argMultimap.getValue(PREFIX_NAME).isEmpty()
                 && argMultimap.getAllValues(PREFIX_TAG).isEmpty()
                 && argMultimap.getValue(PREFIX_TEAM).isEmpty()
                 && argMultimap.getValue(PREFIX_ROLE).isEmpty()) {
-            LOGGER.log(Level.WARNING, "No valid fields present for filter command");
-            throw new ParseException(String.format(INVALID_ARGUMENTS, args));
+            LOGGER.log(Level.WARNING, NO_VALID_FIELDS_PRESENT);
+            throw new ParseException(NO_VALID_FIELDS_PRESENT);
         }
     }
 
@@ -114,6 +113,10 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         return predicate;
     }
 
+    /**
+     * Throws a {@link NullPointerException} if the given argument is null.
+     * @param args The argument to check for null.
+     */
     private void requireNonNull(String args) {
         if (args == null) {
             throw new NullPointerException();
