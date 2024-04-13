@@ -129,7 +129,33 @@ Examples:
 **Caution:** Ensure the `PHONE_NUMBER` is valid; ContactSwift does not accept phone numbers with less than 3 digits.
 </box>
 
-### Add task to an employee's task list: `addtask`
+### Locating employees by name: `find`
+
+Finds employees whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+- Only the name is searched.
+- Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+
+- `find John` returns `john` and `John Doe`
+- `find alice david` returns `Alice Smith`, `David Williams`<br>
+  ![result for 'find alex david'](./images/findAliceDavidResult.png)
+
+### Important Note Before Using Task-Related Commands
+
+Before using any task-related commands (`addTask`, `mark`, `unmark`, `deleteTask`), you must first find the employee using the `find` command. This ensures that the employee's information is correctly loaded and visible in the [UI (User Interface)](#ui-user-interface), and any subsequent commands will reflect their effects immediately in the UI.
+
+Example of using the `find` command:
+- `find John Doe` will search and display the tasks and details of 'John Doe' in the UI.
+
+**Caution:** Due to a current bug, if you do not use the `find` command to locate and display the employee's details before executing other commands, the changes may not immediately reflect in the UI.
+
+### Add task to an employee's task list: `addTask`
 
 Adds a task to an employee's task list.
 
@@ -138,10 +164,9 @@ Format: `addTask uid/UID DESCRIPTION`
 - Adds a task to the employee with the specified `UID`.
 - The `UID` refers to the user ID displayed beside the employee's name.
 - The description of the task must be provided.
-- The description of the task can only contain alphanumeric characters and spaces and cannot be empty.
+- The description of the task can only contain alphanumeric characters and spaces, and cannot be empty.
 
 Examples:
-
 - `addTask uid/1 Complete the report by 5pm`
 - `addTask uid/2 Submit the proposal by 10am`
 
@@ -154,10 +179,11 @@ Format: `mark uid/UID TASKINDEX`
 - Marks the task at the specified `TASKINDEX` as completed for the employee with the specified `uid`.
 - The `UID` refers to the user ID displayed beside the employee's name.
 - The `TASKINDEX` refers to the index number shown in the displayed task list.
-- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​
+- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​ and must exist as displayed in the UI.
+
+**Caution:** This command can mark a task that is already marked as completed. Use this feature carefully to avoid misrepresenting the completion status of tasks.
 
 Examples:
-
 - `mark uid/1 2` marks the 2nd task in the task list of the employee with the `UID` of 1 as completed.
 - `mark uid/2 1` marks the 1st task in the task list of the employee with the `UID` of 2 as completed.
 
@@ -170,35 +196,42 @@ Format: `unmark uid/UID TASKINDEX`
 - Unmarks the task at the specified `TASKINDEX` as not completed for the employee with the specified `uid`.
 - The `UID` refers to the user ID displayed beside the employee's name.
 - The `TASKINDEX` refers to the index number shown in the displayed task list.
-- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​
+- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​ and must exist as displayed in the UI.
+
+**Caution:** This command can unmark a task that is not marked as completed. Be cautious to ensure accurate tracking of task completion status.
 
 Examples:
-
 - `unmark uid/1 2` unmarks the 2nd task in the task list of the employee with the `UID` of 1 as not completed.
 - `unmark uid/2 1` unmarks the 1st task in the task list of the employee with the `UID` of 2 as not completed.
 
 ### Delete a task from an employee's task list: `deleteTask`
+
+Deletes a task from an employee's task list.
 
 Format: `deleteTask uid/UID TASKINDEX`
 
 - Deletes the task at the specified `TASKINDEX` from the task list of the employee with the specified `uid`.
 - The `UID` refers to the user ID displayed beside the employee's name.
 - The `TASKINDEX` refers to the index number shown in the displayed task list.
-- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​
+- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​ and must exist as displayed in the UI.
 
 Examples:
-
 - `deleteTask uid/1 2` deletes the 2nd task in the task list of the employee with the `UID` of 1.
 - `deleteTask uid/2 1` deletes the 1st task in the task list of the employee with the `UID` of 2.
 
 ### Filter employees by name, tags, roles, or teams: `filter`
 
-Filters the list of employees based on their name, tags, roles, or teams.
+The `filter` command is used to search for employees based on specific attributes such as their name, tags, roles, or teams. This powerful tool allows you to narrow down the list of employees to those who meet certain criteria, making it easier to manage and interact with your employees.
 
 Format: `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]`
 
+**Important:** While each parameter (`NAME`, `TAG`, `ROLE`, `TEAM`) is individually optional and enclosed in brackets `[ ]` indicating optional input, **you must provide at least one of these parameters** for the command to function.
+
+**Note:** If no parameters are provided, the command will fail to execute, showing the message: "No valid fields present for filter command".
+
+This command filters the list of employees based on their name, tags, roles, or teams.
+
 - Filters the employee list according to the specified criteria.
-- At least one of the parameters must be provided.
 - Employees matching all provided criteria will be listed (i.e., `AND` search).
 - Only single values are allowed for the name, role, and team parameters. Tags can accept multiple values, each preceded by `t/`.
 - When filtering by team, prepend "Team " to the team name (e.g., `T/Team HR`) to ensure accurate filtering.
@@ -209,14 +242,9 @@ Format: `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]`
 
 Examples:
 
-- `filter n/John Doe` : Shows all employees with the name `John Doe`.
-- `filter t/friend` : Shows all employees tagged as `friend`.
-- `filter r/Manager T/Team HR` : Shows all employees who are managers and belong to the 'HR' team, regardless of how the team name's case is entered.
 - `filter t/friend t/Colleague` : Shows all employees tagged as `friend` and `Colleague`, respecting case for tags.
 - `filter n/jane doe` : Shows employees named `Jane Doe`, regardless of the case used in the filter.
-- `filter T/team marketing` : Shows all employees belonging to the Marketing team, regardless of the case used in the filter.
 - `filter r/Executive T/TEAM SALES` : Shows employees with the role `Executive` (exact case match required) and in the 'Sales' team, regardless of how the team name's case is entered.
-- `filter t/friends t/remote` : Shows employees tagged as `friends` and `remote`, respecting case for tags.
 - `filter t/remote` should produce a similar output as below:
   ![result for 'filter tag remote'](./images/filterTagRemoteResult.png)
 
@@ -236,30 +264,13 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the employee will be removed i.e. adding of tags is not cumulative.
-- You can remove all the employee’s tags by typing `t/` without
-  specifying any tags after it.
+- You can remove all the employee’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
-### Locating employees by name: `find`
-
-Finds employees whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-
-- `find John` returns `john` and `John Doe`
-- `find alice david` returns `Alice Smith`, `David Williams`<br>
-  ![result for 'find alex david'](./images/findAliceDavidResult.png)
 
 ### Deleting an employee : `delete`
 
@@ -375,6 +386,10 @@ A type of user interface that allows users to interact with a computer program o
 ### GUI (Graphical User Interface)
 
 A user interface that allows users to interact with electronic devices through graphical icons and visual indicators, as opposed to text-based interfaces, typed command labels, or text navigation. GUIs are typically considered user-friendly, especially for navigating complex software or managing multiple tasks simultaneously, as they provide a visual representation of the system’s operations.
+
+### UI (User Interface)
+
+The space where interactions between humans and the system occur. This includes any part of the system, like screens or pages, where users can view or interact with tasks, contacts, or other information. It is designed to be intuitive and user-friendly to facilitate efficient task management and navigation.
 
 ### Unique Identifier (UID)
 
