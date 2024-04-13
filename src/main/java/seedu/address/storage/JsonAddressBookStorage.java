@@ -20,6 +20,14 @@ import seedu.address.model.employee.UniqueId;
  */
 public class JsonAddressBookStorage implements AddressBookStorage {
 
+    private static final String ERROR_DUPLICATE_UIDS = "Duplicate UIDs found in data. "
+            + "Starting with template data instead.";
+    private static final String DUPLICATE_UID_WARNING = "\n============================================"
+            + "============================================\n"
+            + ERROR_DUPLICATE_UIDS
+            + "\n============================================"
+            + "============================================";
+
     private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
 
     private Path filePath;
@@ -55,6 +63,10 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         try {
             JsonSerializableAddressBook addressBook = jsonAddressBook.get();
             Integer maxUid = addressBook.getMaxUid();
+            if (addressBook.hasDuplicateUids()) {
+                logger.warning(DUPLICATE_UID_WARNING);
+                return Optional.empty();
+            }
             UniqueId.setLastUsedIndex(maxUid);
             return Optional.of(jsonAddressBook.get().toModelType());
         } catch (IllegalValueException ive) {
