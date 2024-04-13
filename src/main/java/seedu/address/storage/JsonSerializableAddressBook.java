@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.model.employee.UniqueId.DEFAULT_BASE_UID;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -62,6 +64,20 @@ class JsonSerializableAddressBook {
         return employees.stream()
                 .mapToInt(JsonAdaptedEmployee::getUid)
                 .max()
-                .orElse(0); // returns 0 if list is empty
+                .orElse(DEFAULT_BASE_UID); // returns 0 if list is empty
+    }
+
+    /**
+     * Method to check if duplicate UIDs are present in the list of employees
+     * if duplicate UIDs are present, return true
+     * else return false
+     *
+     * @return true if duplicate UIDs are present, else false
+     */
+    public boolean hasDuplicateUids() {
+        List<Integer> uids = employees.stream()
+                .map(JsonAdaptedEmployee::getUid)
+                .collect(Collectors.toList());
+        return uids.size() != uids.stream().distinct().count();
     }
 }
