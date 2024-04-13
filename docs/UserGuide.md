@@ -104,7 +104,7 @@ For a detailed explanation of all commands, refer to the [Features](#features) s
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessage.png)<br>
 _Figure: The help command output in ContactSwift._
 
 Format: `help`
@@ -245,7 +245,7 @@ Examples:
 - `filter t/friend t/Colleague` : Shows all employees tagged as `friend` and `Colleague`, respecting case for tags.
 - `filter n/jane doe` : Shows employees named `Jane Doe`, regardless of the case used in the filter.
 - `filter r/Executive T/TEAM SALES` : Shows employees with the role `Executive` (exact case match required) and in the 'Sales' team, regardless of how the team name's case is entered.
-- `filter t/remote` should produce a similar output as below:
+- `filter t/remote` should produce a similar output as below:<br>
   ![result for 'filter tag remote'](./images/filterTagRemoteResult.png)
 
 ### Listing all employees : `list`
