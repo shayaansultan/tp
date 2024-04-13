@@ -182,7 +182,7 @@ The following class diagram shows the structure of an `Employee`:
 
 And this is the sequence diagram that describes the steps:
 
-<puml src="diagrams/DeleteSequenceDiagram.puml" width="550" />
+<puml src="diagrams/AddSequenceDiagram.puml" width="550" />
 
 #### Design considerations:
 
@@ -246,7 +246,7 @@ Step 2. The `DeleteCommand` is executed, calling `Model#deleteEmployee(target)`,
 
 ### Filter Command Implementation
 
-The `FilterCommand` is implemented to allow users to refine the list of employees displayed based on specified criteria, such as role, team, and tags. This functionality is crucial for users who need to work with subsets of large employee datasets.
+The `FilterCommand` is implemented to allow users to refine the list of employees displayed based on specified criteria, such as name, role, team, and tags. This functionality is crucial for users who need to work with subsets of large employee datasets.
 
 - `FilterCommandParser` parses the user input and creates a `FilterCommand` object with a specific predicate that encapsulates the filtering logic.
 - `Model#updateFilteredEmployeeList(Predicate<Employee> predicate)` is then called to filter the list of employees according to the given criteria.
@@ -266,11 +266,11 @@ Step 2. The `FilterCommand` is executed, calling `Model#updateFilteredEmployeeLi
 
 #### Implementation
 
-The `TaskList` feature is facilitated by the `TaskList` class, located in the [``src/main/java/seedu/address/model/tasklist``](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fc%3A%2FUsers%2Fsulta%2FDesktop%2FCS2103T%2FSHAYAAN%20TP%2Ftp%2Fsrc%2Fmain%2Fjava%2Fseedu%2Faddress%2Fmodel%2Ftasklist%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D "c:\Users\sulta\Desktop\CS2103T\SHAYAAN TP\tp\src\main\java\seedu\address\model\tasklist") directory. It maintains a list of `Task` objects, each representing a task assigned to an employee.
+The `TaskList` feature is facilitated by the `TaskList` class, located in the ``src/main/java/seedu/address/model/tasklist`` directory. It maintains a list of `Task` objects, each representing a task assigned to an employee.
 
-The `Task` class, located in the [``src/main/java/seedu/address/model/task``](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fc%3A%2FUsers%2Fsulta%2FDesktop%2FCS2103T%2FSHAYAAN%20TP%2Ftp%2Fsrc%2Fmain%2Fjava%2Fseedu%2Faddress%2Fmodel%2Ftask%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D "c:\Users\sulta\Desktop\CS2103T\SHAYAAN TP\tp\src\main\java\seedu\address\model\task") directory, represents a task with a `Description` and a `done` status. The `Description` class encapsulates the details of the task.
+The `Task` class, located in the ``src/main/java/seedu/address/model/task`` directory, represents a task with a `Description` and a `done` status. The `Description` class encapsulates the details of the task.
 
-The `Employee` class, located in the [``src/main/java/seedu/address/model/employee``](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fc%3A%2FUsers%2Fsulta%2FDesktop%2FCS2103T%2FSHAYAAN%20TP%2Ftp%2Fsrc%2Fmain%2Fjava%2Fseedu%2Faddress%2Fmodel%2Femployee%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D "c:\Users\sulta\Desktop\CS2103T\SHAYAAN TP\tp\src\main\java\seedu\address\model\employee") directory, contains a `TaskList` object. This allows each employee to have their own list of tasks.
+The `Employee` class, located in the ``src/main/java/seedu/address/model/employee`` directory, contains a `TaskList` object. This allows each employee to have their own list of tasks.
 
 - `Employee#addTask(Description description)` — Creates a new task with the given description and adds it to the employee's task list.
 - `Employee#getTaskList()` — Returns the employee's task list.
