@@ -262,9 +262,9 @@ Step 2. The `FilterCommand` is executed, calling `Model#updateFilteredEmployeeLi
 - **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of predicates for filtering allows for flexible and dynamic searches without hard-coding specific query types.
 - **Alternatives considered:** A direct approach where the `FilterCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
 
-## TaskList Feature
+### TaskList Feature
 
-### Implementation
+#### Implementation
 
 The `TaskList` feature is facilitated by the `TaskList` class, located in the [``src/main/java/seedu/address/model/tasklist``](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fc%3A%2FUsers%2Fsulta%2FDesktop%2FCS2103T%2FSHAYAAN%20TP%2Ftp%2Fsrc%2Fmain%2Fjava%2Fseedu%2Faddress%2Fmodel%2Ftasklist%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D "c:\Users\sulta\Desktop\CS2103T\SHAYAAN TP\tp\src\main\java\seedu\address\model\tasklist") directory. It maintains a list of `Task` objects, each representing a task assigned to an employee.
 
@@ -276,7 +276,7 @@ The `Employee` class, located in the [``src/main/java/seedu/address/model/employ
 - `Employee#getTaskList()` — Returns the employee's task list.
 - `Employee#getTask(int taskNumber)` — Returns the task at the specified index in the employee's task list.
 
-### Design Considerations
+#### Design Considerations
 
 - **Aspect:** Representation of tasks in the `Employee` class
     - **Alternative 1 (current choice):** Each `Employee` object has a `TaskList` object.
