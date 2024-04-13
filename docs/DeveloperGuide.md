@@ -162,6 +162,32 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Command Implementation
+
+The `AddCommand` implements the abstract class `Command` to add a new `Employee` to the `Model`.
+
+Given below is how the `AddCommand` operates:
+
+Step 1. After the user inputs all the `prefixes` necessary, which are `Name`, `Phone`, `Address`, `Email`, `Team`, `Role`, and optionally `Tag`, the `AddCommandParser` parses the input and creates a new `Employee` for the `AddCommand`.
+
+Step 2. The `AddCommand` will then store the added `Employee` and feed it to the `execute` method.
+
+Step 3. The `execute` method then gives the `Employee` parameter to the `addEmployee` method under the `Model` interface.
+
+Step 4. The `addEmployee` adds the `Employee` to the `Model`.
+
+The following class diagram shows the structure of an `Employee`:
+
+<puml src="diagrams/UpdatedEmployeeClassDiagram.puml" width="450" />
+
+And this is the sequence diagram that describes the steps:
+
+<puml src="diagrams/AddSequenceDiagram.puml" width="550" />
+
+#### Design considerations:
+
+- **Alternative:** `Team` and `Role` could have been further abstracted into a Class called `Header` as they appear above the names of the `Employee` in the GUI. This was considered so that we could filter the contact list to employees who are in the same team or role. However, it is rejected as filter will be able to be implemented in a simpler manner when avoiding this over-abstraction.
+
 ### Unique Identifier (UID) Implementation
 
 The introduction of Unique Identifiers (UID) marks a significant enhancement in managing employee records, ensuring the uniqueness of each entry and preventing duplicates. This section elaborates on the UID system's integration into the application, focusing on the deletion process and the assignment of teams and roles.
@@ -180,24 +206,6 @@ One of the major ways the UID system enhances the application is by streamlining
 - **Why this design**: Integrating UIDs enhances the robustness and reliability of the employee management system. It addresses the challenge of duplicate entries and streamlines the process of deleting, team assignment, and role designation, ensuring accuracy and precision in employee record management. In the future, the UID system can be further extended to support additional functionalities such as search, filtering, and sorting, providing users with a more robust and efficient employee management experience.
 
 - **Alternatives considered**: While alternatives such as relying solely on name, email, or contact number for identification were considered, these methods were prone to ambiguity and errors, especially in large datasets. The UID approach was selected for its ability to uniquely identify each employee, thereby enhancing the system's overall functionality and user experience.
-
-### Filter Command Implementation
-
-The `FilterCommand` is implemented to allow users to refine the list of employees displayed based on specified criteria, such as role, team, and tags. This functionality is crucial for users who need to work with subsets of large employee datasets.
-
-- `FilterCommandParser` parses the user input and creates a `FilterCommand` object with a specific predicate that encapsulates the filtering logic.
-- `Model#updateFilteredEmployeeList(Predicate<Employee> predicate)` is then called to filter the list of employees according to the given criteria.
-
-Given below is an example usage scenario and how the filter mechanism behaves at each step.
-
-Step 1. The user executes `filter t/ developer`, intending to view only employees tagged as developers. The input is parsed by `FilterCommandParser`, which creates a `FilterCommand` with a predicate that checks the tags of each employee.
-
-Step 2. The `FilterCommand` is executed, calling `Model#updateFilteredEmployeeList(predicate)`, where `predicate` is the condition that an employee's tags must include "developer".
-
-#### Design Considerations
-
-- **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of predicates for filtering allows for flexible and dynamic searches without hard-coding specific query types.
-- **Alternatives considered:** A direct approach where the `FilterCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
 
 ### Delete by Name Command Implementation
 
@@ -236,32 +244,126 @@ Step 2. The `DeleteCommand` is executed, calling `Model#deleteEmployee(target)`,
 - **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of target uid for deletion allows for precise and flexible removal of employees without hard-coding specific deletion types.
 - **Alternatives considered:** A direct approach where the `DeleteCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
 
-### Add Command Implementation
+### Filter Command Implementation
 
-The `AddCommand` implements the abstract class `Command` to add a new `Employee` to the `Model`.
+The `FilterCommand` is implemented to allow users to refine the list of employees displayed based on specified criteria, such as name, role, team, and tags. This functionality is crucial for users who need to work with subsets of large employee datasets.
 
-Given below is how the `AddCommand` operates:
+- `FilterCommandParser` parses the user input and creates a `FilterCommand` object with a specific predicate that encapsulates the filtering logic.
+- `Model#updateFilteredEmployeeList(Predicate<Employee> predicate)` is then called to filter the list of employees according to the given criteria.
 
-Step 1. After the user inputs all the `prefixes` necessary, which are `Name`, `Phone`, `Address`, `Email`, `Team`, `Role`, and optionally `Tag`, the `AddCommandParser` parses the input and creates a new `Employee` for the `AddCommand`.
+Given below is an example usage scenario and how the filter mechanism behaves at each step.
 
-Step 2. The `AddCommand` will then store the added `Employee` and feed it to the `execute` method.
+Step 1. The user executes `filter t/ developer`, intending to view only employees tagged as developers. The input is parsed by `FilterCommandParser`, which creates a `FilterCommand` with a predicate that checks the tags of each employee.
 
-Step 3. The `execute` method then gives the `Employee` parameter to the `addEmployee` method under the `Model` interface.
+Step 2. The `FilterCommand` is executed, calling `Model#updateFilteredEmployeeList(predicate)`, where `predicate` is the condition that an employee's tags must include "developer".
 
-Step 4. The `addEmployee` adds the `Employee` to the `Model`.
+#### Design Considerations
 
-The following class diagram shows the structure of an `Employee`:
+- **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of predicates for filtering allows for flexible and dynamic searches without hard-coding specific query types.
+- **Alternatives considered:** A direct approach where the `FilterCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
 
-<puml src="diagrams/UpdatedEmployeeClassDiagram.puml" width="450" />
+### TaskList Feature
 
-And this is the sequence diagram that describes the steps:
+#### Implementation
 
-<puml src="diagrams/DeleteSequenceDiagram.puml" width="550" />
+The `TaskList` feature is facilitated by the `TaskList` class, located in the ``src/main/java/seedu/address/model/tasklist`` directory. It maintains a list of `Task` objects, each representing a task assigned to an employee.
 
-#### Design considerations:
+The `Task` class, located in the ``src/main/java/seedu/address/model/task`` directory, represents a task with a `Description` and a `done` status. The `Description` class encapsulates the details of the task.
 
-- **Alternative:** `Team` and `Role` could have been further abstracted into a Class called `Header` as they appear above the names of the `Employee` in the GUI. This was considered so that we could filter the contact list to employees who are in the same team or role. However, it is rejected as filter will be able to be implemented in a simpler manner when avoiding this over-abstraction.
+The `Employee` class, located in the ``src/main/java/seedu/address/model/employee`` directory, contains a `TaskList` object. This allows each employee to have their own list of tasks.
 
+- `Employee#addTask(Description description)` — Creates a new task with the given description and adds it to the employee's task list.
+- `Employee#getTaskList()` — Returns the employee's task list.
+- `Employee#getTask(int taskNumber)` — Returns the task at the specified index in the employee's task list.
+
+#### Design Considerations
+
+- **Aspect:** Representation of tasks in the `Employee` class
+    - **Alternative 1 (current choice):** Each `Employee` object has a `TaskList` object.
+        - Pros: Allows for encapsulation of task-related behaviors in the `TaskList` class. Simplifies the `Employee` class.
+        - Cons: Requires additional methods in the `Employee` class to interact with the `TaskList`.
+    - **Alternative 2:** Each `Employee` object has a `List<Task>` object.
+        - Pros: Simplifies the `Employee` class as there is no need for task-related methods.
+        - Cons: Does not allow for encapsulation of task-related behaviors. Makes the `Employee` class more complex.
+
+- **Aspect:** Storage of tasks
+    - **Alternative 1 (current choice):** Tasks are stored as a list in the `TaskList` class.
+        - Pros: Allows for easy addition, removal, and retrieval of tasks. Supports ordering of tasks.
+        - Cons: Does not support efficient search or lookup of tasks.
+    - **Alternative 2:** Tasks are stored as a set in the `TaskList` class.
+        - Pros: Supports efficient search or lookup of tasks.
+        - Cons: Does not support ordering of tasks. Makes addition, removal, and retrieval of tasks more complex.
+
+### Add Task Feature Implementation
+
+The `AddTask` feature is implemented to allow users to add tasks to each employee. This functionality is crucial for users who need to assign tasks to each employee.
+
+- `AddTaskCommandParser` parses the user input and creates an `AddTaskCommand` object with the specific task details, namely UniqueId of the Employee, and the Description of the task.
+
+- `Employee#addTask(int employeeId, Description task)` is then called to add the task to the specified employee's task list.
+
+Given below is an example usage scenario and how the add task mechanism behaves at each step.
+
+Step 1. The user executes `addtask uid/1 Buy milk`, intending to add the task "Buy milk" to the first employee in the list. The input is parsed by `AddTaskCommandParser`, which creates an `AddTaskCommand` with the employee ID and the task details.
+
+Step 2. The `AddTaskCommand` is executed, calling `Employee#addTask(description)`, where `description` is the new description of the new task to be added.
+
+#### Design Considerations
+
+- **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of a separate `TaskList` for each employee allows for flexible and dynamic task management without hard-coding specific task types.
+
+- **Alternatives considered:** A direct approach where the `AddTaskCommand` directly manipulates the employee's task list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
+
+### Delete Task Feature Implementation
+
+The `DeleteTask` feature is implemented to allow users to remove tasks from each employee's task list. This functionality is crucial for users who need to manage the tasks assigned to each employee.
+
+- `DeleteTaskCommandParser` parses the user input and creates a `DeleteTaskCommand` object with the specific task index and the UniqueId of the Employee.
+
+- `Employee#deleteTask(int taskIndex)` is then called to remove the task from the specified employee's task list.
+
+Given below is an example usage scenario and how the delete task mechanism behaves at each step.
+
+Step 1. The user executes `deletetask uid/1 1`, intending to remove the first task from the first employee in the list. The input is parsed by `DeleteTaskCommandParser`, which creates a `DeleteTaskCommand` with the employee ID and the task index.
+
+Step 2. The `DeleteTaskCommand` is executed, calling `Employee#deleteTask(taskIndex)`, where `taskIndex` is the index of the task to be removed.
+
+#### Design Considerations
+
+- **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of a separate `TaskList` for each employee allows for flexible and dynamic task management without hard-coding specific task types.
+
+- **Alternatives considered:** A direct approach where the `DeleteTaskCommand` directly manipulates the employee's task list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
+
+### Mark Task Feature Implementation
+
+The `MarkTask` feature is implemented to allow users to mark tasks as done for each employee. This functionality is crucial for users who need to track the completion of tasks assigned to each employee.
+
+- `MarkTaskCommandParser` parses the user input and creates a `MarkTaskCommand` object with the specific task index and the UniqueId of the Employee.
+- `TaskList#markTask(int taskIndex)` is then called to mark the task as done in the specified employee's task list.
+
+Given below is an example usage scenario and how the mark task mechanism behaves at each step.
+
+Step 1. The user executes `mark uid/1 1`, intending to mark the first task of the first employee in the list as done. The input is parsed by `MarkTaskCommandParser`, which creates a `MarkTaskCommand` with the employee ID and the task index.
+
+Step 2. The `MarkTaskCommand` is executed, calling `TaskList#markTask(taskIndex)`, where `taskIndex` is the index of the task to be marked as done.
+
+### Unmark Task Feature Implementation
+
+The `UnmarkTask` feature is implemented to allow users to unmark tasks as done for each employee. This functionality is crucial for users who need to track the completion of tasks assigned to each employee.
+
+- `UnmarkTaskCommandParser` parses the user input and creates a `UnmarkTaskCommand` object with the specific task index and the UniqueId of the Employee.
+- `TaskList#unmarkTask(int taskIndex)` is then called to unmark the task as done in the specified employee's task list.
+
+Given below is an example usage scenario and how the unmark task mechanism behaves at each step.
+
+Step 1. The user executes `unmark uid/1 1`, intending to unmark the first task of the first employee in the list as done. The input is parsed by `UnmarkTaskCommandParser`, which creates a `UnmarkTaskCommand` with the employee ID and the task index.
+
+Step 2. The `UnmarkTaskCommand` is executed, calling `TaskList#unmarkTask(taskIndex)`, where `taskIndex` is the index of the task to be unmarked as done.
+
+#### Design Considerations
+
+- **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of a separate `TaskList` for each employee allows for flexible and dynamic task management without hard-coding specific task types.
+- **Alternatives considered:** A direct approach where the `MarkTaskCommand` and `UnmarkTaskCommand` directly manipulate the employee's task list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
 
 ### \[Proposed\] Undo/redo feature
 
