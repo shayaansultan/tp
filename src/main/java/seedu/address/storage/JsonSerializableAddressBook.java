@@ -64,7 +64,7 @@ class JsonSerializableAddressBook {
         return employees.stream()
                 .mapToInt(JsonAdaptedEmployee::getUid)
                 .max()
-                .orElse(DEFAULT_BASE_UID); // returns 0 if list is empty
+                .orElse(DEFAULT_BASE_UID); // returns default base id if list if empty
     }
 
     /**
