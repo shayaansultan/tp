@@ -47,11 +47,11 @@ Check the [Glossary](#glossary) for explanations of technical terms to ensure a 
 4. [FAQ](#faq)
 5. [Known Issues](#known-issues)
 6. [Command Summary](#command-summary)
-7. [Glossary](#glossary)
-8. [Feedback and Support](#feedback-and-support)
+7. [Feedback and Support](#feedback-and-support)
    - [How to Provide Feedback](#how-to-provide-feedback)
    - [Feedback Etiquette](#feedback-etiquette)
    - [What Happens to Your Feedback](#what-happens-to-your-feedback)
+8. [Glossary](#glossary)
 
 ---
 
@@ -141,7 +141,34 @@ Examples:
 
 [Back to table of contents](#table-of-contents)
 
-### Add task to an employee's task list: `addtask`
+### Locating employees by name: `find`
+
+Finds employees whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+- Only the name is searched.
+- Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+
+- `find John` returns `john` and `John Doe`
+- `find alice david` returns `Alice Smith`, `David Williams`<br>
+  ![result for 'find alex david'](./images/findAliceDavidResult.png)
+
+### Important Note Before Using Task-Related Commands
+
+Before using any task-related commands (`addTask`, `mark`, `unmark`, `deleteTask`), you must first find the employee using the `find` command. This ensures that the employee's information is correctly loaded and visible in the [UI (User Interface)](#ui-user-interface), and any subsequent commands will reflect their effects immediately in the UI.
+
+Example of using the `find` command:
+
+- `find John Doe` will search and display the tasks and details of 'John Doe' in the UI.
+
+**Caution:** Due to a current bug, if you do not use the `find` command to locate and display the employee's details before executing other commands, the changes may not immediately reflect in the UI.
+
+### Add task to an employee's task list: `addTask`
 
 Adds a task to an employee's task list.
 
@@ -270,25 +297,6 @@ Examples:
 
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
-
-[Back to table of contents](#table-of-contents)
-
-### Locating employees by name: `find`
-
-Finds employees whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-
-- `find John` returns `john` and `John Doe`
-- `find alice david` returns `Alice Smith`, `David Williams`<br>
-  ![result for 'find alex david'](./images/findAliceDavidResult.png)
 
 [Back to table of contents](#table-of-contents)
 
@@ -435,32 +443,6 @@ _Details coming soon ..._
 
 ---
 
-## Glossary
-
-### CLI (Command Line Interface)
-
-A type of user interface that allows users to interact with a computer program or operating system by typing commands into a console or terminal. CLI is known for its efficiency in performing tasks, enabling users to execute complex commands through concise textual input.
-
-### GUI (Graphical User Interface)
-
-A user interface that allows users to interact with electronic devices through graphical icons and visual indicators, as opposed to text-based interfaces, typed command labels, or text navigation. GUIs are typically considered user-friendly, especially for navigating complex software or managing multiple tasks simultaneously, as they provide a visual representation of the system’s operations.
-
-### UI (User Interface)
-
-The space where interactions between humans and the system occur. This includes any part of the system, like screens or pages, where users can view or interact with tasks, contacts, or other information. It is designed to be intuitive and user-friendly to facilitate efficient task management and navigation.
-
-### Unique Identifier (UID)
-
-UID is a unique identifier assigned to each contact in ContactSwift, enabling precise and efficient management of contact details. Such identifiers serve to differentiate contacts and facilitate actions like editing, deleting, or adding tasks for specific contacts. UIDs are essential for managing large datasets and ensuring accurate contact management.
-
-### Alphanumeric characters
-
-Any combination of the alphabets A-Z and numbers 0-9.
-
-[Back to table of contents](#table-of-contents)
-
----
-
 ## Feedback and Support
 
 Feedback is a crucial component of continuous improvement for ContactSwift. We actively encourage users, developers, and stakeholders to provide feedback to help us enhance both the functionality of ContactSwift and the usefulness of this Developer Guide.
@@ -500,3 +482,29 @@ Confidentiality: Avoid sharing sensitive or confidential information in public f
 Your insights and contributions are invaluable to us and help ensure that ContactSwift continues to evolve in ways that meet and exceed user needs and expectations. Thank you for helping us improve and for being an active member of our community.
 
 [Back to table of contents](#table-of-contents)
+
+## Glossary
+
+### CLI (Command Line Interface)
+
+A type of user interface that allows users to interact with a computer program or operating system by typing commands into a console or terminal. CLI is known for its efficiency in performing tasks, enabling users to execute complex commands through concise textual input.
+
+### GUI (Graphical User Interface)
+
+A user interface that allows users to interact with electronic devices through graphical icons and visual indicators, as opposed to text-based interfaces, typed command labels, or text navigation. GUIs are typically considered user-friendly, especially for navigating complex software or managing multiple tasks simultaneously, as they provide a visual representation of the system’s operations.
+
+### UI (User Interface)
+
+The space where interactions between humans and the system occur. This includes any part of the system, like screens or pages, where users can view or interact with tasks, contacts, or other information. It is designed to be intuitive and user-friendly to facilitate efficient task management and navigation.
+
+### Unique Identifier (UID)
+
+UID is a unique identifier assigned to each contact in ContactSwift, enabling precise and efficient management of contact details. Such identifiers serve to differentiate contacts and facilitate actions like editing, deleting, or adding tasks for specific contacts. UIDs are essential for managing large datasets and ensuring accurate contact management.
+
+### Alphanumeric characters
+
+Any combination of the alphabets A-Z and numbers 0-9.
+
+[Back to table of contents](#table-of-contents)
+
+---

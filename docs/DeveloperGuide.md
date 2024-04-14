@@ -33,14 +33,14 @@
    - [Unmark Task Feature Implementation](#unmark-task-feature-implementation)
 5. [Proposed](#proposed)
 6. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-7. [Appendix: Requirements](#appendix-requirements)
-8. [Appendix: Glossary](#glossary)
-9. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-10. [Planned Enhancements](#planned-enhancements)
-11. [Feedback](#feedback)
-    - [How to provide feedback](#how-to-provide-feedback)
-    - [Feedback Etiquette](#feedback-etiquette)
-    - [What happens to your feedback](#what-happens-to-your-feedback)
+7. [Planned Enhancements](#planned-enhancements)
+8. [Feedback](#feedback)
+   - [How to provide feedback](#how-to-provide-feedback)
+   - [Feedback Etiquette](#feedback-etiquette)
+   - [What happens to your feedback](#what-happens-to-your-feedback)
+9. [Appendix: Requirements](#appendix-requirements)
+10. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+11. [Appendix: Glossary](#glossary)
 
 ---
 
@@ -546,6 +546,54 @@ _{more aspects and alternatives to be added}_
 
 ---
 
+## Planned Enhancements
+
+To be updated
+
+[Back to table of contents](#table-of-contents)
+
+## Feedback
+
+Feedback is a crucial component of continuous improvement for ContactSwift. We actively encourage users, developers, and stakeholders to provide feedback to help us enhance both the functionality of ContactSwift and the usefulness of this Developer Guide.
+
+Here are the ways you can contribute feedback and suggestions:
+
+### How to Provide Feedback
+
+#### Issue Tracker
+
+For technical issues, bugs, or feature requests, please use our [official Issue Tracker](https://github.com/AY2324S2-CS2103T-T17-2/tp/issues). This allows us to categorize and prioritize issues effectively. When submitting an issue, please include as much detail as possible, such as the steps to reproduce the issue, expected versus actual behavior, and environment details (OS, ContactSwift version, etc.).
+
+#### Email
+
+If you have suggestions for improving the Developer Guide or need to discuss matters that require discretion, we'll be providing our email soon here. We appreciate detailed feedback that includes specific sections or topics and any recommendations for improvement.
+
+#### Surveys and Feedback Forms
+
+Periodically, we may circulate surveys or feedback forms to gather comprehensive opinions on specific aspects of ContactSwift or the Developer Guide. These are excellent opportunities to influence the future direction of the software and documentation.
+
+### Feedback Etiquette
+
+Constructiveness: We highly value constructive feedback that provides actionable insights and suggestions for improvement.
+
+Respect and Courtesy: Engage respectfully and professionally with community members and maintain a supportive environment.
+
+Confidentiality: Avoid sharing sensitive or confidential information in public forums or issue trackers.
+
+### What Happens to Your Feedback
+
+1. Review Process: All feedback is reviewed by the development team. We prioritize actions based on the impact, feasibility, and alignment with our development roadmap.
+
+2. Implementation: If your feedback leads to a change or improvement, we will acknowledge contributions in upcoming release notes or directly within the revised sections of the guide.
+
+3. Response: While we aim to respond to all feedback, the volume of input may affect our ability to reply individually. However, we value every piece of feedback and strive to incorporate it as best as we can.
+
+Your insights and contributions are invaluable to us and help ensure that ContactSwift continues to evolve in ways that meet and exceed user needs and expectations. Thank you for helping us improve and for being an active member of our community.
+
+[Back to table of contents](#table-of-contents)
+
+---
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -712,40 +760,6 @@ Here are the revised use cases, aligned with the features detailed in your User 
 
 [Back to table of contents](#table-of-contents)
 
-### Glossary
-
-- **Mainstream OS**: Windows, Linux, Unix, MacOS
-
-- **Private contact detail**: A contact detail that is not meant to be shared with others
-
-- **Quick Contact Addition**: Allows users to rapidly add new contacts to their address book during networking events. Generates a unique ID for each contact.
-
-- **Command Format**: The syntax used to input commands in ContactSwift. Example commands include adding or deleting contacts, and the format must be followed for successful execution.
-
-- **Contact Deletion**: Enables users to remove contacts they no longer need, contributing to the organization of their address book. Requires a valid contact ID for deletion.
-
-- **Contact Information Storage**: Allows users to store detailed information about their contacts for easy reference. In the initial version, information is stored in memory to simulate a database, text file, or CSV file.
-
-- **All Contacts List Display**: Provides users with a complete list of all their contacts for easy browsing and reference. Users can request the display of all contacts with their details in a user-friendly format.
-
-- **Contact ID**: A unique identifier assigned to each contact. Used in commands such as deleting a contact to specify the target contact.
-
-- **Acceptable Values**: The valid input criteria for various fields such as contact name, email, and phone number. Ensures that the entered data meets the required format.
-
-- **Expected Outputs**: The successful outcomes or confirmation messages expected after executing specific commands, such as adding or deleting contacts.
-
-- **Failure Outputs**: Error messages generated when there are issues, such as missing details or incorrect command formats. Communicates problems to the user for troubleshooting.
-
-- **Mainstream OS**: Refers to widely used operating systems including Windows, Linux, Unix, and MacOS. ContactSwift is designed to work seamlessly across these platforms.
-
-- **Private Contact Detail**: A contact detail that is not meant to be shared with others. Ensures the confidentiality of certain information stored in the address book.
-
-- **Must-have Features**: Quick Contact Addition, Contact Deletion, Contact Information Storage, and All Contacts List Display. Core functionalities essential for addressing the needs of business owners and managers.
-
-- **Good to Have Features**: Additional functionalities that enhance user experience, such as tags and remarks while adding contacts, searching specific contacts, filtering based on tags, and a favorites option for quick lookup.
-
-[Back to table of contents](#table-of-contents)
-
 ---
 
 ## **9. Appendix: Instructions for manual testing** {#appendix-instructions-for-manual-testing}
@@ -803,44 +817,40 @@ testers are expected to do more _exploratory_ testing.
 
 [Back to table of contents](#table-of-contents)
 
-## Planned Enhancements
+---
 
-## Feedback
+### Glossary
 
-Feedback is a crucial component of continuous improvement for ContactSwift. We actively encourage users, developers, and stakeholders to provide feedback to help us enhance both the functionality of ContactSwift and the usefulness of this Developer Guide.
+- **Mainstream OS**: Windows, Linux, Unix, MacOS
 
-Here are the ways you can contribute feedback and suggestions:
+- **Private contact detail**: A contact detail that is not meant to be shared with others
 
-### How to Provide Feedback
+- **Quick Contact Addition**: Allows users to rapidly add new contacts to their address book during networking events. Generates a unique ID for each contact.
 
-#### Issue Tracker
+- **Command Format**: The syntax used to input commands in ContactSwift. Example commands include adding or deleting contacts, and the format must be followed for successful execution.
 
-For technical issues, bugs, or feature requests, please use our [official Issue Tracker](https://github.com/AY2324S2-CS2103T-T17-2/tp/issues). This allows us to categorize and prioritize issues effectively. When submitting an issue, please include as much detail as possible, such as the steps to reproduce the issue, expected versus actual behavior, and environment details (OS, ContactSwift version, etc.).
+- **Contact Deletion**: Enables users to remove contacts they no longer need, contributing to the organization of their address book. Requires a valid contact ID for deletion.
 
-#### Email
+- **Contact Information Storage**: Allows users to store detailed information about their contacts for easy reference. In the initial version, information is stored in memory to simulate a database, text file, or CSV file.
 
-If you have suggestions for improving the Developer Guide or need to discuss matters that require discretion, we'll be providing our email soon here. We appreciate detailed feedback that includes specific sections or topics and any recommendations for improvement.
+- **All Contacts List Display**: Provides users with a complete list of all their contacts for easy browsing and reference. Users can request the display of all contacts with their details in a user-friendly format.
 
-#### Surveys and Feedback Forms
+- **Contact ID**: A unique identifier assigned to each contact. Used in commands such as deleting a contact to specify the target contact.
 
-Periodically, we may circulate surveys or feedback forms to gather comprehensive opinions on specific aspects of ContactSwift or the Developer Guide. These are excellent opportunities to influence the future direction of the software and documentation.
+- **Acceptable Values**: The valid input criteria for various fields such as contact name, email, and phone number. Ensures that the entered data meets the required format.
 
-### Feedback Etiquette
+- **Expected Outputs**: The successful outcomes or confirmation messages expected after executing specific commands, such as adding or deleting contacts.
 
-Constructiveness: We highly value constructive feedback that provides actionable insights and suggestions for improvement.
+- **Failure Outputs**: Error messages generated when there are issues, such as missing details or incorrect command formats. Communicates problems to the user for troubleshooting.
 
-Respect and Courtesy: Engage respectfully and professionally with community members and maintain a supportive environment.
+- **Mainstream OS**: Refers to widely used operating systems including Windows, Linux, Unix, and MacOS. ContactSwift is designed to work seamlessly across these platforms.
 
-Confidentiality: Avoid sharing sensitive or confidential information in public forums or issue trackers.
+- **Private Contact Detail**: A contact detail that is not meant to be shared with others. Ensures the confidentiality of certain information stored in the address book.
 
-### What Happens to Your Feedback
+- **Must-have Features**: Quick Contact Addition, Contact Deletion, Contact Information Storage, and All Contacts List Display. Core functionalities essential for addressing the needs of business owners and managers.
 
-1. Review Process: All feedback is reviewed by the development team. We prioritize actions based on the impact, feasibility, and alignment with our development roadmap.
-
-2. Implementation: If your feedback leads to a change or improvement, we will acknowledge contributions in upcoming release notes or directly within the revised sections of the guide.
-
-3. Response: While we aim to respond to all feedback, the volume of input may affect our ability to reply individually. However, we value every piece of feedback and strive to incorporate it as best as we can.
-
-Your insights and contributions are invaluable to us and help ensure that ContactSwift continues to evolve in ways that meet and exceed user needs and expectations. Thank you for helping us improve and for being an active member of our community.
+- **Good to Have Features**: Additional functionalities that enhance user experience, such as tags and remarks while adding contacts, searching specific contacts, filtering based on tags, and a favorites option for quick lookup.
 
 [Back to table of contents](#table-of-contents)
+
+---
