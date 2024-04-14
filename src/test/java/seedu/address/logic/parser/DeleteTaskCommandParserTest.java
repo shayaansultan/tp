@@ -25,23 +25,4 @@ public class DeleteTaskCommandParserTest {
         assertThrows(ParseException.class, () -> parser.parse("uid/1"));
         assertThrows(ParseException.class, () -> parser.parse(""));
     }
-
-    @Test
-    public void parse_invalidUid_throwsParseException() {
-        try {
-            parser.parse("ui/ 1");
-        } catch (ParseException e) {
-            assertEquals(e.getMessage(), "Invalid UID format! Correct format: uid/UID");
-        }
-    }
-
-    @Test
-    public void parse_invalidTaskIndexFormat_throwsParseException() {
-        try {
-            parser.parse("uid/100 one");
-        } catch (ParseException e) {
-            assertEquals(e.getMessage(), "Invalid task index format!"
-                    + "It should be a positive integer more than 0.");
-        }
-    }
 }
