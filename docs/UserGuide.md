@@ -48,10 +48,10 @@ Check the [Glossary](#glossary) for explanations of technical terms to ensure a 
 5. [Known Issues](#known-issues)
 6. [Command Summary](#command-summary)
 7. [Glossary](#glossary)
-8. [Feedback and Support](#feedback)
-   8.1. [How to Provide Feedback](#how-to-provide-feedback)
-   8.2. [Feedback Etiquette](#feedback-etiquette)
-   8.3. [What Happens to Your Feedback](#what-happens-to-your-feedback)
+8. [Feedback and Support](#feedback-and-support)
+   - [How to Provide Feedback](#how-to-provide-feedback)
+   - [Feedback Etiquette](#feedback-etiquette)
+   - [What Happens to Your Feedback](#what-happens-to-your-feedback)
 
 ---
 
@@ -461,13 +461,13 @@ Any combination of the alphabets A-Z and numbers 0-9.
 
 ---
 
-## 8. Feedback and Support {#feedback}
+## Feedback and Support
 
 Feedback is a crucial component of continuous improvement for ContactSwift. We actively encourage users, developers, and stakeholders to provide feedback to help us enhance both the functionality of ContactSwift and the usefulness of this Developer Guide.
 
 Here are the ways you can contribute feedback and suggestions:
 
-### 8.1. How to Provide Feedback {#how-to-provide-feedback}
+### 8.1. How to Provide Feedback
 
 #### Issue Tracker
 
@@ -481,7 +481,7 @@ If you have suggestions for improving the Developer Guide or need to discuss mat
 
 Periodically, we may circulate surveys or feedback forms to gather comprehensive opinions on specific aspects of ContactSwift or the Developer Guide. These are excellent opportunities to influence the future direction of the software and documentation.
 
-### 8.2. Feedback Etiquette {#feedback-etiquette}
+### 8.2. Feedback Etiquette
 
 Constructiveness: We highly value constructive feedback that provides actionable insights and suggestions for improvement.
 
@@ -489,7 +489,7 @@ Respect and Courtesy: Engage respectfully and professionally with community memb
 
 Confidentiality: Avoid sharing sensitive or confidential information in public forums or issue trackers.
 
-### 8.3. What Happens to Your Feedback? {#what-happens-to-your-feedback}
+### 8.3. What Happens to Your Feedback
 
 1. Review Process: All feedback is reviewed by the development team. We prioritize actions based on the impact, feasibility, and alignment with our development roadmap.
 
