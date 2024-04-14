@@ -777,126 +777,129 @@ testers are expected to do more _exploratory_ testing.
 
 **Action:** Download the jar file and copy it into an empty folder. Double-click the jar file to open.
 **Expected**: The application launches displaying the GUI with a set of sample contacts. The window should be appropriately sized.
-Saving Window Preferences
 
-Action: Resize the window and move it to a different location. Close the window and reopen the application.
-Expected Outcome: The application remembers the last window size and position.
-Adding an Employee
-Valid Add Command
+#### Saving Window Preferences
 
-Action: Enter the command add n/John Doe p/12345678 e/john@example.com a/123 Main St r/Manager T/HR.
-Expected Outcome: John Doe is added to the list of employees. A success message including John Doe's details is shown.
-Invalid Add Command
+**Action:** Resize the window and move it to a different location. Close the window and reopen the application.
+**Expected Outcome:** The application remembers the last window size and position.
 
-Action: Enter the command add n/John Doe.
-Expected Outcome: No new employee is added. An error message is displayed indicating that essential fields are missing.
-Editing an Employee
-Valid Edit Command
+### Adding an Employee
 
-Action: Assuming John Doe is listed as the first contact, enter edit 1 p/87654321 e/newjohn@example.com.
-Expected Outcome: John Doe's phone and email are updated. A success message showing the updated details is displayed.
-Invalid Edit Command
+**Valid Add Command**
 
-Action: Enter edit 99 n/Jane Doe.
-Expected Outcome: No contact is edited because the specified index is out of bounds. An error message is displayed.
-Deleting an Employee
-Valid Delete Command
+**Action:** Enter the command `add n/John Doe p/12345678 e/john@example.com a/123 Main St r/Manager T/HR`.
 
-Action: Assuming John Doe is listed as the first contact, enter delete 1.
-Expected Outcome: John Doe is deleted from the list. A success message is displayed.
-Invalid Delete Command
+**Expected Outcome:** John Doe is added to the list of employees. A success message including John Doe's details is shown.
 
-Action: Enter delete 999.
-Expected Outcome: No contact is deleted because the specified index is out of bounds. An error message is displayed.
-Using the Filter Command
-Valid Filter Command
+<br>
 
-Action: Enter filter t/HR.
-Expected Outcome: The list is filtered to only show employees tagged with "HR". A success message indicates how many contacts are displayed.
-Invalid Filter Command
+**Invalid Add Command**
 
-Action: Enter filter x/abc.
-Expected Outcome: No change in the displayed list. An error message is shown indicating an invalid command format.
-Assigning Tasks to Employees
-Valid Task Assignment
+**Action:** Enter the command `add n/John Doe`.
 
-Action: Assuming John Doe has a UID of 101, enter addtask uid/101 Complete the report by Friday.
-Expected Outcome: The task is added to John Doe's task list. A success message is displayed.
-Invalid Task Assignment
+**Expected Outcome:** No new employee is added. An error message is displayed indicating that essential fields are missing.
 
-Action: Enter addtask uid/999 Do something.
-Expected Outcome: The task is not added as the UID does not exist. An error message is displayed.
-Marking and Unmarking Tasks
-Valid Mark Task
+### Editing an Employee
 
-Action: Assuming the task is the first in John Doe’s task list, enter mark uid/101 1.
-Expected Outcome: The task is marked as done. A success message is displayed.
-Invalid Mark Task
+**Valid Edit Command**
 
-Action: Enter mark uid/101 99.
-Expected Outcome: The task is not marked as there is no task at index 99. An error message is displayed.
-Undo/Redo Functionality
-Performing Undo
+**Action:** Assuming John Doe is listed as the first contact, enter `edit 1 p/87654321 e/newjohn@example.com`.
 
-Action: After adding a new employee, enter undo.
-Expected Outcome: The last action (addition of the employee) is undone. A success message indicates the action has been undone.
-Performing Redo
+**Expected Outcome:** John Doe's phone and email are updated. A success message showing the updated details is displayed.
 
-Action: Immediately after the undo, enter redo.
-Expected Outcome: The undone action (addition of the employee) is redone. A success message indicates the action has been redone.
-Data Persistence
-Data Saving and Loading
-Action: Add several employees, close the application, and reopen it.
-Expected Outcome: The added employees should appear in the list as they were before closing the application.
-Handling Corrupted Data
-Corrupted Data File
-Action: Manually corrupt the data file by adding invalid characters or corrupting the format, then open the application.
-Expected Outcome: The application should not crash. An error message should be displayed, and the application might revert to using default sample data.
+<br>
+
+**Invalid Edit Command**
+
+**Action:** Enter `edit 99 n/Jane Doe`.
+
+**Expected Outcome:** No contact is edited because the specified index is out of bounds. An error message is displayed.
+
+### Deleting an Employee
+
+**Valid Delete Command**
+
+**Action:** Assuming John Doe is listed as the first contact, enter `delete 1`.
+
+**Expected Outcome:** John Doe is deleted from the list. A success message is displayed.
+
+<br>
+
+**Invalid Delete Command**
+
+**Action:** Enter `delete 999`.
+
+**Expected Outcome:** No contact is deleted because the specified index is out of bounds. An error message is displayed.
+
+### Using the Filter Command
+
+**Valid Filter Command**
+
+**Action:** Enter `filter t/HR`.
+
+**Expected Outcome:** The list is filtered to only show employees tagged with "HR". A success message indicates how many contacts are displayed.
+
+<br>
+
+**Invalid Filter Command**
+
+**Action:** Enter `filter x/abc`.
+
+**Expected Outcome:** No change in the displayed list. An error message is shown indicating an invalid command format.
+
+### Assigning Tasks to Employees
+
+**Valid Task Assignment**
+
+**Action:** Assuming John Doe has a UID of 101, enter `addtask uid/101 Complete the report by Friday`.
+
+**Expected Outcome:** The task is added to John Doe's task list. A success message is displayed.
+
+<br>
+
+**Invalid Task Assignment**
+
+**Action:** Enter `addtask uid/999 Do something`.
+
+**Expected Outcome:** The task is not added as the UID does not exist. An error message is displayed.
+
+### Marking and Unmarking Tasks
+
+**Valid Mark Task**
+
+**Action:** Assuming the task is the first in John Doe’s task list, enter `mark uid/101 1`.
+
+**Expected Outcome:** The task is marked as done. A success message is displayed.
+
+<br>
+
+**Invalid Mark Task**
+
+**Action:** Enter `mark uid/101 99`.
+
+**Expected Outcome:** The task is not marked as there is no task at index 99. An error message is displayed.
+
+### Data Persistence
+
+**Data Saving and Loading**
+
+**Action:** Add several employees, close the application, and reopen it.
+
+**Expected Outcome:** The added employees should appear in the list as they were before closing the application.
+
+<br>
+
+**Handling Corrupted Data**
+
+**Action:** Manually corrupt the data file by adding invalid characters or corrupting the format, then open the application.
+
+**Expected Outcome:** The application should not crash. An error message should be displayed, and the application might revert to using default sample data or blank data.
+
+<br>
+
 These test cases are intended to cover the primary functionalities of the ContactSwift application. Testers are encouraged to perform additional exploratory testing to uncover less obvious bugs and ensure the application handles various edge cases gracefully.
 
 </box>
-
-### Launch and shutdown
-
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting an employee
-
-1. Deleting an employee while all employees are being shown
-
-   1. Prerequisites: List all employees using the `list` command. Multiple employees in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
 [Back to table of contents](#table-of-contents)
 
