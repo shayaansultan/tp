@@ -31,7 +31,7 @@ public class DeleteTaskCommandParserTest {
         try {
             parser.parse("ui/ 1");
         } catch (ParseException e) {
-            assertEquals(e.getMessage(), "Invalid UID format! Correct format: uid/<UID>");
+            assertEquals(e.getMessage(), "Invalid UID format! Correct format: uid/UID");
         }
     }
 
