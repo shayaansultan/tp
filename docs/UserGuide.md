@@ -19,7 +19,7 @@ This guide will equip you with everything you need to maximize the benefits of C
 **Unique ID System:**
 Each contact in ContactSwift is assigned a unique identifier (UID), ensuring precise and efficient management of contact details. This UID is key to performing actions like editing, deleting, or adding tasks for specific contacts. You will encounter these UIDs as you use various commands, offering a streamlined way to manage large datasets. This system is designed to enhance the user experience, enabling you to easily deal with duplicates!
 <box type="warning">
-Data modifications may cause unexpected errors. It is recommended to back up the data file before making any changes. Please refer to the [Saving the Data](#saving-the-data) section for more information.
+Data modifications may cause unexpected errors. It is recommended to back up the data file before making any changes. Please refer to the Saving the Data section for more information.
 </box>
 
 **Who is this for?**
@@ -61,11 +61,11 @@ Check the [Glossary](#glossary) for explanations of technical terms to ensure a 
 Embark on your ContactSwift journey with these straightforward steps:
 
 1. **Installation**: Ensure Java `11` or above is installed on your computer. [Learn how to check your Java version](https://www.java.com/en/download/help/version_manual.html).
-2. **Download**: Access the latest `contactswift.jar` from our [releases page](https://github.com/AY2324S2-CS2103T-T17-2/tp/releases/tag/v1.3).
+2. **Download**: Access the latest `contactswift.jar` from our [releases page](https://github.com/AY2324S2-CS2103T-T17-2/tp/releases/tag/v1.4).
 3. **Setup**: Select a folder as your home for ContactSwift and move the downloaded file there.
 4. **Launch**: Open a command terminal, navigate to your home folder, and initiate the application with `java -jar contactswift.jar`. The GUI, populated with sample data, will appear as shown below:
 
-![ContactSwift Main Interface](./images/v1.3.png)  
+![ContactSwift Main Interface](./images/Ui.png)  
 _Figure 1: The main interface of ContactSwift, showcasing sample data._
 
 5. **Get Commanding**: Input commands in the command box and press Enter. Try these to get started:
