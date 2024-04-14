@@ -18,8 +18,10 @@ This guide will equip you with everything you need to maximize the benefits of C
 
 **Unique ID System:**
 Each contact in ContactSwift is assigned a unique identifier (UID), ensuring precise and efficient management of contact details. This UID is key to performing actions like editing, deleting, or adding tasks for specific contacts. You will encounter these UIDs as you use various commands, offering a streamlined way to manage large datasets. This system is designed to enhance the user experience, enabling you to easily deal with duplicates!
+
 <box type="warning">
 Data modifications may cause unexpected errors. It is recommended to back up the data file before making any changes. Please refer to the [Saving the Data](#saving-the-data) section for more information.
+</box>
 
 **Who is this for?**
 This guide is tailored for small business owners and remote team managers seeking an effective solution to manage contact details and tasks. We assume users have a basic understanding of command-line operations but have structured this guide to be accessible even to those new to CLI environments.
@@ -119,6 +121,12 @@ _Figure: The help command output in ContactSwift._
 
 Format: `help`
 
+### Listing all employees : `list`
+
+Shows a list of all employees in the address book.
+
+Format: `list`
+
 ### Adding an employee: `add`
 
 Adds an employee to the address book.
@@ -136,6 +144,7 @@ Examples:
 - `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Appartment p/1234567 T/B r/Secretary`
 
 <box type="warning">
+
 **Caution:** Ensure the `PHONE_NUMBER` is valid; ContactSwift does not accept phone numbers with less than 3 digits.
 </box>
 
@@ -172,6 +181,8 @@ Example of using the `find` command:
 
 Adds a task to an employee's task list.
 
+**Reminder:** Use the `find` command to ensure the employee's details are displayed in the UI before adding a task.
+
 Format: `addTask uid/UID DESCRIPTION`
 
 - Adds a task to the employee with the specified `UID`.
@@ -189,6 +200,8 @@ Examples:
 ### Mark a task as completed: `mark`
 
 Marks a task as completed in the employee's task list.
+
+**Reminder:** Use the `find` command to ensure the employee's details are displayed in the UI before marking a task as completed.
 
 Format: `mark uid/UID TASKINDEX`
 
@@ -210,6 +223,8 @@ Examples:
 
 Unmarks a task as completed in the employee's task list.
 
+**Reminder:** Use the `find` command to ensure the employee's details are displayed in the UI before unmarking a task.
+
 Format: `unmark uid/UID TASKINDEX`
 
 - Unmarks the task at the specified `TASKINDEX` as not completed for the employee with the specified `uid`.
@@ -229,6 +244,8 @@ Examples:
 ### Delete a task from an employee's task list: `deleteTask`
 
 Deletes a task from an employee's task list.
+
+**Reminder:** Use the `find` command followed by the `list` command to ensure the employee's details and tasks are displayed in the UI before deleting a task.
 
 Format: `deleteTask uid/UID TASKINDEX`
 
@@ -274,12 +291,6 @@ Examples:
   ![result for 'filter tag remote'](./images/filterTagRemoteResult.png)
 
 [Back to table of contents](#table-of-contents)
-
-### Listing all employees : `list`
-
-Shows a list of all employees in the address book.
-
-Format: `list`
 
 ### Editing an employee : `edit`
 
@@ -344,8 +355,10 @@ ContactSwift data are saved in the hard disk automatically after any command tha
 **Note:** While ContactSwift attempts to save automatically, it's good practice to regularly back up your data file, especially before making bulk changes or updates.
 
 <box type="warning">
+
 **Caution:** If your changes to the data file make its format invalid, ContactSwift will discard all data and start with an empty data file or template data at the next run. We recommend taking a backup of the file before editing it. Furthermore, certain edits can cause ContactSwift to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Edit the data file only if you are confident that you can update it correctly.
 </box>
+
 
 [Back to table of contents](#table-of-contents)
 
