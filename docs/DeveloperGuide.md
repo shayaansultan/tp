@@ -762,7 +762,7 @@ Here are the revised use cases, aligned with the features detailed in your User 
 
 ---
 
-## **9. Appendix: Instructions for manual testing** {#appendix-instructions-for-manual-testing}
+## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
