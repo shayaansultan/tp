@@ -7,6 +7,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
  * Todo: Add validation for uid
  */
 public class UniqueId {
+    public static final Integer DEFAULT_BASE_UID = 100;
+
     private static final String VALIDATION_REGEX = "\\d+";
 
     private static Integer lastUsedIndex;
