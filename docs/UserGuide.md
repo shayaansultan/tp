@@ -37,7 +37,7 @@ Check the [Glossary](#glossary) for explanations of technical terms to ensure a 
 
 ---
 
-## Table of Contents
+## Table of Contents {#table-of-contents}
 
 1. [Quick Start](#quick-start)
 2. [Features](#features)
@@ -46,6 +46,10 @@ Check the [Glossary](#glossary) for explanations of technical terms to ensure a 
 5. [Known Issues](#known-issues)
 6. [Command Summary](#command-summary)
 7. [Glossary](#glossary)
+8. [Feedback and Support](#feedback)
+   8.1. [How to Provide Feedback](#how-to-provide-feedback)
+   8.2. [Feedback Etiquette](#feedback-etiquette)
+   8.3. [What Happens to Your Feedback](#what-happens-to-your-feedback)
 
 ---
 
@@ -74,6 +78,8 @@ Embark on your ContactSwift journey with these straightforward steps:
 
 For a detailed explanation of all commands, refer to the [Features](#features) section.
 
+[Back to table of contents](#table-of-contents)
+
 ---
 
 ## Features
@@ -99,6 +105,8 @@ For a detailed explanation of all commands, refer to the [Features](#features) s
 
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
   </box>
+
+[Back to table of contents](#table-of-contents)
 
 ### Viewing help : `help`
 
@@ -129,6 +137,8 @@ Examples:
 **Caution:** Ensure the `PHONE_NUMBER` is valid; ContactSwift does not accept phone numbers with less than 3 digits.
 </box>
 
+[Back to table of contents](#table-of-contents)
+
 ### Add task to an employee's task list: `addtask`
 
 Adds a task to an employee's task list.
@@ -144,6 +154,8 @@ Examples:
 
 - `addTask uid/1 Complete the report by 5pm`
 - `addTask uid/2 Submit the proposal by 10am`
+
+[Back to table of contents](#table-of-contents)
 
 ### Mark a task as completed: `mark`
 
@@ -161,6 +173,8 @@ Examples:
 - `mark uid/1 2` marks the 2nd task in the task list of the employee with the `UID` of 1 as completed.
 - `mark uid/2 1` marks the 1st task in the task list of the employee with the `UID` of 2 as completed.
 
+[Back to table of contents](#table-of-contents)
+
 ### Unmark a task as completed: `unmark`
 
 Unmarks a task as completed in the employee's task list.
@@ -177,6 +191,8 @@ Examples:
 - `unmark uid/1 2` unmarks the 2nd task in the task list of the employee with the `UID` of 1 as not completed.
 - `unmark uid/2 1` unmarks the 1st task in the task list of the employee with the `UID` of 2 as not completed.
 
+[Back to table of contents](#table-of-contents)
+
 ### Delete a task from an employee's task list: `deleteTask`
 
 Format: `deleteTask uid/UID TASKINDEX`
@@ -190,6 +206,8 @@ Examples:
 
 - `deleteTask uid/1 2` deletes the 2nd task in the task list of the employee with the `UID` of 1.
 - `deleteTask uid/2 1` deletes the 1st task in the task list of the employee with the `UID` of 2.
+
+[Back to table of contents](#table-of-contents)
 
 ### Filter employees by name, tags, roles, or teams: `filter`
 
@@ -220,6 +238,8 @@ Examples:
 - `filter t/remote` should produce a similar output as below:
   ![result for 'filter tag remote'](./images/filterTagRemoteResult.png)
 
+[Back to table of contents](#table-of-contents)
+
 ### Listing all employees : `list`
 
 Shows a list of all employees in the address book.
@@ -244,6 +264,8 @@ Examples:
 - `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
+[Back to table of contents](#table-of-contents)
+
 ### Locating employees by name: `find`
 
 Finds employees whose names contain any of the given keywords.
@@ -260,6 +282,8 @@ Examples:
 - `find John` returns `john` and `John Doe`
 - `find alice david` returns `Alice Smith`, `David Williams`<br>
   ![result for 'find alex david'](./images/findAliceDavidResult.png)
+
+[Back to table of contents](#table-of-contents)
 
 ### Deleting an employee : `delete`
 
@@ -282,6 +306,8 @@ Examples:
 - `delete betsy` deletes the employee with the name `betsy` if there are no duplicates. In the case of duplicates, the user will be prompted to delete by uid.
 - `delete uid/101` deletes the employee with the `uid` of 101.
 
+[Back to table of contents](#table-of-contents)
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -294,6 +320,8 @@ Exits the program.
 
 Format: `exit`
 
+[Back to table of contents](#table-of-contents)
+
 ### Saving the Data
 
 ContactSwift data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -303,6 +331,8 @@ ContactSwift data are saved in the hard disk automatically after any command tha
 <box type="warning">
 **Caution:** If your changes to the data file make its format invalid, ContactSwift will discard all data and start with an empty data file at the next run. We recommend taking a backup of the file before editing it. Furthermore, certain edits can cause ContactSwift to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Edit the data file only if you are confident that you can update it correctly.
 </box>
+
+[Back to table of contents](#table-of-contents)
 
 ---
 
@@ -324,6 +354,8 @@ Within the dynamic interface of ContactSwift, each employee now boasts a visible
 
 We believe that the Completion Rate Statistics feature will significantly contribute to enhancing the efficiency and productivity of your team, offering a clear, quantifiable measure of task management success. We are confident that this addition will empower you and your team to achieve and surpass your productivity goals.
 
+[Back to table of contents](#table-of-contents)
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
@@ -338,18 +370,22 @@ _Details coming soon ..._
 **Q2: How can I transfer my ContactSwift data to another computer?**  
 **A2:** Install ContactSwift on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ContactSwift home folder.
 
+[Back to table of contents](#table-of-contents)
+
 ---
 
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 
+[Back to table of contents](#table-of-contents)
+
 ---
 
 ## Command summary
 
 | Action          | Format, Examples                                                                                                                                                                                  |
-|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS T/TEAM r/ROLE [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 T/A r/Cleaner t/friend t/colleague` |
 | **Add Task**    | `addTask uid/UID DESCRIPTION` <br> e.g., `addTask uid/1 Complete the report by 5pm`, `addTask uid/2 Submit the proposal by 10am`                                                                  |
 | **Clear**       | `clear`                                                                                                                                                                                           |
@@ -363,6 +399,8 @@ _Details coming soon ..._
 | **Help**        | `help`                                                                                                                                                                                            |
 | **Mark Task**   | `mark uid/UID TASKINDEX` <br> e.g., `mark uid/1 3`                                                                                                                                                |
 | **Unmark Task** | `unmark uid/UID TASKINDEX` <br> e.g., `unmark uid/1 2`                                                                                                                                            |
+
+[Back to table of contents](#table-of-contents)
 
 ---
 
@@ -384,4 +422,46 @@ UID is a unique identifier assigned to each contact in ContactSwift, enabling pr
 
 Any combination of the alphabets A-Z and numbers 0-9.
 
+[Back to table of contents](#table-of-contents)
+
 ---
+
+## 8. Feedback and Support {#feedback}
+
+Feedback is a crucial component of continuous improvement for ContactSwift. We actively encourage users, developers, and stakeholders to provide feedback to help us enhance both the functionality of ContactSwift and the usefulness of this Developer Guide.
+
+Here are the ways you can contribute feedback and suggestions:
+
+### 8.1. How to Provide Feedback {#how-to-provide-feedback}
+
+#### Issue Tracker
+
+For technical issues, bugs, or feature requests, please use our [official Issue Tracker](https://github.com/AY2324S2-CS2103T-T17-2/tp/issues). This allows us to categorize and prioritize issues effectively. When submitting an issue, please include as much detail as possible, such as the steps to reproduce the issue, expected versus actual behavior, and environment details (OS, ContactSwift version, etc.).
+
+#### Email
+
+If you have suggestions for improving the Developer Guide or need to discuss matters that require discretion, we'll be providing our email soon here. We appreciate detailed feedback that includes specific sections or topics and any recommendations for improvement.
+
+#### Surveys and Feedback Forms
+
+Periodically, we may circulate surveys or feedback forms to gather comprehensive opinions on specific aspects of ContactSwift or the Developer Guide. These are excellent opportunities to influence the future direction of the software and documentation.
+
+### 8.2. Feedback Etiquette {#feedback-etiquette}
+
+Constructiveness: We highly value constructive feedback that provides actionable insights and suggestions for improvement.
+
+Respect and Courtesy: Engage respectfully and professionally with community members and maintain a supportive environment.
+
+Confidentiality: Avoid sharing sensitive or confidential information in public forums or issue trackers.
+
+### 8.3. What Happens to Your Feedback? {#what-happens-to-your-feedback}
+
+1. Review Process: All feedback is reviewed by the development team. We prioritize actions based on the impact, feasibility, and alignment with our development roadmap.
+
+2. Implementation: If your feedback leads to a change or improvement, we will acknowledge contributions in upcoming release notes or directly within the revised sections of the guide.
+
+3. Response: While we aim to respond to all feedback, the volume of input may affect our ability to reply individually. However, we value every piece of feedback and strive to incorporate it as best as we can.
+
+Your insights and contributions are invaluable to us and help ensure that ContactSwift continues to evolve in ways that meet and exceed user needs and expectations. Thank you for helping us improve and for being an active member of our community.
+
+[Back to table of contents](#table-of-contents)
