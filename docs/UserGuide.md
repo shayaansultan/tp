@@ -467,7 +467,7 @@ Feedback is a crucial component of continuous improvement for ContactSwift. We a
 
 Here are the ways you can contribute feedback and suggestions:
 
-### 8.1. How to Provide Feedback
+### How to Provide Feedback
 
 #### Issue Tracker
 
@@ -481,7 +481,7 @@ If you have suggestions for improving the Developer Guide or need to discuss mat
 
 Periodically, we may circulate surveys or feedback forms to gather comprehensive opinions on specific aspects of ContactSwift or the Developer Guide. These are excellent opportunities to influence the future direction of the software and documentation.
 
-### 8.2. Feedback Etiquette
+### Feedback Etiquette
 
 Constructiveness: We highly value constructive feedback that provides actionable insights and suggestions for improvement.
 
@@ -489,7 +489,7 @@ Respect and Courtesy: Engage respectfully and professionally with community memb
 
 Confidentiality: Avoid sharing sensitive or confidential information in public forums or issue trackers.
 
-### 8.3. What Happens to Your Feedback
+### What Happens to Your Feedback
 
 1. Review Process: All feedback is reviewed by the development team. We prioritize actions based on the impact, feasibility, and alignment with our development roadmap.
 
