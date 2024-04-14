@@ -9,7 +9,7 @@
 <!-- * Table of Contents -->
 <page-nav-print />
 
-## Table of Contents <a id="table-of-contents"></a>
+## Table of Contents
 
 1. [Acknowledgements](#acknowledgements)
 2. [Setting up, getting started](#setting-up-getting-started)

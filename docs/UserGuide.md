@@ -39,7 +39,7 @@ Check the [Glossary](#glossary) for explanations of technical terms to ensure a 
 
 ---
 
-## Table of Contents <a id="table-of-contents"></a>
+## Table of Contents
 
 1. [Quick Start](#quick-start)
 2. [Features](#features)
