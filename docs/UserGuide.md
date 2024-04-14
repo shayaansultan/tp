@@ -65,7 +65,7 @@ Embark on your ContactSwift journey with these straightforward steps:
 3. **Setup**: Select a folder as your home for ContactSwift and move the downloaded file there.
 4. **Launch**: Open a command terminal, navigate to your home folder, and initiate the application with `java -jar contactswift.jar`. The GUI, populated with sample data, will appear as shown below:
 
-![ContactSwift Main Interface](./images/v1.3.png)  
+![ContactSwift Main Interface](./images/Ui.png)  
 _Figure 1: The main interface of ContactSwift, showcasing sample data._
 
 5. **Get Commanding**: Input commands in the command box and press Enter. Try these to get started:
