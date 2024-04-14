@@ -61,7 +61,7 @@ Check the [Glossary](#glossary) for explanations of technical terms to ensure a 
 Embark on your ContactSwift journey with these straightforward steps:
 
 1. **Installation**: Ensure Java `11` or above is installed on your computer. [Learn how to check your Java version](https://www.java.com/en/download/help/version_manual.html).
-2. **Download**: Access the latest `contactswift.jar` from our [releases page](https://github.com/AY2324S2-CS2103T-T17-2/tp/releases/tag/v1.3).
+2. **Download**: Access the latest `contactswift.jar` from our [releases page](https://github.com/AY2324S2-CS2103T-T17-2/tp/releases/tag/v1.4).
 3. **Setup**: Select a folder as your home for ContactSwift and move the downloaded file there.
 4. **Launch**: Open a command terminal, navigate to your home folder, and initiate the application with `java -jar contactswift.jar`. The GUI, populated with sample data, will appear as shown below:
 
