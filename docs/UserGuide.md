@@ -19,7 +19,7 @@ This guide will equip you with everything you need to maximize the benefits of C
 **Unique ID System:**
 Each contact in ContactSwift is assigned a unique identifier (UID), ensuring precise and efficient management of contact details. This UID is key to performing actions like editing, deleting, or adding tasks for specific contacts. You will encounter these UIDs as you use various commands, offering a streamlined way to manage large datasets. This system is designed to enhance the user experience, enabling you to easily deal with duplicates!
 <box type="warning">
-Data modifications may cause unexpected errors. It is recommended to back up the data file before making any changes. Please refer to the [Saving the Data](#saving-the-data) section for more information.
+Data modifications may cause unexpected errors. It is recommended to back up the data file before making any changes. Please refer to the Saving the Data section for more information.
 </box>
 
 **Who is this for?**
