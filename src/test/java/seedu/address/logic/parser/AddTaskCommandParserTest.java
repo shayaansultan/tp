@@ -24,6 +24,24 @@ public class AddTaskCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         assertThrows(ParseException.class, () -> parser.parse("1"));
         assertThrows(ParseException.class, () -> parser.parse("Buy milk"));
-        assertThrows(ParseException.class, () -> parser.parse(""));
+        assertThrows(ParseException.class, () -> parser.parse(""), Description.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidUid_throwsParseException() {
+        try {
+            parser.parse("ui/ Buy milk");
+        } catch (ParseException e) {
+            assertEquals(e.getMessage(), "Invalid UID format!");
+        }
+    }
+
+    @Test
+    public void parse_invalidDescription_throwsParseException() {
+        try {
+            parser.parse("uid/ !");
+        } catch (ParseException e) {
+            assertEquals(e.getMessage(), Description.MESSAGE_CONSTRAINTS);
+        }
     }
 }
