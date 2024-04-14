@@ -771,6 +771,8 @@ This section provides instructions on how to manually test the functionalities o
 **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more _exploratory_ testing.
 
+</box>
+
 ### Launch and Shutdown
 
 #### Initial Launch
@@ -898,8 +900,6 @@ testers are expected to do more _exploratory_ testing.
 <br>
 
 These test cases are intended to cover the primary functionalities of the ContactSwift application. Testers are encouraged to perform additional exploratory testing to uncover less obvious bugs and ensure the application handles various edge cases gracefully.
-
-</box>
 
 [Back to table of contents](#table-of-contents)
 
