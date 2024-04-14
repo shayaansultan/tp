@@ -141,7 +141,34 @@ Examples:
 
 [Back to table of contents](#table-of-contents)
 
-### Add task to an employee's task list: `addtask`
+### Locating employees by name: `find`
+
+Finds employees whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+- Only the name is searched.
+- Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+
+- `find John` returns `john` and `John Doe`
+- `find alice david` returns `Alice Smith`, `David Williams`<br>
+  ![result for 'find alex david'](./images/findAliceDavidResult.png)
+
+### Important Note Before Using Task-Related Commands
+
+Before using any task-related commands (`addTask`, `mark`, `unmark`, `deleteTask`), you must first find the employee using the `find` command. This ensures that the employee's information is correctly loaded and visible in the [UI (User Interface)](#ui-user-interface), and any subsequent commands will reflect their effects immediately in the UI.
+
+Example of using the `find` command:
+
+- `find John Doe` will search and display the tasks and details of 'John Doe' in the UI.
+
+**Caution:** Due to a current bug, if you do not use the `find` command to locate and display the employee's details before executing other commands, the changes may not immediately reflect in the UI.
+
+### Add task to an employee's task list: `addTask`
 
 Adds a task to an employee's task list.
 
