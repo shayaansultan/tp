@@ -14,7 +14,7 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
             + "The TASK_INDEX is one based and not zero based.\n"
             + "Example: " + DeleteTaskCommand.COMMAND_WORD + " uid/1 1";
     private static final String INVALID_FORMAT = "Invalid format!";
-    private static final String INVALID_UID_FORMAT = "Invalid UID format! Correct format: uid/UID";
+    private static final String INVALID_UID_FORMAT = "Invalid UID format! Correct format: uid/<UID>";
     private static final String INVALID_TASK_INDEX_FORMAT = "Invalid task index format!"
             + "It should be a positive integer more than 0.";
 

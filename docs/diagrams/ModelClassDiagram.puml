@@ -21,8 +21,6 @@ Class Phone
 Class Role
 Class Team
 Class Tag
-Class Task
-Class UniqueId
 
 Class I #FFFFFF
 }
@@ -41,15 +39,13 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniqueEmployeeList
 UniqueEmployeeList --> "~* all" Employee
-Employee *--> "1" Name
-Employee *--> "1" Phone
-Employee *--> "1" Email
-Employee *--> "1" Address
+Employee *--> Name
+Employee *--> Phone
+Employee *--> Email
+Employee *--> Address
 Employee *--> Role
 Employee *--> Team
 Employee *--> "*" Tag
-Employee *--> "*" Task
-Employee *--> "1" UniqueId
 
 Employee -[hidden]up--> I
 UniqueEmployeeList -[hidden]right-> I

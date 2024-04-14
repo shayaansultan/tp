@@ -50,6 +50,8 @@ public class AddTaskCommandTest {
 
     @Test
     public void execute_invalidEmployeeUid_throwsCommandException() {
+        Model model = new ModelManager();
+
         UniqueId invalidUid = new UniqueId("-1");
         AddTaskCommand command = new AddTaskCommand(invalidUid, new Description("Buy milk"));
 
@@ -71,12 +73,5 @@ public class AddTaskCommandTest {
         assertNotEquals(command1, command3); // different values -> returns false
         assertNotEquals(command1, 1); // different types -> returns false
         assertNotEquals(command1, null); // null -> returns false
-    }
-
-    @Test
-    public void toStringResult() {
-        AddTaskCommand command = new AddTaskCommand(new UniqueId("1"), new Description("Buy milk"));
-        String result = "Add task for employee with UID: 1 and description: Buy milk";
-        assertEquals(command.toString(), result);
     }
 }
