@@ -18,7 +18,6 @@ This guide will equip you with everything you need to maximize the benefits of C
 
 **Unique ID System:**
 Each contact in ContactSwift is assigned a unique identifier (UID), ensuring precise and efficient management of contact details. This UID is key to performing actions like editing, deleting, or adding tasks for specific contacts. You will encounter these UIDs as you use various commands, offering a streamlined way to manage large datasets. This system is designed to enhance the user experience, enabling you to easily deal with duplicates!
-
 <box type="warning">
 Data modifications may cause unexpected errors. It is recommended to back up the data file before making any changes. Please refer to the [Saving the Data](#saving-the-data) section for more information.
 </box>
@@ -359,7 +358,6 @@ ContactSwift data are saved in the hard disk automatically after any command tha
 **Caution:** If your changes to the data file make its format invalid, ContactSwift will discard all data and start with an empty data file or template data at the next run. We recommend taking a backup of the file before editing it. Furthermore, certain edits can cause ContactSwift to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Edit the data file only if you are confident that you can update it correctly.
 </box>
 
-
 [Back to table of contents](#table-of-contents)
 
 ---
@@ -398,28 +396,28 @@ _Details coming soon ..._
 **Q2: How can I transfer my ContactSwift data to another computer?**  
 **A2:** Install ContactSwift on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ContactSwift home folder.
 
-**Q3: How do I change the data file that ContactSwift uses?**
+**Q3: How do I change the data file that ContactSwift uses?**  
 **A3:** ContactSwift uses the file `data/addressbook.json` in the home folder by default. You can modify the data inside that file or replace it with another file of the same name.
 
-**Q4: If I modify the data how do I know it won't run into errors?**
+**Q4: If I modify the data how do I know it won't run into errors?**  
 **A4:** ContactSwift can run into unexpected errors if the data file is modified incorrectly. It is recommended to back up the data file before making any changes. However, the command line will log an error message if the data file is corrupted and provide feedback on what went wrong. Depending on the error, the software may start with an empty data file or a template file.
 
-**Q5: What happens if I run commands with corrupted data ?**
+**Q5: What happens if I run commands with corrupted data ?**  
 **A5:** ContactSwift will overwrite the corrupted data file with a new one and start with an empty address book.
 
-**Q6: How can I print the contact details or task list?**
+**Q6: How can I print the contact details or task list?**  
 **A6:** Currently, ContactSwift does not support direct printing. However, you can the JSON file to some other format (like CSV) and print it.
 
-**Q7: What are the limits on the number of contacts or tasks I can add?**
+**Q7: What are the limits on the number of contacts or tasks I can add?**  
 **A7:** ContactSwift does not have a hard limit on the number of contacts or tasks you can add. However, the performance may degrade with a large number of contacts or tasks. For all practical purposes however the application should be able to handle a few thousand contacts and tasks.
 
-**Q9: Can I customize the fields for each contact or task in ContactSwift?**
+**Q9: Can I customize the fields for each contact or task in ContactSwift?**  
 **A9:** ContactSwift does not support custom fields for contacts or tasks. However, you can use the tags field to add additional information.
 
-**Q10: How do I report a bug or issue with ContactSwift?**
+**Q10: How do I report a bug or issue with ContactSwift?**  
 **A10:** Please refer to the [Feedback and Support](#feedback) section for information on how to report bugs or issues.
 
-**Q11: How do I request a new feature for ContactSwift?**
+**Q11: How do I request a new feature for ContactSwift?**  
 **A11:** Please refer to the [Feedback and Support](#feedback) section for information on how to request new features.
 
 [Back to table of contents](#table-of-contents)
