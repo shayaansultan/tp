@@ -300,25 +300,6 @@ Examples:
 
 [Back to table of contents](#table-of-contents)
 
-### Locating employees by name: `find`
-
-Finds employees whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-
-- `find John` returns `john` and `John Doe`
-- `find alice david` returns `Alice Smith`, `David Williams`<br>
-  ![result for 'find alex david'](./images/findAliceDavidResult.png)
-
-[Back to table of contents](#table-of-contents)
-
 ### Deleting an employee : `delete`
 
 Deletes the specified employee from the address book.
