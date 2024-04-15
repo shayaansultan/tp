@@ -6,27 +6,27 @@
 
 # ContactSwift User Guide
 
-Welcome to ContactSwift, the desktop app designed for efficient employee contact and task management. Optimized for use via a [Command Line Interface (CLI)](#cli-command-line-interface) while also providing a [Graphical User Interface (GUI)](#gui-graphical-user-interface), ContactSwift is ideal for small business owners, managers, and team leaders who aim to streamline their remote team’s workflows.
+Welcome to the ContactSwift User Guide! ContactSwift is an all-in-one desktop application designed to optimize contact and task management for teams. With its dual-interface approach, users can utilize the speed and precision of a [Command Line Interface (CLI)](#cli-command-line-interface) and the visual ease of a [Graphical User Interface (GUI)](#gui-graphical-user-interface). ContactSwift is ideal for small business owners, managers, and team leaders who aim to streamline their remote team’s workflows.
 
 This guide will equip you with everything you need to maximize the benefits of ContactSwift, from initial setup to advanced features.
 
-**Key Features:**
+**Product Overview:**
 
-- Rapid contact management through intuitive CLI commands.
-- Comprehensive task tracking and productivity analysis.
-- Advanced filtering and searching capabilities for employee information (even if employees may have some same fields).
+ContactSwift offers a robust suite of features to manage employee contacts and task assignments effortlessly:
+- **Rapid Contact Management**: Quickly add, delete, update, and search for contacts using intuitive CLI commands or through the GUI.
+- **Advanced Task Tracking**: Assign tasks to contacts, set deadlines, and track progress to enhance productivity.
+- **Sophisticated Filtering System**: Filter contacts by tags, roles, teams, or other criteria to efficiently organize and retrieve employee information.
+- **Unique ID System**: Each contact in ContactSwift is assigned a [unique identifier (UID)](#unique-identifier-uid), ensuring precise and efficient management of contact details. This UID is key to performing actions like editing, deleting, or adding tasks for specific contacts. You will encounter these UIDs as you use various commands, offering a streamlined way to manage large datasets. This system is designed to enhance the user experience, enabling you to easily deal with duplicates!
 
-**Unique ID System:**
-Each contact in ContactSwift is assigned a unique identifier (UID), ensuring precise and efficient management of contact details. This UID is key to performing actions like editing, deleting, or adding tasks for specific contacts. You will encounter these UIDs as you use various commands, offering a streamlined way to manage large datasets. This system is designed to enhance the user experience, enabling you to easily deal with duplicates!
 <box type="warning">
 Data modifications may cause unexpected errors. It is recommended to back up the data file before making any changes. Please refer to the Saving the Data section for more information.
 </box>
 
-**Who is this for?**
+**Who is this guide for?**
 This guide is tailored for small business owners and remote team managers seeking an effective solution to manage contact details and tasks. We assume users have a basic understanding of command-line operations but have structured this guide to be accessible even to those new to CLI environments.
 
-**Purpose of this Guide:**
-To help you quickly become proficient with ContactSwift, enabling you to manage your team’s contacts and tasks more effectively and efficiently.
+**Why this guide?**
+The purpose of this user guide is to facilitate a quick and thorough understanding of ContactSwift, enabling you to maximize the application's features for better management and productivity.
 
 ## How to Use This Guide
 
@@ -40,19 +40,37 @@ Check the [Glossary](#glossary) for explanations of technical terms to ensure a 
 
 ---
 
+Here's an enhanced Table of Contents for your user guide, organizing sections and sub-sections systematically to reflect the flow of information provided in your document:
+
 ## Table of Contents
 
-1. [Quick Start](#quick-start)
-2. [Features](#features)
-3. [Managing Your Employees](#managing-your-employees)
-4. [FAQ](#faq)
-5. [Known Issues](#known-issues)
-6. [Command Summary](#command-summary)
-7. [Feedback and Support](#feedback-and-support)
-   - [How to Provide Feedback](#how-to-provide-feedback)
-   - [Feedback Etiquette](#feedback-etiquette)
-   - [What Happens to Your Feedback](#what-happens-to-your-feedback)
-8. [Glossary](#glossary)
+1. [Introduction](#contactswift-user-guide)
+2. [Quick Start](#quick-start)
+3. [Features](#features)
+    - [Viewing Help](#viewing-help-help)
+    - [Listing All Employees](#listing-all-employees-list)
+    - [Adding an Employee](#adding-an-employee-add)
+    - [Locating Employees by Name](#locating-employees-by-name-find)
+    - [Filter Employees](#filter-employees-by-name-tags-roles-or-teams-filter)
+    - [Editing an Employee](#editing-an-employee-edit)
+    - [Deleting an Employee](#deleting-an-employee-delete)
+    - [Task-Related Commands](#important-note-before-using-task-related-commands)
+      - [Add a Task to an Employee Task List](#add-a-task-to-an-employee-task-list-addtask)
+      - [Mark a Task as Completed](#mark-a-task-as-completed-mark)
+      - [Unmark a Task as Completed](#unmark-a-task-as-completed-unmark)
+      - [Delete a Task from an Employee Task List](#delete-a-task-from-an-employee-task-list-deletetask)
+    - [Clearing All Entries](#clearing-all-entries-clear)
+    - [Exiting the Program](#exiting-the-program-exit)
+    - [Saving the Data](#saving-the-data)
+4. [Managing Your Employees](#managing-your-employees)
+5. [FAQ](#faq)
+6. [Known Issues](#known-issues)
+7. [Command Summary](#command-summary)
+8. [Feedback and Support](#feedback-and-support)
+    - [How to Provide Feedback](#how-to-provide-feedback)
+    - [Feedback Etiquette](#feedback-etiquette)
+    - [What Happens to Your Feedback](#what-happens-to-your-feedback)
+9. [Glossary](#glossary)
 
 ---
 
@@ -71,13 +89,7 @@ _Figure 1: The main interface of ContactSwift, showcasing sample data._
 5. **Get Commanding**: Input commands in the command box and press Enter. Try these to get started:
    - `list` – Displays all contacts.
    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 T/A r/Manager` – Adds a new contact.
-   - `delete uid/101` – Removes the contact with the 'uid' of 101.
-   - `edit 2 n/James Lee` – Updates the name of the second contact.
    - `find John` – Searches for contacts with the name `John`.
-   - `filter r/Manager` – Filters contacts by role.
-   - `addTask uid/1 Complete the report by 5pm` – Adds a task to the contact with the `uid` of 1.
-   - `clear` – Deletes all contacts.
-   - `exit` – Closes the application.
 
 For a detailed explanation of all commands, refer to the [Features](#features) section.
 
@@ -116,7 +128,7 @@ For a detailed explanation of all commands, refer to the [Features](#features) s
 Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)<br>
-_Figure: The help command output in ContactSwift._
+_Figure 2: The help command output in ContactSwift._
 
 Format: `help`
 
@@ -164,101 +176,8 @@ Examples:
 
 - `find John` returns `john` and `John Doe`
 - `find alice david` returns `Alice Smith`, `David Williams`<br>
-  ![result for 'find alex david'](./images/findAliceDavidResult.png)
-
-### Important Note Before Using Task-Related Commands
-
-Before using any task-related commands (`addTask`, `mark`, `unmark`, `deleteTask`), you must first find the employee using the `find` command. This ensures that the employee's information is correctly loaded and visible in the [UI (User Interface)](#ui-user-interface), and any subsequent commands will reflect their effects immediately in the UI.
-
-Example of using the `find` command:
-
-- `find John Doe` will search and display the tasks and details of 'John Doe' in the UI.
-
-**Caution:** Due to a current bug, if you do not use the `find` command to locate and display the employee's details before executing other commands, the changes may not immediately reflect in the UI.
-
-### Add task to an employee's task list: `addTask`
-
-Adds a task to an employee's task list.
-
-**Reminder:** Use the `find` command to ensure the employee's details are displayed in the UI before adding a task.
-
-Format: `addTask uid/UID DESCRIPTION`
-
-- Adds a task to the employee with the specified `UID`.
-- The `UID` refers to the user ID displayed beside the employee's name.
-- The description of the task must be provided.
-- The description of the task can only contain alphanumeric characters and spaces, and cannot be empty.
-
-Examples:
-
-- `addTask uid/1 Complete the report by 5pm`
-- `addTask uid/2 Submit the proposal by 10am`
-
-[Back to table of contents](#table-of-contents)
-
-### Mark a task as completed: `mark`
-
-Marks a task as completed in the employee's task list.
-
-**Reminder:** Use the `find` command to ensure the employee's details are displayed in the UI before marking a task as completed.
-
-Format: `mark uid/UID TASKINDEX`
-
-- Marks the task at the specified `TASKINDEX` as completed for the employee with the specified `uid`.
-- The `UID` refers to the user ID displayed beside the employee's name.
-- The `TASKINDEX` refers to the index number shown in the displayed task list.
-- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​ and must exist as displayed in the UI.
-
-**Caution:** This command can mark a task that is already marked as completed. Use this feature carefully to avoid misrepresenting the completion status of tasks.
-
-Examples:
-
-- `mark uid/1 2` marks the 2nd task in the task list of the employee with the `UID` of 1 as completed.
-- `mark uid/2 1` marks the 1st task in the task list of the employee with the `UID` of 2 as completed.
-
-[Back to table of contents](#table-of-contents)
-
-### Unmark a task as completed: `unmark`
-
-Unmarks a task as completed in the employee's task list.
-
-**Reminder:** Use the `find` command to ensure the employee's details are displayed in the UI before unmarking a task.
-
-Format: `unmark uid/UID TASKINDEX`
-
-- Unmarks the task at the specified `TASKINDEX` as not completed for the employee with the specified `uid`.
-- The `UID` refers to the user ID displayed beside the employee's name.
-- The `TASKINDEX` refers to the index number shown in the displayed task list.
-- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​ and must exist as displayed in the UI.
-
-**Caution:** This command can unmark a task that is not marked as completed. Be cautious to ensure accurate tracking of task completion status.
-
-Examples:
-
-- `unmark uid/1 2` unmarks the 2nd task in the task list of the employee with the `UID` of 1 as not completed.
-- `unmark uid/2 1` unmarks the 1st task in the task list of the employee with the `UID` of 2 as not completed.
-
-[Back to table of contents](#table-of-contents)
-
-### Delete a task from an employee's task list: `deleteTask`
-
-Deletes a task from an employee's task list.
-
-**Reminder:** Use the `find` command followed by the `list` command to ensure the employee's details and tasks are displayed in the UI before deleting a task.
-
-Format: `deleteTask uid/UID TASKINDEX`
-
-- Deletes the task at the specified `TASKINDEX` from the task list of the employee with the specified `uid`.
-- The `UID` refers to the user ID displayed beside the employee's name.
-- The `TASKINDEX` refers to the index number shown in the displayed task list.
-- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​ and must exist as displayed in the UI.
-
-Examples:
-
-- `deleteTask uid/1 2` deletes the 2nd task in the task list of the employee with the `UID` of 1.
-- `deleteTask uid/2 1` deletes the 1st task in the task list of the employee with the `UID` of 2.
-
-[Back to table of contents](#table-of-contents)
+  ![result for 'find alex david'](./images/findAliceDavidResult.png)<br>
+  _Figure 3: The result for `find alex david`._
 
 ### Filter employees by name, tags, roles, or teams: `filter`
 
@@ -286,8 +205,9 @@ Examples:
 - `filter t/friend t/Colleague` : Shows all employees tagged as `friend` and `Colleague`, respecting case for tags.
 - `filter n/jane doe` : Shows employees named `Jane Doe`, regardless of the case used in the filter.
 - `filter r/Executive T/TEAM SALES` : Shows employees with the role `Executive` (exact case match required) and in the 'Sales' team, regardless of how the team name's case is entered.
-- `filter t/remote` should produce a similar output as below:<br>
-  ![result for 'filter tag remote'](./images/filterTagRemoteResult.png)
+- `filter t/colleague T/TEAM 2 r/Cleaner` should produce a similar output as below:<br>
+  <img src="./images/filterTagTeamRole.png" alt="Filter result" width="400"><br>
+    _Figure 4: The result for `filter t/colleague T/TEAM 2 r/Cleaner`._
 
 [Back to table of contents](#table-of-contents)
 
@@ -333,6 +253,104 @@ Examples:
 
 [Back to table of contents](#table-of-contents)
 
+### Important Note Before Using Task-Related Commands
+
+Before using any task-related commands (`addTask`, `mark`, `unmark`, `deleteTask`), you must first find the employee using the `find` command. This ensures that the employee's information is correctly loaded and visible in the [UI (User Interface)](#ui-user-interface), and any subsequent commands will reflect their effects immediately in the UI.
+
+Example of using the `find` command:
+
+- `find John Doe` will search and display the tasks and details of 'John Doe' in the UI.
+
+**Caution:** Due to a current bug, if you do not use the `find` command to locate and display the employee's details before executing other commands, the changes may not immediately reflect in the UI.
+
+### Add a task to an employee task list: `addTask`
+
+Adds a task to an employee's task list.
+
+**Reminder:** Use the `find` command to ensure the employee's details are displayed in the UI before adding a task.
+
+Format: `addTask uid/UID DESCRIPTION`
+
+- Adds a task to the employee with the specified `UID`.
+- The `UID` refers to the user ID displayed beside the employee's name.
+- The description of the task must be provided.
+- The description of the task can only contain [alphanumeric characters](#alphanumeric-characters) and spaces, and cannot be empty.
+
+Examples:
+
+- `addTask uid/1 Complete the report by 5pm`
+- `addTask uid/2 Submit the proposal by 10am`
+
+[Back to table of contents](#table-of-contents)
+
+### Mark a task as completed: `mark`
+
+Marks a task as completed in the employee's task list.
+
+**Reminder:** Use the `find` command to ensure the employee's details are displayed in the UI before marking a task as completed.
+
+Format: `mark uid/UID TASKINDEX`
+
+- Marks the task at the specified `TASKINDEX` as completed for the employee with the specified `uid`.
+- The `UID` refers to the user ID displayed beside the employee's name.
+- The `TASKINDEX` refers to the index number shown in the displayed task list.
+- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​ and must exist as displayed in the UI.
+
+**Caution:** This command can mark a task that is already marked as completed. Use this feature carefully to avoid misrepresenting the completion status of tasks.
+
+Examples:
+- `mark uid/1 2` marks the 2nd task in the task list of the employee with the `UID` of 1 as completed.
+- `mark uid/2 1` marks the 1st task in the task list of the employee with the `UID` of 2 as completed.
+
+![Mark Tasks Example](./images/markTasks.png)  
+_Figure 5: Example of marking a task as completed in the UI._
+
+[Back to table of contents](#table-of-contents)
+
+### Unmark a task as completed: `unmark`
+
+Unmarks a task as completed in the employee's task list.
+
+**Reminder:** Use the `find` command to ensure the employee's details are displayed in the UI before unmarking a task.
+
+Format: `unmark uid/UID TASKINDEX`
+
+- Unmarks the task at the specified `TASKINDEX` as not completed for the employee with the specified `uid`.
+- The `UID` refers to the user ID displayed beside the employee's name.
+- The `TASKINDEX` refers to the index number shown in the displayed task list.
+- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​ and must exist as displayed in the UI.
+
+**Caution:** This command can unmark a task that is not marked as completed. Be cautious to ensure accurate tracking of task completion status.
+
+Examples:
+- `unmark uid/1 2` marks the 2nd task in the task list of the employee with the `UID` of 1 as not completed.
+- `unmark uid/2 1` marks the 1st task in the task list of the employee with the `UID` of 2 as not completed.
+
+![Unmark Tasks Example](./images/unmarkTasks.png)  
+_Figure 6: Example of unmarking a task as completed in the UI._
+
+[Back to table of contents](#table-of-contents)
+
+### Delete a task from an employee task list: `deleteTask`
+
+Deletes a task from an employee's task list.
+
+**Reminder:** Use the `find` command followed by the `list` command to ensure the employee's details and tasks are displayed in the UI before deleting a task.
+
+Format: `deleteTask uid/UID TASKINDEX`
+
+- Deletes the task at the specified `TASKINDEX` from the task list of the employee with the specified `uid`.
+- The `UID` refers to the user ID displayed beside the employee's name.
+- The `TASKINDEX` refers to the index number shown in the displayed task list.
+- The `TASKINDEX` **must be a positive integer** 1, 2, 3, …​ and must exist as displayed in the UI.
+
+Examples:
+
+- `deleteTask uid/1 2` deletes the 2nd task in the task list of the employee with the `UID` of 1.
+- `deleteTask uid/2 1` deletes the 1st task in the task list of the employee with the `UID` of 2.
+
+[Back to table of contents](#table-of-contents)
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -375,6 +393,7 @@ We are thrilled to introduce a sophisticated enhancement to our application - th
 Within the dynamic interface of ContactSwift, each employee now boasts a visible completion rate on their profile card. This rate, a calculated metric representing the proportion of completed tasks to total tasks assigned, serves as an indicator of individual productivity levels. Automatically updated as tasks evolve, this metric ensures that you have the most current view of your team's performance.
 
 ![Completion Rate Statistics](./images/statisticsUi.png)
+_Figure 7: Display of Completion Rate Statistics_
 
 **How to use it?** This feature requires no manual intervention to activate. The completion rate metric operates seamlessly, reflecting real-time updates as tasks are added, completed, or removed. This automatic integration ensures that productivity insights are consistently accurate and available without additional effort from you or your team.
 
