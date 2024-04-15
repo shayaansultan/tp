@@ -303,21 +303,30 @@ Step 2. The `DeleteCommand` is executed, calling `Model#deleteEmployee(target)`,
 
 ### Filter Command Implementation
 
-The `FilterCommand` is implemented to allow users to refine the list of employees displayed based on specified criteria, such as name, role, team, and tags. This functionality is crucial for users who need to work with subsets of large employee datasets.
+The `FilterCommand` allows users to refine the list of employees displayed based on specified criteria such as name, role, team, and tags. This functionality is pivotal for efficiently managing large datasets of employees and ensuring that users can easily access subsets of employee data that meet specific criteria.
 
-- `FilterCommandParser` parses the user input and creates a `FilterCommand` object with a specific predicate that encapsulates the filtering logic.
-- `Model#updateFilteredEmployeeList(Predicate<Employee> predicate)` is then called to filter the list of employees according to the given criteria.
+#### Implementation Details
 
-Given below is an example usage scenario and how the filter mechanism behaves at each step.
+- **Parsing Input**: The `FilterCommandParser` parses the user input and constructs a `FilterCommand` object. This object includes a predicate representing the filtering criteria based on the user's command input.
+- **Applying the Filter**: The `FilterCommand` executes using the `Model#updateFilteredEmployeeList(Predicate<Employee> predicate)` method, which applies the constructed predicate to filter the employee list in the model.
 
-Step 1. The user executes `filter t/ developer`, intending to view only employees tagged as developers. The input is parsed by `FilterCommandParser`, which creates a `FilterCommand` with a predicate that checks the tags of each employee.
+#### Example Usage Scenario
 
-Step 2. The `FilterCommand` is executed, calling `Model#updateFilteredEmployeeList(predicate)`, where `predicate` is the condition that an employee's tags must include "developer".
+1. **User Input**: The user types the command `filter t/developer`, intending to display employees tagged as developers.
+2. **Parsing Command**: The `FilterCommandParser` interprets the input and constructs a predicate that matches employees whose tags include "developer".
+3. **Executing Command**: The `FilterCommand` is executed, which invokes `Model#updateFilteredEmployeeList(predicate)` with the predicate to filter the list. Only employees with the "developer" tag are now shown in the user interface.
 
 #### Design Considerations
 
-- **Why this design:** The command pattern is used for consistency with other commands in the application and to keep the parsing and execution logic separated. The use of predicates for filtering allows for flexible and dynamic searches without hard-coding specific query types.
-- **Alternatives considered:** A direct approach where the `FilterCommand` directly manipulates the employee list was considered but rejected to maintain a clean separation between the command and the model, adhering to the Single Responsibility Principle.
+- **Command Pattern**: We employ the command pattern to maintain consistency with other command implementations in the application. This pattern also helps separate the parsing logic from the execution logic, adhering to the Single Responsibility Principle.
+- **Use of Predicates**: Using predicates for filtering maximizes flexibility and scalability. It allows the filter command to handle various filtering criteria dynamically, without needing to hard-code specific query logic.
+- **Alternative Approaches**: Initially, a direct manipulation approach was considered, where `FilterCommand` would directly modify the employee list. However, this approach was discarded in favor of using the model to handle list manipulations, ensuring that all list state changes remain centralized and manageable through the model, enhancing maintainability and testability.
+
+#### Filtering Capabilities Explained
+
+- **Flexible Criteria**: Employees can be filtered by name, tags, role, and team. Each parameter (e.g., `n/NAME`, `t/TAG`, `r/ROLE`, `T/TEAM`) is optional, but at least one must be specified.
+- **Complex Queries**: The system supports AND conditions within the same filter type and single conditions for different types. For instance, filtering by `t/friend t/colleague` will show employees tagged both as "friend" and "colleague".
+- **Case Sensitivity**: Role and tag searches are case-sensitive, requiring exact matches, whereas name and team fields are case-insensitive.
 
 [Back to table of contents](#table-of-contents)
 
@@ -613,7 +622,7 @@ Your insights and contributions are invaluable to us and help ensure that Contac
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​              | I want to …​                            | So that I can…​                                           |
-| -------- | -------------------- | --------------------------------------- | --------------------------------------------------------- |
+|----------| -------------------- | --------------------------------------- | --------------------------------------------------------- |
 | `* * *`  | small business owner | add employees to my contacts list       | have quick access to my employees' contact details.       |
 | `* * *`  | small business owner | view employee contacts                  | easily manage and reach out to employees.                 |
 | `* * *`  | small business owner | delete employee contacts                | keep the contact list updated and free of redundancies.   |
@@ -624,14 +633,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | manager              | find employees by name                  | quickly get contact details for communication purposes.   |
 | `* *`    | manager              | list all employees                      | have an overview of all employees in the organization.    |
 | `* *`    | new user             | access a help guide                     | understand how to use the application efficiently.        |
-| `*`      | IT support           | clear all entries from the address book | perform system maintenance or prepare for new data entry. |
+| `* *`    | IT support           | clear all entries from the address book | perform system maintenance or prepare for new data entry. |
 | `*`      | business analyst     | export contact and task data            | analyze workforce distribution and task completion rates. |
 
 [Back to table of contents](#table-of-contents)
 
-### Use cases
-
-Here are the revised use cases, aligned with the features detailed in your User Guide:
+### Use Cases
 
 #### **Use Case: Add Employee**
 
@@ -639,25 +646,26 @@ Here are the revised use cases, aligned with the features detailed in your User 
 
 **Actor:** User
 
-**Preconditions:** User is logged into the system.
+**Preconditions:** User is viewing the employee list.
 
 1. **User initiates the addition of a new employee:**
-
-   - Command: `add n/Jane Smith p/98765432 e/jane@example.com a/123 Clementi Rd r/Manager T/HR`
+    - Command: `add n/Jane Smith p/98765432 e/jane@example.com a/123 Clementi Rd r/Manager T/HR`
 
 2. **ContactSwift processes the command:**
-
-   - Validates the command format and required details.
-   - Generates a unique ID for the new employee.
+    - Validates the command format and required details.
+    - Generates a unique ID (UID) for the new employee to ensure each entry is uniquely identifiable, even if other details are identical.
 
 3. **ContactSwift updates the employee directory:**
-
-   - Adds the employee details to the in-memory database.
-   - Sends a success message to the user.
+    - Adds the employee details to the in-memory database with the new UID.
+    - Sends a success message to the user including the UID of the newly added employee.
 
 4. **User verifies the addition:**
-   - Command: `list`
-   - ContactSwift displays the updated list with Jane Smith's details.
+    - Command: `list`
+    - ContactSwift displays the updated list with Jane Smith's details, showcasing the new UID.
+
+**Extensions:**
+- 2a. If the command format is invalid:
+    - ContactSwift sends an error message to the user, requesting correction of the input format.
 
 #### **Use Case: Delete Employee by UID**
 
@@ -668,22 +676,23 @@ Here are the revised use cases, aligned with the features detailed in your User 
 **Preconditions:** User has the list of employees displayed.
 
 1. **User identifies the employee to delete using UID:**
-
-   - Command: `delete uid/100`
+    - Command: `delete uid/100`
 
 2. **ContactSwift processes the deletion:**
-
-   - Validates the UID exists.
-   - Deletes the employee from the in-memory database.
+    - Validates the UID exists.
+    - Deletes the employee from the in-memory database.
 
 3. **ContactSwift updates the employee directory:**
-
-   - Removes the employee from the list.
-   - Sends a confirmation message to the user.
+    - Removes the employee from the list.
+    - Sends a confirmation message to the user.
 
 4. **User verifies the deletion:**
-   - Command: `list`
-   - ContactSwift displays the updated list without the deleted employee.
+    - Command: `list`
+    - ContactSwift displays the updated list without the deleted employee.
+
+**Extensions:**
+- 2a. If the UID does not exist:
+    - ContactSwift sends an error message to the user.
 
 #### **Use Case: Edit Employee Details**
 
@@ -694,22 +703,23 @@ Here are the revised use cases, aligned with the features detailed in your User 
 **Preconditions:** User has the list of employees displayed.
 
 1. **User selects an employee to edit:**
-
-   - Command: `edit 2 n/John Doe p/98765432`
+    - Command: `edit 2 n/John Doe p/98765432`
 
 2. **ContactSwift processes the edit command:**
-
-   - Validates the command format and index.
-   - Updates the employee's details in the in-memory database.
+    - Validates the command format and index.
+    - Updates the employee's details in the in-memory database.
 
 3. **ContactSwift reflects the changes:**
-
-   - Updates the employee's details in the display.
-   - Sends a success message to the user.
+    - Updates the employee's details in the display.
+    - Sends a success message to the user.
 
 4. **User verifies the update:**
-   - Command: `list`
-   - ContactSwift displays the updated list with John Doe's new details.
+    - Command: `list`
+    - ContactSwift displays the updated list with John Doe's new details.
+
+**Extensions:**
+- 2a. If the specified index is invalid:
+    - ContactSwift sends an error message to the user.
 
 #### **Use Case: Assign Task to Employee**
 
@@ -720,21 +730,48 @@ Here are the revised use cases, aligned with the features detailed in your User 
 **Preconditions:** User has the list of employees displayed.
 
 1. **User assigns a task to an employee:**
-
-   - Command: `addTask uid/100 Complete the report by 5pm`
+    - Command: `addTask uid/100 Complete the report by 5pm`
 
 2. **ContactSwift processes the task addition:**
-
-   - Validates the command format and UID.
-   - Adds the task to the employee's task list.
+    - Validates the command format and UID.
+    - Adds the task to the employee's task list.
 
 3. **ContactSwift confirms the addition:**
-
-   - Sends a success message to the user.
+    - Sends a success message to the user.
 
 4. **User verifies the task addition:**
-   - Command: `list`
-   - ContactSwift displays the updated task list for the employee.
+    - Command: `list`
+    - ContactSwift displays the updated task list for the employee.
+
+**Extensions:**
+- 2a. If the UID does not exist:
+    - ContactSwift sends an error message to the user.
+
+#### **Use Case: Filter Employees**
+
+**System:** ContactSwift v1.4
+
+**Actor:** User
+
+**Preconditions:** User is viewing the employee list.
+
+1. **User inputs filter criteria:**
+    - Command: `filter n/Jane Doe t/friend`
+
+2. **ContactSwift processes the filter:**
+    - Validates the criteria.
+    - Applies the filter to the employee list based on the specified attributes.
+
+3. **ContactSwift displays filtered results:**
+    - Shows only employees who meet the criteria.
+    - Sends a message that shows what the list was filtered by.
+
+**Extensions:**
+- 2a. If no criteria are provided:
+    - ContactSwift sends an error message about missing filter parameters.
+- 2b. If no employees match the criteria:
+    - ContactSwift displays an empty list.
+    - Sends a message saying no employees found.
 
 [Back to table of contents](#table-of-contents)
 
@@ -839,7 +876,7 @@ testers are expected to do more _exploratory_ testing.
 
 **Action:** Enter `filter t/HR`.
 
-**Expected Outcome:** The list is filtered to only show employees tagged with "HR". A success message indicates how many contacts are displayed.
+**Expected Outcome:** The list is filtered to only show employees tagged with "HR". A success message tells the user what the list has been filtered by. The contacts that fulfill the predicate are displayed.
 
 <br>
 
@@ -907,35 +944,34 @@ These test cases are intended to cover the primary functionalities of the Contac
 
 ### Glossary
 
-- **Mainstream OS**: Windows, Linux, Unix, MacOS
+- **Command Format**: Describes the syntax used to input commands in ContactSwift. Examples include adding or deleting contacts. Commands must adhere to this format for successful execution.
 
-- **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Contact Deletion**: Allows users to remove contacts from their address book, requiring a valid contact ID for the operation.
 
-- **Quick Contact Addition**: Allows users to rapidly add new contacts to their address book during networking events. Generates a unique ID for each contact.
+- **Contact ID**: A unique identifier assigned to each contact, used in commands such as deleting a contact to specify the target.
 
-- **Command Format**: The syntax used to input commands in ContactSwift. Example commands include adding or deleting contacts, and the format must be followed for successful execution.
+- **Contact Information Storage**: Manages how contact details are stored within the application, which could be in-memory, in a database, text file, or CSV file, depending on configuration.
 
-- **Contact Deletion**: Enables users to remove contacts they no longer need, contributing to the organization of their address book. Requires a valid contact ID for deletion.
+- **Expected Outputs**: Confirmation messages or outcomes expected after executing commands, such as successfully adding or deleting contacts.
 
-- **Contact Information Storage**: Allows users to store detailed information about their contacts for easy reference. In the initial version, information is stored in memory to simulate a database, text file, or CSV file.
+- **Failure Outputs**: Error messages that are generated in response to issues like missing details or incorrect command formats, aiding in troubleshooting.
 
-- **All Contacts List Display**: Provides users with a complete list of all their contacts for easy browsing and reference. Users can request the display of all contacts with their details in a user-friendly format.
+- **Good to Have Features**: Additional functionalities that enhance user experience, including tags for contacts, search filters, and a favorites feature for quick access.
 
-- **Contact ID**: A unique identifier assigned to each contact. Used in commands such as deleting a contact to specify the target contact.
+- **Mainstream Operating Systems (OS)**: Refers to commonly used operating systems like Windows, macOS, and Linux. ContactSwift is designed to be compatible across these platforms, ensuring a wide user base.
 
-- **Acceptable Values**: The valid input criteria for various fields such as contact name, email, and phone number. Ensures that the entered data meets the required format.
+- **Must-have Features**: Core functionalities essential to the application, such as contact addition, contact deletion, contact information storage, and all contacts list display.
 
-- **Expected Outputs**: The successful outcomes or confirmation messages expected after executing specific commands, such as adding or deleting contacts.
+- **Performance Efficiency**: The application should handle large volumes of data (e.g., up to 1,000 employee records) with response times under specific thresholds (e.g., 2 seconds) to ensure usability.
 
-- **Failure Outputs**: Error messages generated when there are issues, such as missing details or incorrect command formats. Communicates problems to the user for troubleshooting.
+- **System Requirements**: Specifies the technical requirements needed to run ContactSwift, including the required version of the Java Runtime Environment (JRE) and compatibility with mainstream operating systems.
 
-- **Mainstream OS**: Refers to widely used operating systems including Windows, Linux, Unix, and MacOS. ContactSwift is designed to work seamlessly across these platforms.
+- **Security Measures**: Details the security protocols and encryption standards employed by ContactSwift to protect user data, ensuring compliance with industry security standards.
 
-- **Private Contact Detail**: A contact detail that is not meant to be shared with others. Ensures the confidentiality of certain information stored in the address book.
+- **User Interface (UI) Design**: The design principles guiding the application's user interface, aiming for intuitive use, minimalistic design, and a balance between CLI and GUI functionalities.
 
-- **Must-have Features**: Quick Contact Addition, Contact Deletion, Contact Information Storage, and All Contacts List Display. Core functionalities essential for addressing the needs of business owners and managers.
+- **User Roles and Permissions**: Describes the different levels of access and capabilities granted to users within ContactSwift, dictating what actions each user type can perform within the application.
 
-- **Good to Have Features**: Additional functionalities that enhance user experience, such as tags and remarks while adding contacts, searching specific contacts, filtering based on tags, and a favorites option for quick lookup.
 
 [Back to table of contents](#table-of-contents)
 
