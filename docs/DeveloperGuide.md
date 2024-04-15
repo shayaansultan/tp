@@ -33,14 +33,14 @@
    - [Unmark Task Feature Implementation](#unmark-task-feature-implementation)
 5. [Proposed](#proposed)
 6. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-7. [Planned Enhancements](#planned-enhancements)
-8. [Feedback](#feedback)
+7. [Feedback](#feedback)
    - [How to provide feedback](#how-to-provide-feedback)
    - [Feedback Etiquette](#feedback-etiquette)
    - [What happens to your feedback](#what-happens-to-your-feedback)
-9. [Appendix: Requirements](#appendix-requirements)
-10. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-11. [Appendix: Glossary](#glossary)
+8. [Appendix: Requirements](#appendix-requirements)
+9. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+10. [Appendix: Glossary](#glossary)
+11. [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 
 ---
 
@@ -555,30 +555,6 @@ _{more aspects and alternatives to be added}_
 
 ---
 
-## Appendix: Planned Enhancements
-
-**Team Size: 4**
-
-1. **Automatically Refresh UI on Task List Updates**: Currently, the UI does not refresh automatically when a user performs any task-related actions (e.g., adding or deleting a task) for an employee, requiring manual refreshing to see updates. We plan to modify the system to automatically refresh the UI once any task list-related action is completed, improving real-time data accuracy and user experience.
-
-2. **Rewrite UIDs to Resolve Duplicates**: The system currently faces issues with duplicate UIDs (resorting to only showing the template data if the actual data has duplicate UIDs), which can lead to data integrity problems. We intend to implement a UID rewriting mechanism that activates upon detecting duplicate UIDs during data operations. This enhancement will ensure each entry has a unique identifier, thereby preventing data conflicts and potential errors during data processing.
-
-3. **Replace/Rewrite UIDs which overflow**: The system currently faces issues with UIDs overflowing (after Java's Integer Max Value), which can lead to data integrity problems. We intend to implement a UID rewriting mechanism that activates upon detecting overflowed UIDs during data operations. This enhancement will ensure each entry has a unique identifier, thereby preventing data conflicts and potential errors during data processing.
-
-4. **Detailed Notifications for Corrupted Data**: When encountering corrupted data, the system currently loads either blank or template data, without informing the user regarding the nature of the corruption. We plan to enhance this by providing detailed notifications that describe the exact issues with the corrupted data. For example, if a data corruption issue occurs due to format errors in a file, the system will specify which part of the data is incorrect and suggest possible actions to rectify the error.
-
-5. **Color-Coded Tags for Better Visibility**: Currently, all tags in the UI are displayed in the same color, which can make it difficult for users to quickly distinguish between different categories or priorities. We plan to enhance the UI by introducing color-coded tags, allowing users to assign specific colors to different tags. This will improve user interaction by making it easier to manage and recognize tags visually.
-
-6. **Enhanced Task List Display on Employee Cards**: The task lists on employee cards are currently presented as plain text, which does not provide an optimal user experience. We intend to redesign the task list display to be more visually appealing and interactive, making improvements such as dividing tasks by completed and uncompleted, for better organization and readability.
-
-7. **Truncate Employee Information to prevent UI overflow**: Currently, the UI displays all employee information in full, which can lead to overflow if there is too long of a name, too many tags, or anything of this nature. We plan to implement a truncation mechanism that limits the display of employee information to a certain number of characters, ensuring that the UI remains clean and organized. Users can then expand the information to view the full details as needed. Also in this scenario, the UID will be moved to the top of the Employee card for easier visibility.
-
-8. **Allow non-alphanumeric characters in task descriptions**: Currently, task descriptions are limited to alphanumeric characters, which can be restrictive for users who need to include special characters or symbols in their task descriptions. We plan to enhance the system to allow non-alphanumeric characters in task descriptions, providing users with greater flexibility and customization options when creating and managing tasks.
-
-
-
-[Back to table of contents](#table-of-contents)
-
 ## Feedback
 
 Feedback is a crucial component of continuous improvement for ContactSwift. We actively encourage users, developers, and stakeholders to provide feedback to help us enhance both the functionality of ContactSwift and the usefulness of this Developer Guide.
@@ -994,3 +970,27 @@ These test cases are intended to cover the primary functionalities of the Contac
 [Back to table of contents](#table-of-contents)
 
 ---
+
+## **Appendix: Planned Enhancements**
+
+**Team Size: 4**
+
+1. **Automatically Refresh UI on Task List Updates**: Currently, the UI does not refresh automatically when a user performs any task-related actions (e.g., adding or deleting a task) for an employee, requiring manual refreshing to see updates. We plan to modify the system to automatically refresh the UI once any task list-related action is completed, improving real-time data accuracy and user experience.
+
+2. **Rewrite UIDs to Resolve Duplicates**: The system currently faces issues with duplicate UIDs (resorting to only showing the template data if the actual data has duplicate UIDs), which can lead to data integrity problems. We intend to implement a UID rewriting mechanism that activates upon detecting duplicate UIDs during data operations. This enhancement will ensure each entry has a unique identifier, thereby preventing data conflicts and potential errors during data processing.
+
+3. **Replace/Rewrite UIDs which overflow**: The system currently faces issues with UIDs overflowing (after Java's Integer Max Value), which can lead to data integrity problems. We intend to implement a UID rewriting mechanism that activates upon detecting overflowed UIDs during data operations. This enhancement will ensure each entry has a unique identifier, thereby preventing data conflicts and potential errors during data processing.
+
+4. **Detailed Notifications for Corrupted Data**: When encountering corrupted data, the system currently loads either blank or template data, without informing the user regarding the nature of the corruption. We plan to enhance this by providing detailed notifications that describe the exact issues with the corrupted data. For example, if a data corruption issue occurs due to format errors in a file, the system will specify which part of the data is incorrect and suggest possible actions to rectify the error.
+
+5. **Color-Coded Tags for Better Visibility**: Currently, all tags in the UI are displayed in the same color, which can make it difficult for users to quickly distinguish between different categories or priorities. We plan to enhance the UI by introducing color-coded tags, allowing users to assign specific colors to different tags. This will improve user interaction by making it easier to manage and recognize tags visually.
+
+6. **Enhanced Task List Display on Employee Cards**: The task lists on employee cards are currently presented as plain text, which does not provide an optimal user experience. We intend to redesign the task list display to be more visually appealing and interactive, making improvements such as dividing tasks by completed and uncompleted, for better organization and readability.
+
+7. **Truncate Employee Information to prevent UI overflow**: Currently, the UI displays all employee information in full, which can lead to overflow if there is too long of a name, too many tags, or anything of this nature. We plan to implement a truncation mechanism that limits the display of employee information to a certain number of characters, ensuring that the UI remains clean and organized. Users can then expand the information to view the full details as needed. Also in this scenario, the UID will be moved to the top of the Employee card for easier visibility.
+
+8. **Allow non-alphanumeric characters in task descriptions**: Currently, task descriptions are limited to alphanumeric characters, which can be restrictive for users who need to include special characters or symbols in their task descriptions. We plan to enhance the system to allow non-alphanumeric characters in task descriptions, providing users with greater flexibility and customization options when creating and managing tasks.
+
+
+
+[Back to table of contents](#table-of-contents)
