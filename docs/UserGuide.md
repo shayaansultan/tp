@@ -6,7 +6,7 @@
 
 # ContactSwift User Guide
 
-WWelcome to the ContactSwift User Guide! ContactSwift is an all-in-one desktop application designed to optimize contact and task management for teams. With its dual-interface approach, users can utilize the speed and precision of a [Command Line Interface (CLI)](#cli-command-line-interface) and the visual ease of a [Graphical User Interface (GUI)](#gui-graphical-user-interface). ContactSwift is ideal for small business owners, managers, and team leaders who aim to streamline their remote team’s workflows.
+Welcome to the ContactSwift User Guide! ContactSwift is an all-in-one desktop application designed to optimize contact and task management for teams. With its dual-interface approach, users can utilize the speed and precision of a [Command Line Interface (CLI)](#cli-command-line-interface) and the visual ease of a [Graphical User Interface (GUI)](#gui-graphical-user-interface). ContactSwift is ideal for small business owners, managers, and team leaders who aim to streamline their remote team’s workflows.
 
 This guide will equip you with everything you need to maximize the benefits of ContactSwift, from initial setup to advanced features.
 
