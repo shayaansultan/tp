@@ -40,7 +40,7 @@ Check the [Glossary](#glossary) for explanations of technical terms to ensure a 
 
 ---
 
-Here's an enhanced Table of Contents for your user guide, organizing sections and sub-sections systematically to reflect the flow of information provided in your document:
+<div style="page-break-before: always;"></div>
 
 ## Table of Contents
 
@@ -74,6 +74,8 @@ Here's an enhanced Table of Contents for your user guide, organizing sections an
 
 ---
 
+<div style="page-break-before: always;"></div>
+
 ## Quick Start
 
 Embark on your ContactSwift journey with these straightforward steps:
@@ -83,8 +85,10 @@ Embark on your ContactSwift journey with these straightforward steps:
 3. **Setup**: Select a folder as your home for ContactSwift and move the downloaded file there.
 4. **Launch**: Open a command terminal, navigate to your home folder, and initiate the application with `java -jar contactswift.jar`. The GUI, populated with sample data, will appear as shown below:
 
-![ContactSwift Main Interface](./images/Ui.png)  
-_Figure 1: The main interface of ContactSwift, showcasing sample data._
+<div align="center">
+    <img src="./images/Ui.png" alt="ContactSwift Main Interface" width="725"><br>
+    <em>Figure 1: The main interface of ContactSwift, showcasing sample data.</em>
+</div>
 
 5. **Get Commanding**: Input commands in the command box and press Enter. Try these to get started:
    - `list` – Displays all contacts.
@@ -96,6 +100,8 @@ For a detailed explanation of all commands, refer to the [Features](#features) s
 [Back to table of contents](#table-of-contents)
 
 ---
+
+<div style="page-break-before: always;"></div>
 
 ## Features
 
@@ -127,8 +133,10 @@ For a detailed explanation of all commands, refer to the [Features](#features) s
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)<br>
-_Figure 2: The help command output in ContactSwift._
+<div align="center">
+    <img src="./images/helpMessage.png" alt="help message"><br>
+    <em>Figure 2: The help command output in ContactSwift</em>
+</div>
 
 Format: `help`
 
@@ -161,6 +169,8 @@ Examples:
 
 [Back to table of contents](#table-of-contents)
 
+<br>
+
 ### Locating employees by name: `find`
 
 Finds employees whose names contain any of the given keywords.
@@ -176,8 +186,13 @@ Examples:
 
 - `find John` returns `john` and `John Doe`
 - `find alice david` returns `Alice Smith`, `David Williams`<br>
-  ![result for 'find alex david'](./images/findAliceDavidResult.png)<br>
-  _Figure 3: The result for `find alex david`._
+
+<div align="center">
+    <img src="./images/findAliceDavidResult.png" alt="find alex david"><br>
+    <em>Figure 3: The result for <code>find alex david</code></em>
+</div>
+
+<br><br>
 
 ### Filter employees by name, tags, roles, or teams: `filter`
 
@@ -205,9 +220,12 @@ Examples:
 - `filter t/friend t/Colleague` : Shows all employees tagged as `friend` and `Colleague`, respecting case for tags.
 - `filter n/jane doe` : Shows employees named `Jane Doe`, regardless of the case used in the filter.
 - `filter r/Executive T/TEAM SALES` : Shows employees with the role `Executive` (exact case match required) and in the 'Sales' team, regardless of how the team name's case is entered.
-- `filter t/colleague T/TEAM 2 r/Cleaner` should produce a similar output as below:<br>
-  <img src="./images/filterTagTeamRole.png" alt="Filter result" width="400"><br>
-    _Figure 4: The result for `filter t/colleague T/TEAM 2 r/Cleaner`._
+- `filter t/colleague T/TEAM 2 r/Cleaner` should produce a similar output as below:
+
+<div align="center">
+    <img src="./images/filterTagTeamRole.png" alt="Filter result" width="400"><br>
+    <em>Figure 4: The result for <code>filter t/colleague T/TEAM 2 r/Cleaner</code></em>
+</div>
 
 [Back to table of contents](#table-of-contents)
 
@@ -244,6 +262,8 @@ Format: `delete INDEX` or `delete uid/UID` or `delete NAME`
 - The name must be an exact match, however it is case-insensitive.
 
 **Caution:** Deleting an employee is irreversible. Ensure you have selected the correct `INDEX`, `UID`, or `NAME` before proceeding.
+
+<br>
 
 Examples:
 
@@ -302,8 +322,10 @@ Examples:
 - `mark uid/1 2` marks the 2nd task in the task list of the employee with the `UID` of 1 as completed.
 - `mark uid/2 1` marks the 1st task in the task list of the employee with the `UID` of 2 as completed.
 
-![Mark Tasks Example](./images/markTasks.png)  
-_Figure 5: Example of marking a task as completed in the UI._
+<div align="center">
+    <img src="./images/markTasks.png" alt="Mark Tasks Example" width="400"><br>
+    <em>Figure 5: Example of marking a task as completed in the UI</em>
+</div>
 
 [Back to table of contents](#table-of-contents)
 
@@ -326,8 +348,10 @@ Examples:
 - `unmark uid/1 2` marks the 2nd task in the task list of the employee with the `UID` of 1 as not completed.
 - `unmark uid/2 1` marks the 1st task in the task list of the employee with the `UID` of 2 as not completed.
 
-![Unmark Tasks Example](./images/unmarkTasks.png)  
-_Figure 6: Example of unmarking a task as completed in the UI._
+<div align="center">
+    <img src="./images/unmarkTasks.png" alt="Unmark Tasks Example" width="400"><br>
+    <em>Figure 6: Example of unmarking a task as completed in the UI</em>
+</div>
 
 [Back to table of contents](#table-of-contents)
 
@@ -380,11 +404,11 @@ ContactSwift data are saved in the hard disk automatically after any command tha
 
 ---
 
-# Managing your employees
+## Managing your employees
 
 Great! You have successfully installed ContactSwift and are ready to manage your employees. Let's use all the awesome features that ContactSwift has to offer.
 
-## Track your team's productivity!
+### Track your team's productivity!
 
 We are thrilled to introduce a sophisticated enhancement to our application - the **Completion Rate Statistics**. This innovative feature is designed to provide a comprehensive overview of task management efficiency within your teams, offering a deeper insight into employee productivity.
 
@@ -392,8 +416,10 @@ We are thrilled to introduce a sophisticated enhancement to our application - th
 
 Within the dynamic interface of ContactSwift, each employee now boasts a visible completion rate on their profile card. This rate, a calculated metric representing the proportion of completed tasks to total tasks assigned, serves as an indicator of individual productivity levels. Automatically updated as tasks evolve, this metric ensures that you have the most current view of your team's performance.
 
-![Completion Rate Statistics](./images/statisticsUi.png)
-_Figure 7: Display of Completion Rate Statistics_
+<div align="center">
+    <img src="./images/statisticsUi.png" alt="Completion Rate Statistics" width="550"><br>
+    <em>Figure 7: Display of Completion Rate Statistics</em>
+</div>
 
 **How to use it?** This feature requires no manual intervention to activate. The completion rate metric operates seamlessly, reflecting real-time updates as tasks are added, completed, or removed. This automatic integration ensures that productivity insights are consistently accurate and available without additional effort from you or your team.
 
@@ -515,6 +541,10 @@ Your insights and contributions are invaluable to us and help ensure that Contac
 
 ## Glossary
 
+### Alphanumeric characters
+
+Any combination of the alphabets A-Z and numbers 0-9.
+
 ### CLI (Command Line Interface)
 
 A type of user interface that allows users to interact with a computer program or operating system by typing commands into a console or terminal. CLI is known for its efficiency in performing tasks, enabling users to execute complex commands through concise textual input.
@@ -530,10 +560,6 @@ The space where interactions between humans and the system occur. This includes 
 ### Unique Identifier (UID)
 
 UID is a unique identifier assigned to each contact in ContactSwift, enabling precise and efficient management of contact details. Such identifiers serve to differentiate contacts and facilitate actions like editing, deleting, or adding tasks for specific contacts. UIDs are essential for managing large datasets and ensuring accurate contact management.
-
-### Alphanumeric characters
-
-Any combination of the alphabets A-Z and numbers 0-9.
 
 [Back to table of contents](#table-of-contents)
 
