@@ -6,6 +6,8 @@
 
 # ContactSwift User Guide
 
+`Current Version: 1.4`
+
 Welcome to the ContactSwift User Guide! ContactSwift is an all-in-one desktop application designed to optimize contact and task management for teams. With its dual-interface approach, users can utilize the speed and precision of a [Command Line Interface (CLI)](#cli-command-line-interface) and the visual ease of a [Graphical User Interface (GUI)](#gui-graphical-user-interface). ContactSwift is ideal for small business owners, managers, and team leaders who aim to streamline their remote team’s workflows.
 
 This guide will equip you with everything you need to maximize the benefits of ContactSwift, from initial setup to advanced features.
@@ -63,7 +65,7 @@ Check the [Glossary](#glossary) for explanations of technical terms to ensure a 
    - [Clearing All Entries](#clearing-all-entries-clear)
    - [Exiting the Program](#exiting-the-program-exit)
    - [Saving the Data](#saving-the-data)
-   - [Archiving Data Files](#archiving-data-files-coming-in-v20)
+   - [Archiving Data Files](#archiving-data-files)
 4. [Managing Your Employees](#managing-your-employees)
 5. [FAQ](#faq)
 6. [Known Issues](#known-issues)
@@ -406,9 +408,9 @@ ContactSwift data are saved in the hard disk automatically after any command tha
 
 [Back to table of contents](#table-of-contents)
 
-### Archiving data files `[coming in v2.0]`
+### Archiving data files
 
-_Sneak Peak:_
+_`[coming in v2.0]` Sneak Peak:_
 
 #### Introduction to Data Archiving
 
