@@ -299,9 +299,11 @@ Format: `mark uid/UID TASKINDEX`
 **Caution:** This command can mark a task that is already marked as completed. Use this feature carefully to avoid misrepresenting the completion status of tasks.
 
 Examples:
-
 - `mark uid/1 2` marks the 2nd task in the task list of the employee with the `UID` of 1 as completed.
 - `mark uid/2 1` marks the 1st task in the task list of the employee with the `UID` of 2 as completed.
+
+![Mark Tasks Example](./images/markTasks.png)  
+_Figure 5: Example of marking a task as completed in the UI._
 
 [Back to table of contents](#table-of-contents)
 
@@ -321,9 +323,11 @@ Format: `unmark uid/UID TASKINDEX`
 **Caution:** This command can unmark a task that is not marked as completed. Be cautious to ensure accurate tracking of task completion status.
 
 Examples:
+- `unmark uid/1 2` marks the 2nd task in the task list of the employee with the `UID` of 1 as not completed.
+- `unmark uid/2 1` marks the 1st task in the task list of the employee with the `UID` of 2 as not completed.
 
-- `unmark uid/1 2` unmarks the 2nd task in the task list of the employee with the `UID` of 1 as not completed.
-- `unmark uid/2 1` unmarks the 1st task in the task list of the employee with the `UID` of 2 as not completed.
+![Unmark Tasks Example](./images/unmarkTasks.png)  
+_Figure 6: Example of unmarking a task as completed in the UI._
 
 [Back to table of contents](#table-of-contents)
 
@@ -389,6 +393,7 @@ We are thrilled to introduce a sophisticated enhancement to our application - th
 Within the dynamic interface of ContactSwift, each employee now boasts a visible completion rate on their profile card. This rate, a calculated metric representing the proportion of completed tasks to total tasks assigned, serves as an indicator of individual productivity levels. Automatically updated as tasks evolve, this metric ensures that you have the most current view of your team's performance.
 
 ![Completion Rate Statistics](./images/statisticsUi.png)
+_Figure 7: Display of Completion Rate Statistics_
 
 **How to use it?** This feature requires no manual intervention to activate. The completion rate metric operates seamlessly, reflecting real-time updates as tasks are added, completed, or removed. This automatic integration ensures that productivity insights are consistently accurate and available without additional effort from you or your team.
 
