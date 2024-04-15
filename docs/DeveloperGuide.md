@@ -884,7 +884,7 @@ testers are expected to do more _exploratory_ testing.
 
 **Action:** Enter `filter x/abc`.
 
-**Expected Outcome:** No change in the displayed list. An error message is shown indicating an invalid command format.
+**Expected Outcome:** No change in the displayed list. An error message is shown indicating that there are no valid fields present for the filter command.
 
 ### Assigning Tasks to Employees
 
