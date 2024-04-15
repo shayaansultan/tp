@@ -13,6 +13,7 @@ This guide will equip you with everything you need to maximize the benefits of C
 **Product Overview:**
 
 ContactSwift offers a robust suite of features to manage employee contacts and task assignments effortlessly:
+
 - **Rapid Contact Management**: Quickly add, delete, update, and search for contacts using intuitive CLI commands or through the GUI.
 - **Advanced Task Tracking**: Assign tasks to contacts, set deadlines, and track progress to enhance productivity.
 - **Sophisticated Filtering System**: Filter contacts by tags, roles, teams, or other criteria to efficiently organize and retrieve employee information.
@@ -47,29 +48,30 @@ Check the [Glossary](#glossary) for explanations of technical terms to ensure a 
 1. [Introduction](#contactswift-user-guide)
 2. [Quick Start](#quick-start)
 3. [Features](#features)
-    - [Viewing Help](#viewing-help-help)
-    - [Listing All Employees](#listing-all-employees-list)
-    - [Adding an Employee](#adding-an-employee-add)
-    - [Locating Employees by Name](#locating-employees-by-name-find)
-    - [Filter Employees](#filter-employees-by-name-tags-roles-or-teams-filter)
-    - [Editing an Employee](#editing-an-employee-edit)
-    - [Deleting an Employee](#deleting-an-employee-delete)
-    - [Task-Related Commands](#important-note-before-using-task-related-commands)
-      - [Add a Task to an Employee Task List](#add-a-task-to-an-employee-task-list-addtask)
-      - [Mark a Task as Completed](#mark-a-task-as-completed-mark)
-      - [Unmark a Task as Completed](#unmark-a-task-as-completed-unmark)
-      - [Delete a Task from an Employee Task List](#delete-a-task-from-an-employee-task-list-deletetask)
-    - [Clearing All Entries](#clearing-all-entries-clear)
-    - [Exiting the Program](#exiting-the-program-exit)
-    - [Saving the Data](#saving-the-data)
+   - [Viewing Help](#viewing-help-help)
+   - [Listing All Employees](#listing-all-employees-list)
+   - [Adding an Employee](#adding-an-employee-add)
+   - [Locating Employees by Name](#locating-employees-by-name-find)
+   - [Filter Employees](#filter-employees-by-name-tags-roles-or-teams-filter)
+   - [Editing an Employee](#editing-an-employee-edit)
+   - [Deleting an Employee](#deleting-an-employee-delete)
+   - [Task-Related Commands](#important-note-before-using-task-related-commands)
+     - [Add a Task to an Employee Task List](#add-a-task-to-an-employee-task-list-addtask)
+     - [Mark a Task as Completed](#mark-a-task-as-completed-mark)
+     - [Unmark a Task as Completed](#unmark-a-task-as-completed-unmark)
+     - [Delete a Task from an Employee Task List](#delete-a-task-from-an-employee-task-list-deletetask)
+   - [Clearing All Entries](#clearing-all-entries-clear)
+   - [Exiting the Program](#exiting-the-program-exit)
+   - [Saving the Data](#saving-the-data)
+   - [Archiving Data Files](#archiving-data-files-coming-in-v20)
 4. [Managing Your Employees](#managing-your-employees)
 5. [FAQ](#faq)
 6. [Known Issues](#known-issues)
 7. [Command Summary](#command-summary)
 8. [Feedback and Support](#feedback-and-support)
-    - [How to Provide Feedback](#how-to-provide-feedback)
-    - [Feedback Etiquette](#feedback-etiquette)
-    - [What Happens to Your Feedback](#what-happens-to-your-feedback)
+   - [How to Provide Feedback](#how-to-provide-feedback)
+   - [Feedback Etiquette](#feedback-etiquette)
+   - [What Happens to Your Feedback](#what-happens-to-your-feedback)
 9. [Glossary](#glossary)
 
 ---
@@ -319,6 +321,7 @@ Format: `mark uid/UID TASKINDEX`
 **Caution:** This command can mark a task that is already marked as completed. Use this feature carefully to avoid misrepresenting the completion status of tasks.
 
 Examples:
+
 - `mark uid/1 2` marks the 2nd task in the task list of the employee with the `UID` of 1 as completed.
 - `mark uid/2 1` marks the 1st task in the task list of the employee with the `UID` of 2 as completed.
 
@@ -345,6 +348,7 @@ Format: `unmark uid/UID TASKINDEX`
 **Caution:** This command can unmark a task that is not marked as completed. Be cautious to ensure accurate tracking of task completion status.
 
 Examples:
+
 - `unmark uid/1 2` marks the 2nd task in the task list of the employee with the `UID` of 1 as not completed.
 - `unmark uid/2 1` marks the 1st task in the task list of the employee with the `UID` of 2 as not completed.
 
@@ -402,6 +406,48 @@ ContactSwift data are saved in the hard disk automatically after any command tha
 
 [Back to table of contents](#table-of-contents)
 
+### Archiving data files `[coming in v2.0]`
+
+_Sneak Peak:_
+
+#### Introduction to Data Archiving
+
+In version 2.0 of ContactSwift, we introduce a robust data archiving feature designed to enhance data management by allowing you to securely store and back up important contact and task information. This feature is crucial for maintaining a clean and organized database, especially as your dataset grows over time.
+
+#### Why Archive Data?
+
+Archiving data helps in reducing the load on the main database, improving performance, and securing **a historical record of your data** that can be accessed or retrieved if necessary. It is particularly useful for maintaining compliance with data retention policies and for organizational audits.
+
+#### How would it work?
+
+You would be able to archive data with a few simple commands:
+
+1. `archive all` - Archives all data in the current database.
+2. `archive uid/UID` - Archives data for a specific contact with the given UID.
+3. `restore all` - Restores all archived data to the main database. This data would be separated in a different tab in the [UI (User Interface)](#ui-user-interface).
+4. `restore uid/UID` - Restores the archived data for a specific contact with the given UID.
+5. `restore date/DD-MM-YYYY` - Restores all data archived on a specific date.
+6. `restore /before DD-MM-YYYY` - Restores all data archived before a specific date.
+7. `restore /after DD-MM-YYYY` - Restores all data archived after a specific date.
+
+<box type="info" seamless>
+All of these commands would automatically add the date and time of archiving/restoring to the data, ensuring a clear record of when the action was taken.
+
+Furthermore, the archived data would be stored in a separate file, ensuring that your main database remains uncluttered and optimized for daily use.
+
+And you would be able to access the archived data at any time in the [UI (User Interface)](#ui-user-interface), providing a comprehensive view of your historical records.
+</box>
+
+#### Best Practices for Archiving
+
+- Regular Archiving: Set a schedule for regular archiving to avoid data clutter.
+- Verify Data Integrity: Always check the integrity of the data both pre and post-archiving.
+- Secure Storage: Ensure that your archived data is stored in a secure, encrypted format to prevent unauthorized access.
+
+Stay tuned for the release of ContactSwift v2.0 to experience the benefits of data archiving firsthand!
+
+[Back to table of contents](#table-of-contents)
+
 ---
 
 ## Managing your employees
@@ -410,7 +456,7 @@ Great! You have successfully installed ContactSwift and are ready to manage your
 
 ### Track your team's productivity!
 
-We are thrilled to introduce a sophisticated enhancement to our application - the **Completion Rate Statistics**. This innovative feature is designed to provide a comprehensive overview of task management efficiency within your teams, offering a deeper insight into employee productivity.
+We are thrilled to introduce a sophisticated enhancement to our application - the [_Completion Rate Statistics_](#completition-rate-statistics). This innovative feature is designed to provide a comprehensive overview of task management efficiency within your teams, offering a deeper insight into employee productivity.
 
 ##### Understanding the Essence of Completion Rate Statistics
 
@@ -426,10 +472,6 @@ Within the dynamic interface of ContactSwift, each employee now boasts a visible
 We believe that the Completion Rate Statistics feature will significantly contribute to enhancing the efficiency and productivity of your team, offering a clear, quantifiable measure of task management success. We are confident that this addition will empower you and your team to achieve and surpass your productivity goals.
 
 [Back to table of contents](#table-of-contents)
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 ---
 
@@ -460,10 +502,10 @@ _Details coming soon ..._
 **A9:** ContactSwift does not support custom fields for contacts or tasks. However, you can use the tags field to add additional information.
 
 **Q10: How do I report a bug or issue with ContactSwift?**  
-**A10:** Please refer to the [Feedback and Support](#feedback) section for information on how to report bugs or issues.
+**A10:** Please refer to the [Feedback and Support](#feedback-and-support) section for information on how to report bugs or issues.
 
 **Q11: How do I request a new feature for ContactSwift?**  
-**A11:** Please refer to the [Feedback and Support](#feedback) section for information on how to request new features.
+**A11:** Please refer to the [Feedback and Support](#feedback-and-support) section for information on how to request new features.
 
 [Back to table of contents](#table-of-contents)
 
@@ -560,6 +602,10 @@ The space where interactions between humans and the system occur. This includes 
 ### Unique Identifier (UID)
 
 UID is a unique identifier assigned to each contact in ContactSwift, enabling precise and efficient management of contact details. Such identifiers serve to differentiate contacts and facilitate actions like editing, deleting, or adding tasks for specific contacts. UIDs are essential for managing large datasets and ensuring accurate contact management.
+
+### Completition Rate Statistics
+
+A metric that represents the proportion of completed tasks to total tasks assigned to an employee. This metric is calculated automatically and displayed in the UI, providing a clear indicator of individual productivity levels and task management efficiency.
 
 [Back to table of contents](#table-of-contents)
 
