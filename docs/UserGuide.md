@@ -47,24 +47,22 @@ Here's an enhanced Table of Contents for your user guide, organizing sections an
 1. [Introduction](#contactswift-user-guide)
 2. [Quick Start](#quick-start)
 3. [Features](#features)
-    - [Viewing Help](#viewing-help--help)
-    - [Listing All Employees](#listing-all-employees--list)
+    - [Viewing Help](#viewing-help-help)
+    - [Listing All Employees](#listing-all-employees-list)
     - [Adding an Employee](#adding-an-employee-add)
     - [Locating Employees by Name](#locating-employees-by-name-find)
     - [Filter Employees](#filter-employees-by-name-tags-roles-or-teams-filter)
-    - [Editing an Employee](#editing-an-employee--edit)
-    - [Deleting an Employee](#deleting-an-employee--delete)
+    - [Editing an Employee](#editing-an-employee-edit)
+    - [Deleting an Employee](#deleting-an-employee-delete)
     - [Task-Related Commands](#important-note-before-using-task-related-commands)
-      - [Add Task](#add-task-to-an-employees-task-list-addtask)
+      - [Add a Task to an Employee Task List](#add-a-task-to-an-employee-task-list-addtask)
       - [Mark a Task as Completed](#mark-a-task-as-completed-mark)
       - [Unmark a Task as Completed](#unmark-a-task-as-completed-unmark)
-      - [Delete a Task](#delete-a-task-from-an-employees-task-list-deletetask)
-    - [Clearing All Entries](#clearing-all-entries--clear)
-    - [Exiting the Program](#exiting-the-program--exit)
+      - [Delete a Task from an Employee Task List](#delete-a-task-from-an-employee-task-list-deletetask)
+    - [Clearing All Entries](#clearing-all-entries-clear)
+    - [Exiting the Program](#exiting-the-program-exit)
     - [Saving the Data](#saving-the-data)
 4. [Managing Your Employees](#managing-your-employees)
-    - [Track Your Team's Productivity](#track-your-teams-productivity)
-    - [Archiving Data Files (Coming in v2.0)](#archiving-data-files-coming-in-v20)
 5. [FAQ](#faq)
 6. [Known Issues](#known-issues)
 7. [Command Summary](#command-summary)
@@ -265,7 +263,7 @@ Example of using the `find` command:
 
 **Caution:** Due to a current bug, if you do not use the `find` command to locate and display the employee's details before executing other commands, the changes may not immediately reflect in the UI.
 
-### Add task to an employee's task list: `addTask`
+### Add a task to an employee task list: `addTask`
 
 Adds a task to an employee's task list.
 
@@ -329,7 +327,7 @@ Examples:
 
 [Back to table of contents](#table-of-contents)
 
-### Delete a task from an employee's task list: `deleteTask`
+### Delete a task from an employee task list: `deleteTask`
 
 Deletes a task from an employee's task list.
 
