@@ -6,27 +6,27 @@
 
 # ContactSwift User Guide
 
-Welcome to ContactSwift, the desktop app designed for efficient employee contact and task management. Optimized for use via a [Command Line Interface (CLI)](#cli-command-line-interface) while also providing a [Graphical User Interface (GUI)](#gui-graphical-user-interface), ContactSwift is ideal for small business owners, managers, and team leaders who aim to streamline their remote team’s workflows.
+WWelcome to the ContactSwift User Guide! ContactSwift is an all-in-one desktop application designed to optimize contact and task management for teams. With its dual-interface approach, users can utilize the speed and precision of a [Command Line Interface (CLI)](#cli-command-line-interface) and the visual ease of a [Graphical User Interface (GUI)](#gui-graphical-user-interface). ContactSwift is ideal for small business owners, managers, and team leaders who aim to streamline their remote team’s workflows.
 
 This guide will equip you with everything you need to maximize the benefits of ContactSwift, from initial setup to advanced features.
 
-**Key Features:**
+**Product Overview:**
 
-- Rapid contact management through intuitive CLI commands.
-- Comprehensive task tracking and productivity analysis.
-- Advanced filtering and searching capabilities for employee information (even if employees may have some same fields).
+ContactSwift offers a robust suite of features to manage employee contacts and task assignments effortlessly:
+- **Rapid Contact Management**: Quickly add, delete, update, and search for contacts using intuitive CLI commands or through the GUI.
+- **Advanced Task Tracking**: Assign tasks to contacts, set deadlines, and track progress to enhance productivity.
+- **Sophisticated Filtering System**: Filter contacts by tags, roles, teams, or other criteria to efficiently organize and retrieve employee information.
+- **Unique ID System**: Each contact in ContactSwift is assigned a [unique identifier (UID)](#unique-identifier-uid), ensuring precise and efficient management of contact details. This UID is key to performing actions like editing, deleting, or adding tasks for specific contacts. You will encounter these UIDs as you use various commands, offering a streamlined way to manage large datasets. This system is designed to enhance the user experience, enabling you to easily deal with duplicates!
 
-**Unique ID System:**
-Each contact in ContactSwift is assigned a unique identifier (UID), ensuring precise and efficient management of contact details. This UID is key to performing actions like editing, deleting, or adding tasks for specific contacts. You will encounter these UIDs as you use various commands, offering a streamlined way to manage large datasets. This system is designed to enhance the user experience, enabling you to easily deal with duplicates!
 <box type="warning">
 Data modifications may cause unexpected errors. It is recommended to back up the data file before making any changes. Please refer to the Saving the Data section for more information.
 </box>
 
-**Who is this for?**
+**Who is this guide for?**
 This guide is tailored for small business owners and remote team managers seeking an effective solution to manage contact details and tasks. We assume users have a basic understanding of command-line operations but have structured this guide to be accessible even to those new to CLI environments.
 
-**Purpose of this Guide:**
-To help you quickly become proficient with ContactSwift, enabling you to manage your team’s contacts and tasks more effectively and efficiently.
+**Why this guide?**
+The purpose of this user guide is to facilitate a quick and thorough understanding of ContactSwift, enabling you to maximize the application's features for better management and productivity.
 
 ## How to Use This Guide
 
@@ -40,19 +40,39 @@ Check the [Glossary](#glossary) for explanations of technical terms to ensure a 
 
 ---
 
+Here's an enhanced Table of Contents for your user guide, organizing sections and sub-sections systematically to reflect the flow of information provided in your document:
+
 ## Table of Contents
 
-1. [Quick Start](#quick-start)
-2. [Features](#features)
-3. [Managing Your Employees](#managing-your-employees)
-4. [FAQ](#faq)
-5. [Known Issues](#known-issues)
-6. [Command Summary](#command-summary)
-7. [Feedback and Support](#feedback-and-support)
-   - [How to Provide Feedback](#how-to-provide-feedback)
-   - [Feedback Etiquette](#feedback-etiquette)
-   - [What Happens to Your Feedback](#what-happens-to-your-feedback)
-8. [Glossary](#glossary)
+1. [Introduction](#contactswift-user-guide)
+2. [Quick Start](#quick-start)
+3. [Features](#features)
+    - [Viewing Help](#viewing-help--help)
+    - [Listing All Employees](#listing-all-employees--list)
+    - [Adding an Employee](#adding-an-employee-add)
+    - [Locating Employees by Name](#locating-employees-by-name-find)
+    - [Filter Employees](#filter-employees-by-name-tags-roles-or-teams-filter)
+    - [Editing an Employee](#editing-an-employee--edit)
+    - [Deleting an Employee](#deleting-an-employee--delete)
+    - [Task-Related Commands](#important-note-before-using-task-related-commands)
+      - [Add Task](#add-task-to-an-employees-task-list-addtask)
+      - [Mark a Task as Completed](#mark-a-task-as-completed-mark)
+      - [Unmark a Task as Completed](#unmark-a-task-as-completed-unmark)
+      - [Delete a Task](#delete-a-task-from-an-employees-task-list-deletetask)
+    - [Clearing All Entries](#clearing-all-entries--clear)
+    - [Exiting the Program](#exiting-the-program--exit)
+    - [Saving the Data](#saving-the-data)
+4. [Managing Your Employees](#managing-your-employees)
+    - [Track Your Team's Productivity](#track-your-teams-productivity)
+    - [Archiving Data Files (Coming in v2.0)](#archiving-data-files-coming-in-v20)
+5. [FAQ](#faq)
+6. [Known Issues](#known-issues)
+7. [Command Summary](#command-summary)
+8. [Feedback and Support](#feedback-and-support)
+    - [How to Provide Feedback](#how-to-provide-feedback)
+    - [Feedback Etiquette](#feedback-etiquette)
+    - [What Happens to Your Feedback](#what-happens-to-your-feedback)
+9. [Glossary](#glossary)
 
 ---
 
@@ -71,13 +91,7 @@ _Figure 1: The main interface of ContactSwift, showcasing sample data._
 5. **Get Commanding**: Input commands in the command box and press Enter. Try these to get started:
    - `list` – Displays all contacts.
    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 T/A r/Manager` – Adds a new contact.
-   - `delete uid/101` – Removes the contact with the 'uid' of 101.
-   - `edit 2 n/James Lee` – Updates the name of the second contact.
    - `find John` – Searches for contacts with the name `John`.
-   - `filter r/Manager` – Filters contacts by role.
-   - `addTask uid/1 Complete the report by 5pm` – Adds a task to the contact with the `uid` of 1.
-   - `clear` – Deletes all contacts.
-   - `exit` – Closes the application.
 
 For a detailed explanation of all commands, refer to the [Features](#features) section.
 
@@ -116,7 +130,7 @@ For a detailed explanation of all commands, refer to the [Features](#features) s
 Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)<br>
-_Figure: The help command output in ContactSwift._
+_Figure 2: The help command output in ContactSwift._
 
 Format: `help`
 
@@ -164,7 +178,82 @@ Examples:
 
 - `find John` returns `john` and `John Doe`
 - `find alice david` returns `Alice Smith`, `David Williams`<br>
-  ![result for 'find alex david'](./images/findAliceDavidResult.png)
+  ![result for 'find alex david'](./images/findAliceDavidResult.png)<br>
+  _Figure 3: The result for `find alex david`._
+
+### Filter employees by name, tags, roles, or teams: `filter`
+
+The `filter` command is used to search for employees based on specific attributes such as their name, tags, roles, or teams. This powerful tool allows you to narrow down the list of employees to those who meet certain criteria, making it easier to manage and interact with your employees.
+
+Format: `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]`
+
+**Important:** While each parameter (`NAME`, `TAG`, `ROLE`, `TEAM`) is individually optional and enclosed in brackets `[ ]` indicating optional input, **you must provide at least one of these parameters** for the command to function.
+
+**Note:** If no parameters are provided, the command will fail to execute, showing the message: "No valid fields present for filter command".
+
+This command filters the list of employees based on their name, tags, roles, or teams.
+
+- Filters the employee list according to the specified criteria.
+- Employees matching all provided criteria will be listed (i.e., `AND` search).
+- Only single values are allowed for the name, role, and team parameters. Tags can accept multiple values, each preceded by `t/`.
+- When filtering by team, prepend "Team " to the team name (e.g., `T/Team HR`) to ensure accurate filtering.
+- Name and team fields are case-insensitive, meaning they do not require an exact match of case to filter correctly. For instance, `T/Team HR` is equivalent to `T/team hr`.
+- Role and tag fields are case-sensitive, meaning they require an exact match of case to filter correctly. For instance, `r/Manager` will not match `r/manager`.
+- Name must be an exact match, however it is case-insensitive. For instance, `n/jane` will not match `Jane Doe`. It must be the full name `n/jane doe`.
+- The order of the parameters does not matter. e.g. `filter n/John Doe t/friend` will produce the same output as `filter t/friend n/John Doe`.
+
+Examples:
+
+- `filter t/friend t/Colleague` : Shows all employees tagged as `friend` and `Colleague`, respecting case for tags.
+- `filter n/jane doe` : Shows employees named `Jane Doe`, regardless of the case used in the filter.
+- `filter r/Executive T/TEAM SALES` : Shows employees with the role `Executive` (exact case match required) and in the 'Sales' team, regardless of how the team name's case is entered.
+- `filter t/colleague T/TEAM 2 r/Cleaner` should produce a similar output as below:<br>
+  <img src="./images/filterTagTeamRole.png" alt="Filter result" width="400"><br>
+    _Figure 4: The result for `filter t/colleague T/TEAM 2 r/Cleaner`._
+
+[Back to table of contents](#table-of-contents)
+
+### Editing an employee : `edit`
+
+Edits an existing employee in the address book.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`
+
+- Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list. The index **must be a positive integer** 1, 2, 3, …​
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+- When editing tags, the existing tags of the employee will be removed i.e. adding of tags is not cumulative.
+- You can remove all the employee’s tags by typing `t/` without specifying any tags after it.
+
+Examples:
+
+- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
+- `edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
+
+[Back to table of contents](#table-of-contents)
+
+### Deleting an employee : `delete`
+
+Deletes the specified employee from the address book.
+
+Format: `delete INDEX` or `delete uid/UID` or `delete NAME`
+
+- Deletes the employee at the specified `INDEX`/`UID`/`NAME`.
+- The `NAME` should not include numbers.
+- The index refers to the index number shown in the displayed employee list.
+- The index **must be a positive integer** 1, 2, 3, …​ and must be within the range of the displayed list.
+- The UID refers to the user ID displayed beside the employee's name.
+- The name must be an exact match, however it is case-insensitive.
+
+**Caution:** Deleting an employee is irreversible. Ensure you have selected the correct `INDEX`, `UID`, or `NAME` before proceeding.
+
+Examples:
+
+- `list` followed by `delete 2` deletes the 2nd employee in the address book.
+- `delete betsy` deletes the employee with the name `betsy` if there are no duplicates. In the case of duplicates, the user will be prompted to delete by uid.
+- `delete uid/101` deletes the employee with the `uid` of 101.
+
+[Back to table of contents](#table-of-contents)
 
 ### Important Note Before Using Task-Related Commands
 
@@ -187,7 +276,7 @@ Format: `addTask uid/UID DESCRIPTION`
 - Adds a task to the employee with the specified `UID`.
 - The `UID` refers to the user ID displayed beside the employee's name.
 - The description of the task must be provided.
-- The description of the task can only contain alphanumeric characters and spaces, and cannot be empty.
+- The description of the task can only contain [alphanumeric characters](#alphanumeric-characters) and spaces, and cannot be empty.
 
 Examples:
 
@@ -257,79 +346,6 @@ Examples:
 
 - `deleteTask uid/1 2` deletes the 2nd task in the task list of the employee with the `UID` of 1.
 - `deleteTask uid/2 1` deletes the 1st task in the task list of the employee with the `UID` of 2.
-
-[Back to table of contents](#table-of-contents)
-
-### Filter employees by name, tags, roles, or teams: `filter`
-
-The `filter` command is used to search for employees based on specific attributes such as their name, tags, roles, or teams. This powerful tool allows you to narrow down the list of employees to those who meet certain criteria, making it easier to manage and interact with your employees.
-
-Format: `filter [n/NAME] [t/TAG] [r/ROLE] [T/TEAM]`
-
-**Important:** While each parameter (`NAME`, `TAG`, `ROLE`, `TEAM`) is individually optional and enclosed in brackets `[ ]` indicating optional input, **you must provide at least one of these parameters** for the command to function.
-
-**Note:** If no parameters are provided, the command will fail to execute, showing the message: "No valid fields present for filter command".
-
-This command filters the list of employees based on their name, tags, roles, or teams.
-
-- Filters the employee list according to the specified criteria.
-- Employees matching all provided criteria will be listed (i.e., `AND` search).
-- Only single values are allowed for the name, role, and team parameters. Tags can accept multiple values, each preceded by `t/`.
-- When filtering by team, prepend "Team " to the team name (e.g., `T/Team HR`) to ensure accurate filtering.
-- Name and team fields are case-insensitive, meaning they do not require an exact match of case to filter correctly. For instance, `T/Team HR` is equivalent to `T/team hr`.
-- Role and tag fields are case-sensitive, meaning they require an exact match of case to filter correctly. For instance, `r/Manager` will not match `r/manager`.
-- Name must be an exact match, however it is case-insensitive. For instance, `n/jane` will not match `Jane Doe`. It must be the full name `n/jane doe`.
-- The order of the parameters does not matter. e.g. `filter n/John Doe t/friend` will produce the same output as `filter t/friend n/John Doe`.
-
-Examples:
-
-- `filter t/friend t/Colleague` : Shows all employees tagged as `friend` and `Colleague`, respecting case for tags.
-- `filter n/jane doe` : Shows employees named `Jane Doe`, regardless of the case used in the filter.
-- `filter r/Executive T/TEAM SALES` : Shows employees with the role `Executive` (exact case match required) and in the 'Sales' team, regardless of how the team name's case is entered.
-- `filter t/remote` should produce a similar output as below:<br>
-  ![result for 'filter tag remote'](./images/filterTagRemoteResult.png)
-
-[Back to table of contents](#table-of-contents)
-
-### Editing an employee : `edit`
-
-Edits an existing employee in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [T/TEAM] [r/ROLE] [t/TAG]…​`
-
-- Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed employee list. The index **must be a positive integer** 1, 2, 3, …​
-- At least one of the optional fields must be provided.
-- Existing values will be updated to the input values.
-- When editing tags, the existing tags of the employee will be removed i.e. adding of tags is not cumulative.
-- You can remove all the employee’s tags by typing `t/` without specifying any tags after it.
-
-Examples:
-
-- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st employee to be `91234567` and `johndoe@example.com` respectively.
-- `edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
-
-[Back to table of contents](#table-of-contents)
-
-### Deleting an employee : `delete`
-
-Deletes the specified employee from the address book.
-
-Format: `delete INDEX` or `delete uid/UID` or `delete NAME`
-
-- Deletes the employee at the specified `INDEX`/`UID`/`NAME`.
-- The `NAME` should not include numbers.
-- The index refers to the index number shown in the displayed employee list.
-- The index **must be a positive integer** 1, 2, 3, …​ and must be within the range of the displayed list.
-- The UID refers to the user ID displayed beside the employee's name.
-- The name must be an exact match, however it is case-insensitive.
-
-**Caution:** Deleting an employee is irreversible. Ensure you have selected the correct `INDEX`, `UID`, or `NAME` before proceeding.
-
-Examples:
-
-- `list` followed by `delete 2` deletes the 2nd employee in the address book.
-- `delete betsy` deletes the employee with the name `betsy` if there are no duplicates. In the case of duplicates, the user will be prompted to delete by uid.
-- `delete uid/101` deletes the employee with the `uid` of 101.
 
 [Back to table of contents](#table-of-contents)
 
